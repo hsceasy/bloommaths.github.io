@@ -5,18 +5,38 @@
 <title>Maths Escape Rooms | Choose Your Adventure</title>
 <style>
 :root{color-scheme:light;--ink:#28354a;--muted:#59667a;--teal:#087d83;--purple:#7655b3}*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:radial-gradient(circle at 15% 10%,#fce7ed 0,transparent 35%),radial-gradient(circle at 85% 15%,#d9f7f1 0,transparent 35%),linear-gradient(145deg,#fbf8ff,#e9f2ff);min-height:100vh}main{max-width:1020px;margin:auto;padding:52px 22px 65px}.eyebrow{text-transform:uppercase;letter-spacing:.16em;font-weight:800;color:#49667b;font-size:.78rem}header{text-align:center;margin-bottom:34px}h1{font-size:clamp(2.2rem,6vw,4.1rem);margin:8px 0 12px;letter-spacing:-.045em}header p{font-size:1.13rem;line-height:1.6;color:var(--muted);max-width:630px;margin:0 auto}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}.card{background:#ffffffeb;border:2px solid #fff;border-radius:27px;overflow:hidden;box-shadow:0 14px 35px #334a6b1c;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}.card:hover{transform:translateY(-4px);box-shadow:0 20px 40px #334a6b2c}.art{min-height:210px;display:grid;place-items:center;position:relative;overflow:hidden}.art.standard{background:linear-gradient(135deg,#c3f0e7,#b6dcf7)}.art.gifted{background:linear-gradient(135deg,#e4d0ff,#ffdce9)}.art::before,.art::after{content:"";position:absolute;width:220px;height:220px;border:3px solid #ffffff8a;border-radius:50%}.art::before{left:-85px;top:-90px}.art::after{right:-95px;bottom:-130px}.emoji{font-size:6.2rem;filter:drop-shadow(0 8px 10px #44516a30);z-index:1}.content{padding:25px 27px 29px;display:flex;flex-direction:column;flex:1}.tag{align-self:flex-start;border-radius:999px;padding:7px 12px;font-size:.78rem;font-weight:800;background:#e8f6f3;color:#086a6c}.gifted-tag{background:#f0e9ff;color:#6843a4}h2{font-size:1.65rem;letter-spacing:-.025em;margin:15px 0 7px}.desc{color:var(--muted);line-height:1.6;flex:1;margin:0 0 22px}.button{display:block;text-align:center;text-decoration:none;background:var(--teal);color:white;padding:16px;border-radius:14px;font-size:1.06rem;font-weight:800;transition:filter .15s}.button:hover,.button:focus-visible{filter:brightness(.9)}.button.purple{background:var(--purple)}.button:focus-visible{outline:4px solid #f5b14c;outline-offset:3px}footer{text-align:center;color:#5e6a7a;margin-top:32px;font-size:.94rem;line-height:1.6}.tiny{font-size:.84rem}@media(max-width:650px){main{padding:32px 16px 42px}.grid{grid-template-columns:1fr}.art{min-height:165px}.emoji{font-size:5rem}.content{padding:21px}}
+
+.image-label {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.92);
+  color: #34445e;
+  padding: 10px 18px;
+  border-radius: 30px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(40, 53, 74, 0.12);
+}
+
 </style>
 </head>
 <body><main>
-<header><div class="eyebrow">🔐 NSW Stage 4 Mathematics</div><h1>Maths Escape Rooms</h1><p>Welcome to the Locked Laboratory! Solve integer puzzles, uncover clues and unlock all seven rooms. Choose your challenge to begin.</p></header>
+<header><div class="eyebrow">🔐 NSW Years 7–12 Mathematics</div><h1>Maths Escape Rooms</h1><p>Welcome to Years 7–12 Mathematics Resources! Explore interactive maths escape rooms designed to make learning engaging, challenging and fun. Choose your year level, topic and difficulty to get started.</p></header>
 <section class="grid" aria-label="Choose a game">
-<article class="card"><div class="art standard" aria-hidden="true"><span class="emoji">🧪🔓</span></div><div class="content"><span class="tag">STANDARD EDITION</span><h2>The Locked Laboratory</h2><p class="desc">Explore seven rooms of integer puzzles, from negative numbers to BEDMAS and bracket challenges. Optional hints, worked examples and mini-lessons are available whenever you need them.</p><a class="button" href="locked_laboratory_seven_rooms%20EASY.html">Play Standard Game →</a></div></article>
-<article class="card"><div class="art gifted" aria-hidden="true"><span class="emoji">🧠🔐</span></div><div class="content"><span class="tag gifted-tag">GIFTED &amp; TALENTED EDITION</span><h2>The Extension Challenge</h2><p class="desc">Take on seven more demanding rooms featuring multi-step calculations, mathematical reasoning and trickier integer problems. Learning support is still optional.</p><a class="button purple" href="locked_laboratory_gifted_extension.html">Play Extension Game →</a></div></article>
+<article class="card"><div class="art standard" aria-hidden="true"><span class="emoji">🧪🔓</span><span class="image-label">YEARS 7–8 · INTEGERS</span></div><div class="content">
+<article class="card"><div class="art gifted" aria-hidden="true"><span class="emoji">🧠🔐</span>
+<span class="image-label">YEARS 7–8 · INTEGERS</span></div><div class="content"><span class="tag gifted-tag">GIFTED &amp; TALENTED EDITION</span><h2>The Extension Challenge</h2><p class="desc">Take on seven more demanding rooms featuring multi-step calculations, mathematical reasoning and trickier integer problems. Learning support is still optional.</p><a class="button purple" href="locked_laboratory_gifted_extension.html">Play Extension Game →</a></div></article>
   
 
 <article class="card">
   <div class="art standard" aria-hidden="true">
     <span class="emoji">🏫🔐</span>
+<span class="image-label">YEARS 7–8 · FDP</span>
   </div>
   <div class="content">
     <span class="tag standard">STANDARD EDITION</span>
@@ -29,6 +49,7 @@
 <article class="card">
   <div class="art gifted" aria-hidden="true">
     <span class="emoji">🏫🧠</span>
+<span class="image-label">YEARS 7–8 · FDP</span>
   </div>
   <div class="content">
     <span class="tag gifted-tag">GIFTED &amp; TALENTED EDITION</span>
