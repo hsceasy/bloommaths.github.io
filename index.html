@@ -123,6 +123,9 @@ header p {
 .art.senior {
   background: linear-gradient(135deg,#e8d6ff,#c9e6ff);
 }
+.art.mistake {
+  background: linear-gradient(135deg,#ffe0eb,#e8d9ff,#d8f4f2);
+}
 .art::before, .art::after {
   content: "";
   position: absolute;
@@ -173,6 +176,10 @@ header p {
   background: #f0e9ff;
   color: #6843a4;
 }
+.mistake-tag {
+  background: #ffe6ef;
+  color: #a23c6b;
+}
 h2 {
   font-size: 1.65rem;
   letter-spacing: -.025em;
@@ -198,6 +205,7 @@ h2 {
 }
 .button:hover { filter: brightness(.9); }
 .button.purple { background: var(--purple); }
+.button.pink { background: #ad4f82; }
 .stage-section[hidden], #stage-selection[hidden] {
   display: none;
 }
@@ -221,6 +229,15 @@ h2 {
   text-align: center;
   color: var(--muted);
   margin: 0 0 28px;
+}
+.group-title {
+  font-size: 1.45rem;
+  margin: 35px 0 7px;
+}
+.group-description {
+  color: var(--muted);
+  margin: 0 0 18px;
+  line-height: 1.6;
 }
 .coming-soon {
   text-align: center;
@@ -269,8 +286,9 @@ footer {
   <h1>HSC Easy</h1>
   <p>
     Welcome to Years 7–12 Mathematics Resources!
-    Explore interactive maths escape rooms designed
-    to make learning engaging, challenging and fun.
+    Explore interactive maths escape rooms and daily
+    challenges designed to make learning engaging,
+    challenging and fun.
     Choose your stage to begin your adventure.
   </p>
 </header>
@@ -300,19 +318,31 @@ footer {
       <span class="stage-icon">📈</span>
       <h2>Stage 6</h2>
       <p>Years 11–12 Mathematics</p>
-      <span class="stage-link">Explore 3 Games →</span>
+      <span class="stage-link">Explore 4 Activities →</span>
     </button>
 
   </div>
 </section>
 
-<!-- DAILY PROBLEM-SOLVING CHALLENGE -->
-<section aria-label="Problem of the Day" style="margin:30px 0 42px">
+<!-- PROBLEM OF THE DAY -->
+<section aria-label="Problem of the Day"
+         style="margin:30px 0 42px">
   <div style="background:linear-gradient(120deg,#e8dcff,#ffe8f0,#d9f7f1);border:2px solid white;border-radius:27px;padding:clamp(22px,5vw,38px);box-shadow:0 14px 35px #334a6b1c;text-align:center">
     <div style="font-size:2.8rem" aria-hidden="true">🧠</div>
-    <h2 style="font-size:clamp(1.6rem,4vw,2.3rem);margin:8px 0">Problem of the Day</h2>
-    <p style="max-width:640px;margin:0 auto 18px;line-height:1.65;color:#45556b">A fresh 5–7 minute maths problem-solving challenge every day for Stages 4, 5 and 6. Optional hints, yesterday’s worked solutions and a teacher preview of all 90 days.</p>
-    <a class="button purple" href="problem_of_the_day.html" style="display:inline-block;text-decoration:none">Try Today's Challenge →</a>
+    <h2 style="font-size:clamp(1.6rem,4vw,2.3rem);margin:8px 0">
+      Problem of the Day
+    </h2>
+    <p style="max-width:640px;margin:0 auto 18px;line-height:1.65;color:#45556b">
+      A fresh 5–7 minute maths problem-solving challenge
+      every day for Stages 4, 5 and 6.
+      Optional hints, yesterday's worked solutions
+      and a teacher preview of all 90 days.
+    </p>
+    <a class="button purple"
+       href="problem_of_the_day.html"
+       style="display:inline-block">
+      Try Today's Challenge →
+    </a>
   </div>
 </section>
 
@@ -442,10 +472,52 @@ footer {
     ← Back to Stages
   </button>
 
-  <h2 class="section-title">📈 Stage 6 Escape Rooms</h2>
+  <h2 class="section-title">📈 Stage 6 Mathematics</h2>
   <p class="section-subtitle">
-    Years 11–12 · Apply your maths skills
-    to real-world challenges
+    Years 11–12 · HSC revision and interactive challenges
+  </p>
+
+  <!-- DAILY CHALLENGES -->
+  <h3 class="group-title">🔎 Daily Maths Challenges</h3>
+  <p class="group-description">
+    Build your HSC exam skills with a new mathematical
+    reasoning challenge each day.
+  </p>
+
+  <div class="grid">
+    <article class="card">
+      <div class="art mistake" aria-hidden="true">
+        <span class="emoji">🔎📝</span>
+        <span class="image-label">
+          STAGE 6 · MATHS STANDARD
+        </span>
+      </div>
+      <div class="content">
+        <span class="tag mistake-tag">
+          NEW DAILY CHALLENGE
+        </span>
+        <h2>Spot the Mistake</h2>
+        <p class="desc">
+          Can you find the error in a student's
+          mathematical working? Each day brings a new
+          HSC-style Maths Standard question.
+          Identify the mistake, explain why it is
+          incorrect and show the correct solution.
+          Includes optional hints, next-day worked
+          solutions and a 90-day teacher preview.
+        </p>
+        <a class="button pink" href="spot_the_mistake.html">
+          Spot Today's Mistake →
+        </a>
+      </div>
+    </article>
+  </div>
+
+  <!-- ESCAPE ROOMS -->
+  <h3 class="group-title">🔐 Interactive Escape Rooms</h3>
+  <p class="group-description">
+    Solve mathematical challenges, unlock rooms
+    and apply your knowledge to real-world scenarios.
   </p>
 
   <div class="grid">
@@ -480,18 +552,24 @@ footer {
     <article class="card">
       <div class="art senior" aria-hidden="true">
         <span class="emoji">🎰🔐</span>
-        <span class="image-label">STAGE 6 · PROBABILITY</span>
+        <span class="image-label">
+          STAGE 6 · PROBABILITY
+        </span>
       </div>
       <div class="content">
-        <span class="tag gifted-tag">MATHEMATICS STANDARD</span>
+        <span class="tag gifted-tag">
+          MATHEMATICS STANDARD
+        </span>
         <h2>The Casino Lockdown</h2>
         <p class="desc">
-          The casino's security system has locked every exit!
-          Solve 16 probability challenges involving dice, cards,
-          probability trees, complements, Venn diagrams and
-          two-way tables. Crack each code to escape.
+          The casino's security system has locked
+          every exit! Solve 16 probability challenges
+          involving dice, cards, probability trees,
+          complements, Venn diagrams and two-way tables.
+          Crack each code to escape.
         </p>
-        <a class="button purple" href="the_casino_lockdown.html">
+        <a class="button purple"
+           href="the_casino_lockdown.html">
           Play The Casino Lockdown →
         </a>
       </div>
@@ -500,13 +578,26 @@ footer {
     <article class="card">
       <div class="art senior" aria-hidden="true">
         <span class="emoji">🏝️📡</span>
-        <span class="image-label">YEAR 12 · TRIGONOMETRY</span>
+        <span class="image-label">
+          YEAR 12 · TRIGONOMETRY
+        </span>
       </div>
       <div class="content">
-        <span class="tag gifted-tag">MATHEMATICS STANDARD</span>
+        <span class="tag gifted-tag">
+          MATHEMATICS STANDARD
+        </span>
         <h2>The Island Signal</h2>
-        <p class="desc">A storm has cut off a remote island. Solve 14 trigonometry challenges involving right-angled triangles, bearings, sine and cosine rules, area and navigation to restore the signal and escape.</p>
-        <a class="button purple" href="the_island_signal.html">Play The Island Signal →</a>
+        <p class="desc">
+          A storm has cut off a remote island.
+          Solve 14 trigonometry challenges involving
+          right-angled triangles, bearings, sine and
+          cosine rules, area and navigation to restore
+          the signal and escape.
+        </p>
+        <a class="button purple"
+           href="the_island_signal.html">
+          Play The Island Signal →
+        </a>
       </div>
     </article>
 
@@ -522,9 +613,11 @@ footer {
 
 <footer>
   <strong>For students:</strong>
-  Choose your stage, select a game and begin your adventure.
+  Choose your stage, select a game or daily challenge
+  and begin your adventure.
   <div class="tiny">
-    All games open in your browser. No account required.
+    All activities open in your browser.
+    No account required.
   </div>
 </footer>
 
