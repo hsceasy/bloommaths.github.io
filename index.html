@@ -4,7 +4,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Maths Escape Rooms | Choose Your Adventure</title>
+<meta name="theme-color" content="#f5f0ff">
+<meta name="description" content="HSC Easy offers interactive maths resources and escape rooms for NSW students in Years 7–12.">
+<title>HSC Easy | Interactive Maths Resources</title>
 
 <style>
 :root {
@@ -13,6 +15,7 @@
   --muted: #59667a;
   --teal: #087d83;
   --purple: #7655b3;
+  --pink: #e7a4bd;
 }
 
 * { box-sizing: border-box; }
@@ -29,48 +32,163 @@ body {
   min-height: 100vh;
 }
 
+a { color: inherit; }
+
+.site-nav {
+  background: rgba(255,255,255,.83);
+  border-bottom: 1px solid #e8dff1;
+}
+
+.nav-inner {
+  max-width: 1080px;
+  margin: auto;
+  padding: 15px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  text-decoration: none;
+}
+
+.brand-mark {
+  width: 45px;
+  height: 45px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(145deg,#e9dcff,#ffdce9);
+  border-radius: 14px;
+  font-size: 1.55rem;
+}
+
+.brand-name {
+  color: var(--purple);
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: -.045em;
+}
+
+.nav-caption {
+  color: var(--muted);
+  font-size: .86rem;
+  font-weight: 700;
+}
+
 main {
   max-width: 1020px;
   margin: auto;
-  padding: 52px 22px 65px;
+  padding: 40px 22px 65px;
 }
 
-header {
+.hero {
   text-align: center;
-  margin-bottom: 34px;
+  margin-bottom: 38px;
+  padding: 42px 25px;
+  background: rgba(255,255,255,.68);
+  border: 2px solid #fff;
+  border-radius: 30px;
+  box-shadow: 0 14px 35px #334a6b12;
 }
 
 .eyebrow {
   text-transform: uppercase;
   letter-spacing: .16em;
   font-weight: 800;
-  color: #49667b;
+  color: #7655b3;
   font-size: .78rem;
 }
 
-h1 {
-  font-size: clamp(2.2rem, 6vw, 4.1rem);
-  margin: 8px 0 12px;
-  letter-spacing: -.045em;
+.hero h1 {
+  font-size: clamp(3rem, 8vw, 5rem);
+  margin: 9px 0 3px;
+  letter-spacing: -.065em;
+  color: var(--purple);
 }
 
-header p {
-  font-size: 1.13rem;
-  line-height: 1.6;
+.tagline {
+  font-size: clamp(1.1rem,3vw,1.4rem);
+  font-weight: 800;
+  color: #53667b;
+  margin: 0 0 22px;
+}
+
+.hero-divider {
+  width: 100px;
+  height: 5px;
+  background: linear-gradient(90deg,#d8b5ed,#f2b7cb,#b3e6dc);
+  border-radius: 99px;
+  margin: 0 auto 23px;
+}
+
+.hero h2 {
+  font-size: clamp(1.45rem,4vw,2.1rem);
+  margin: 0 0 10px;
+  letter-spacing: -.035em;
+}
+
+.hero-description {
+  font-size: 1.05rem;
+  line-height: 1.7;
   color: var(--muted);
-  max-width: 630px;
-  margin: 0 auto;
+  max-width: 650px;
+  margin: 0 auto 20px;
+}
+
+.hero-chips {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.hero-chip {
+  background: #f1eaff;
+  color: #6843a4;
+  padding: 9px 14px;
+  border-radius: 99px;
+  font-size: .85rem;
+  font-weight: 800;
+}
+
+.hero-chip:nth-child(2) {
+  background: #e0f5f1;
+  color: #086a6c;
+}
+
+.hero-chip:nth-child(3) {
+  background: #ffeaf1;
+  color: #995274;
+}
+
+.collection-heading {
+  text-align: center;
+  margin-bottom: 26px;
+}
+
+.collection-heading h2 {
+  font-size: 1.8rem;
+  margin: 0 0 7px;
+}
+
+.collection-heading p {
+  color: var(--muted);
+  margin: 0;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0,1fr));
+  grid-template-columns: repeat(2,minmax(0,1fr));
   gap: 22px;
 }
 
 .stage-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0,1fr));
+  grid-template-columns: repeat(3,minmax(0,1fr));
   gap: 22px;
 }
 
@@ -233,7 +351,7 @@ header p {
   color: #8b5815;
 }
 
-h2 {
+.content h2 {
   font-size: 1.65rem;
   letter-spacing: -.025em;
   margin: 15px 0 7px;
@@ -259,17 +377,9 @@ h2 {
   transition: filter .15s;
 }
 
-.button:hover {
-  filter: brightness(.9);
-}
-
-.button.purple {
-  background: var(--purple);
-}
-
-.button.gold {
-  background: #8b6228;
-}
+.button:hover { filter: brightness(.9); }
+.button.purple { background: var(--purple); }
+.button.gold { background: #8b6228; }
 
 .stage-section[hidden],
 #stage-selection[hidden] {
@@ -307,17 +417,9 @@ h2 {
   background: #ffffffd9;
 }
 
-.coming-soon .big {
-  font-size: 4rem;
-}
-
-.coming-soon h3 {
-  font-size: 1.8rem;
-}
-
-.coming-soon p {
-  color: var(--muted);
-}
+.coming-soon .big { font-size: 4rem; }
+.coming-soon h3 { font-size: 1.8rem; }
+.coming-soon p { color: var(--muted); }
 
 .teacher-area {
   text-align: center;
@@ -338,41 +440,21 @@ footer {
   line-height: 1.6;
 }
 
-.tiny {
-  font-size: .84rem;
-}
+.tiny { font-size: .84rem; }
 
 @media(max-width:750px) {
-  .stage-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .stage-card {
-    padding: 22px;
-  }
+  .stage-grid { grid-template-columns: 1fr; }
+  .stage-card { padding: 22px; }
+  .nav-caption { display: none; }
 }
 
 @media(max-width:650px) {
-  main {
-    padding: 32px 16px 42px;
-  }
-
-  .grid {
-    grid-template-columns: 1fr;
-  }
-
-  .art {
-    min-height: 165px;
-  }
-
-  .emoji {
-    font-size: 5rem;
-  }
-
-  .content {
-    padding: 21px;
-  }
-
+  main { padding: 25px 16px 42px; }
+  .hero { padding: 32px 18px; }
+  .grid { grid-template-columns: 1fr; }
+  .art { min-height: 165px; }
+  .emoji { font-size: 5rem; }
+  .content { padding: 21px; }
   .image-label {
     font-size: .72rem;
     padding: 9px 12px;
@@ -382,22 +464,51 @@ footer {
 </head>
 
 <body>
+
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="#" onclick="showHome()">
+      <span class="brand-mark">📚</span>
+      <span class="brand-name">HSC Easy</span>
+    </a>
+    <span class="nav-caption">NSW Mathematics · Years 7–12</span>
+  </div>
+</nav>
+
 <main>
 
-<header>
-  <div class="eyebrow">🔐 NSW Years 7–12 Mathematics</div>
-  <h1>Maths Escape Rooms</h1>
-  <p>
-    Welcome to Years 7–12 Mathematics Resources!
-    Explore interactive maths escape rooms designed
-    to make learning engaging, challenging and fun.
-    Choose your stage to begin your adventure.
+<header class="hero">
+  <div class="eyebrow">NSW Mathematics Resources</div>
+  <h1>HSC Easy</h1>
+  <p class="tagline">Making Maths Make Sense.</p>
+
+  <div class="hero-divider"></div>
+
+  <h2>Interactive Maths Escape Rooms</h2>
+
+  <p class="hero-description">
+    Learning maths doesn't have to be boring!
+    Explore interactive challenges, solve puzzles
+    and unlock new rooms as you build your confidence
+    and mathematical skills.
   </p>
+
+  <div class="hero-chips">
+    <span class="hero-chip">🔐 Learn through puzzles</span>
+    <span class="hero-chip">🧠 Challenge your thinking</span>
+    <span class="hero-chip">✨ Learn at your own pace</span>
+  </div>
 </header>
 
 <!-- MAIN STAGE SELECTION -->
 
 <section id="stage-selection" aria-label="Choose your stage">
+
+  <div class="collection-heading">
+    <h2>Choose Your Stage</h2>
+    <p>Select your year group to explore the games.</p>
+  </div>
+
   <div class="stage-grid">
 
     <button class="stage-card stage4"
@@ -413,7 +524,7 @@ footer {
       <span class="stage-icon">📐</span>
       <h2>Stage 5</h2>
       <p>Years 9–10 Mathematics</p>
-      <span class="stage-link">Explore Stage 5 →</span>
+      <span class="stage-link">Coming Soon →</span>
     </button>
 
     <button class="stage-card stage6"
@@ -436,35 +547,27 @@ footer {
   </button>
 
   <h2 class="section-title">🔢 Stage 4 Escape Rooms</h2>
-
   <p class="section-subtitle">
     Years 7–8 · Choose your topic and difficulty
   </p>
 
   <div class="grid">
 
-    <!-- INTEGERS STANDARD -->
-
     <article class="card">
       <div class="art standard" aria-hidden="true">
         <span class="emoji">🧪🔓</span>
-        <span class="image-label">
-          YEARS 7–8 · INTEGERS
-        </span>
+        <span class="image-label">YEARS 7–8 · INTEGERS</span>
       </div>
 
       <div class="content">
         <span class="tag">STANDARD EDITION</span>
-
         <h2>The Locked Laboratory</h2>
-
         <p class="desc">
           Explore seven rooms of integer puzzles,
           from negative numbers to BEDMAS and bracket
           challenges. Optional hints, worked examples
           and mini-lessons are available.
         </p>
-
         <a class="button"
            href="locked_laboratory_seven_rooms%20EASY.html">
           Play Standard Game →
@@ -472,29 +575,22 @@ footer {
       </div>
     </article>
 
-    <!-- INTEGERS EXTENSION -->
-
     <article class="card">
       <div class="art gifted" aria-hidden="true">
         <span class="emoji">🧠🔐</span>
-        <span class="image-label">
-          YEARS 7–8 · INTEGERS
-        </span>
+        <span class="image-label">YEARS 7–8 · INTEGERS</span>
       </div>
 
       <div class="content">
         <span class="tag gifted-tag">
           GIFTED &amp; TALENTED EDITION
         </span>
-
         <h2>The Extension Challenge</h2>
-
         <p class="desc">
           Take on seven more demanding rooms featuring
           multi-step calculations, mathematical reasoning
           and trickier integer problems.
         </p>
-
         <a class="button purple"
            href="locked_laboratory_gifted_extension.html">
           Play Extension Game →
@@ -502,27 +598,20 @@ footer {
       </div>
     </article>
 
-    <!-- FDP STANDARD -->
-
     <article class="card">
       <div class="art standard" aria-hidden="true">
         <span class="emoji">🏫🔐</span>
-        <span class="image-label">
-          YEARS 7–8 · FDP
-        </span>
+        <span class="image-label">YEARS 7–8 · FDP</span>
       </div>
 
       <div class="content">
         <span class="tag">STANDARD EDITION</span>
-
         <h2>The School Lockdown</h2>
-
         <p class="desc">
           Explore 12 school rooms and solve 48 maths
           puzzles covering fractions, decimals and
           percentages. Can you escape?
         </p>
-
         <a class="button"
            href="the_school_lockdown_complete_12_rooms.html">
           Play Standard Game →
@@ -530,29 +619,22 @@ footer {
       </div>
     </article>
 
-    <!-- FDP EXTENSION -->
-
     <article class="card">
       <div class="art gifted" aria-hidden="true">
         <span class="emoji">🏫🧠</span>
-        <span class="image-label">
-          YEARS 7–8 · FDP
-        </span>
+        <span class="image-label">YEARS 7–8 · FDP</span>
       </div>
 
       <div class="content">
         <span class="tag gifted-tag">
           GIFTED &amp; TALENTED EDITION
         </span>
-
         <h2>The School Lockdown — Extension</h2>
-
         <p class="desc">
           Take on 12 school rooms and 48 challenging,
           multi-step fractions, decimals and percentages
           problems. Solve every investigation to escape!
         </p>
-
         <a class="button purple"
            href="the_school_lockdown_FDP_EXTENSION%20(2).html">
           Play Extension Game →
@@ -572,22 +654,16 @@ footer {
   </button>
 
   <h2 class="section-title">📐 Stage 5 Escape Rooms</h2>
-
-  <p class="section-subtitle">
-    Years 9–10 Mathematics
-  </p>
+  <p class="section-subtitle">Years 9–10 Mathematics</p>
 
   <div class="coming-soon">
     <div class="big">🔐✨</div>
-
     <h3>New Adventures Coming Soon!</h3>
-
     <p>
       Stage 5 maths escape rooms are currently
       being developed. Check back soon!
     </p>
   </div>
-
 </section>
 
 <!-- STAGE 6 -->
@@ -599,7 +675,6 @@ footer {
   </button>
 
   <h2 class="section-title">📈 Stage 6 Escape Rooms</h2>
-
   <p class="section-subtitle">
     Years 11–12 · Apply your maths skills
     to real-world challenges
@@ -607,26 +682,19 @@ footer {
 
   <div class="grid">
 
-    <!-- BUSINESS BREAKOUT -->
-
     <article class="card">
-
       <div class="art senior" aria-hidden="true">
         <span class="emoji">💼🔐</span>
-
         <span class="image-label">
           YEAR 12 · LINEAR RELATIONSHIPS
         </span>
       </div>
 
       <div class="content">
-
         <span class="tag gifted-tag">
           YEAR 12 MATHEMATICS STANDARD
         </span>
-
         <h2>The Business Breakout</h2>
-
         <p class="desc">
           You've been locked inside the business
           headquarters! Solve six rooms of mathematical
@@ -635,35 +703,26 @@ footer {
           simultaneous equations and direct variation.
           Can you unlock the final exit?
         </p>
-
         <a class="button purple"
            href="the_business_breakout.html">
           Play The Business Breakout →
         </a>
-
       </div>
     </article>
 
-    <!-- CASINO LOCKDOWN -->
-
     <article class="card">
-
       <div class="art casino" aria-hidden="true">
         <span class="emoji">🎰🔐</span>
-
         <span class="image-label">
           YEAR 12 · PROBABILITY
         </span>
       </div>
 
       <div class="content">
-
         <span class="tag casino-tag">
           YEAR 12 MATHEMATICS STANDARD
         </span>
-
         <h2>The Casino Lockdown</h2>
-
         <p class="desc">
           The casino security system has locked every
           exit! Work your way through 16 rooms featuring
@@ -673,12 +732,10 @@ footer {
           challenge to reveal the next door's code.
           Can you escape the casino?
         </p>
-
         <a class="button gold"
            href="the_casino_lockdown.html">
           Enter The Casino Lockdown →
         </a>
-
       </div>
     </article>
 
@@ -694,11 +751,10 @@ footer {
 </div>
 
 <footer>
-  <strong>For students:</strong>
-  Choose your stage, select a game and begin your adventure.
-
+  <strong>HSC Easy</strong> · Making Maths Make Sense.
   <div class="tiny">
-    All games open in your browser. No account required.
+    Interactive mathematics resources for NSW students
+    in Years 7–12. No account required.
   </div>
 </footer>
 
@@ -713,7 +769,6 @@ function showStage(stage) {
   });
 
   document.getElementById('stage-' + stage).hidden = false;
-
   window.scrollTo(0, 0);
 }
 
@@ -723,7 +778,6 @@ function showHome() {
   });
 
   document.getElementById('stage-selection').hidden = false;
-
   window.scrollTo(0, 0);
 }
 </script>
