@@ -1,16 +1,784 @@
-<!doctype html><html lang="en-AU"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Spot the Mistake | HSC Easy</title><style>
-:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#2b3550;background:#f7f3ff}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 10% 0%,#ffe4ee,transparent 45%),radial-gradient(circle at 90% 5%,#d9f7f1,transparent 45%),#f8f5ff}main{max-width:840px;margin:auto;padding:30px 16px 70px}h1{font-size:clamp(2rem,6vw,3rem);margin:8px 0}p{line-height:1.6}.muted{color:#5c667c}.panel{background:#fff;border:1px solid #e9e2f5;border-radius:22px;padding:clamp(18px,4vw,32px);box-shadow:0 10px 30px #473e7614;margin:20px 0}.label{font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#7252a6}.working{background:#f5f2fb;border-left:4px solid #9773d1;border-radius:10px;padding:16px 20px;margin:18px 0}.working div{padding:7px 0;font-family:ui-monospace,Consolas,monospace;overflow-wrap:anywhere}.btn{background:#7353b0;color:white;border:0;border-radius:12px;padding:12px 18px;font:inherit;font-weight:750;cursor:pointer;margin:5px 8px 5px 0}.btn.alt{background:#e9e1f7;color:#523780}.btn:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid #e0a52e}select,input{font:inherit;padding:9px;border:1px solid #c7bbdd;border-radius:8px;max-width:100%}.hidden{display:none!important}.notice{background:#eaf8f3;border-radius:12px;padding:14px;margin:14px 0}.answer{background:#f3f9f6;border-radius:12px;padding:16px;margin:15px 0}.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.back{color:#6447a0;text-decoration:none;font-weight:700}.small{font-size:.88rem}footer{text-align:center;color:#687083;margin-top:30px}@media print{.controls,.btn,.back,footer{display:none!important}body{background:white}.panel{box-shadow:none;border:0}}
-</style></head><body><main><a class="back" href="index.html">← HSC Easy homepage</a><header><div class="label" style="margin-top:24px">Stage 6 · Mathematics Standard</div><h1>🔎 Spot the Mistake</h1><p class="muted">One HSC-style error-analysis starter every day. Find the first mistake, explain it and correct the working. Suggested time: 5–7 minutes.</p></header><div class="panel controls"><div class="row"><button class="btn alt" id="todayBtn">Today's challenge</button><button class="btn alt" id="yesterdayBtn">Yesterday's solution</button><button class="btn alt" id="previewBtn">👩‍🏫 Teacher Preview</button><button class="btn alt" onclick="window.print()">Print / projector</button></div><div id="previewControls" class="hidden" style="margin-top:15px"><label for="daySelect">Preview day:</label> <select id="daySelect"></select><p class="small muted">Teacher preview is public on this static page; it is not password protected.</p></div></div><section class="panel" id="question"><div class="label" id="meta"></div><h2 id="topic"></h2><p id="context"></p><div class="working"><strong>Student's working</strong><div id="steps"></div></div><p><strong>Your task:</strong> <span id="challenge"></span></p><div class="controls"><button class="btn alt" id="hintBtn">Show hint</button><button class="btn" id="answerBtn">Show worked solution</button></div><div id="hint" class="notice hidden"></div><div id="solution" class="answer hidden"></div><p id="locked" class="muted small"></p></section><footer>HSC Easy · Making Maths Make Sense · Original practice questions, not official HSC exam items</footer></main><script>
-const QUESTIONS=[{"day": 1, "topic": "Compound interest", "context": "An investment of $4,000 earns 3% compound interest annually for 2 years.", "working": ["A = P(1 + r)^n", "A = 4000(1 + 0.03)^2", "A = 4000(1 + 2 × 0.03)", "A = $4,240.00"], "challenge": "Identify the first incorrect line and calculate the correct final balance.", "hint": "Compare repeated multiplication with adding the interest rate several times.", "solution": "The third line is incorrect: (1 + r)^n is not equal to 1 + nr. Correctly, A = 4000(1 + 0.03)^2 = $4,243.60 (nearest cent).", "skill": "Recognise compound growth rather than simple interest."}, {"day": 2, "topic": "Financial mathematics", "context": "A laptop has a marked price of $800. A 10% discount is applied, followed by 10% GST on the discounted price.", "working": ["Final price = 800 × (1 − (10 + 10)/100)", "= $640.00"], "challenge": "Explain the error and determine the final price.", "hint": "Do the discount and GST act on the same original amount?", "solution": "The student added percentages and treated GST as another discount. Apply the discount first: 800 × 0.90 = $720.00. Then multiply by 1.10: final price = $792.00.", "skill": "Apply successive percentage changes in order."}, {"day": 3, "topic": "Trigonometry", "context": "In a right-angled triangle, an acute angle is 28°. The side adjacent to that angle is 8 cm. Find the opposite side.", "working": ["sin 28° = opposite / 8", "opposite = 8 × sin 28°", "opposite = 3.76 cm"], "challenge": "Identify the incorrect trigonometric ratio and find the opposite side to 1 decimal place.", "hint": "Which ratio relates opposite and adjacent?", "solution": "The first line uses sine but 8 cm is adjacent, not the hypotenuse. Use tan 28° = opposite/8. Thus opposite = 8 tan 28° = 4.3 cm (1 d.p.).", "skill": "Select the correct trigonometric ratio."}, {"day": 4, "topic": "Rates and measurement", "context": "A car travels at a constant speed of 60 km/h for 35 minutes.", "working": ["distance = speed × time", "distance = 60 × 35", "distance = 2100 km"], "challenge": "Identify the mistake and calculate the correct distance in kilometres.", "hint": "Check that time and speed use compatible units.", "solution": "The student used minutes with km/h. Time = 35/60 hours. Distance = 60 × (35/60) = 35.00 km (2 d.p.).", "skill": "Convert units before using a rate."}, {"day": 5, "topic": "Statistical analysis", "context": "Seven delivery times (minutes) are 12, 14, 17, 18, 19, 20, 50. A student wants the typical delivery time.", "working": ["Mean = (12 + 14 + 17 + 18 + 19 + 20 + 50) / 7 = 21.4", "Therefore a typical delivery takes about 21.4 minutes."], "challenge": "Explain why the conclusion could be misleading and give a more suitable typical value.", "hint": "Consider whether one value is unusually large.", "solution": "The arithmetic mean is 21.4 minutes, but 50 minutes is an outlier and pulls the mean upwards. The median, the fourth ordered value, is 18 minutes, a more representative typical time.", "skill": "Interpret mean and median in the presence of outliers."}, {"day": 6, "topic": "Probability", "context": "A bag contains 3 red and 5 blue counters. Two counters are drawn without replacement.", "working": ["P(two red) = 3/8 × 3/8", "= 0.1406"], "challenge": "Identify the error and calculate the correct probability to 3 decimal places.", "hint": "Does the number of red counters stay the same after the first draw?", "solution": "The draws are dependent. After a red is drawn, 2 red counters remain out of 7. P(two red) = (3/8) × (2/7) = 0.107 (3 d.p.).", "skill": "Calculate probability without replacement."}, {"day": 7, "topic": "Networks", "context": "A road network has four towns A, B, C and D. The roads are A–B: 4 km, B–D: 8 km, A–C: 5 km, C–D: 5 km, and B–C: 2 km. All roads are two-way.", "working": ["Route A–B–D = 4 + 8 = 12 km", "Therefore A–B–D is the shortest route."], "challenge": "Identify the reasoning error and determine the shortest route from A to D.", "hint": "Check every plausible route, not just the first one.", "solution": "The student checked only one route. A–B–D = 12 km; A–C–D = 10 km; A–B–C–D = 11 km; A–C–B–D = 15 km. The minimum is 10 km. A–B–D is not necessarily the shortest.", "skill": "Compare route totals to identify a shortest path."}, {"day": 8, "topic": "Measurement", "context": "A rectangular floor is 12 m long and 8 m wide. New flooring costs $24 per square metre.", "working": ["Area = 2(12 + 8) = 40 m²", "Cost = 40 × 24 = $960"], "challenge": "Find the first error and calculate the correct flooring cost.", "hint": "Is the formula used for area or perimeter?", "solution": "The student calculated perimeter instead of area. Area = 12 × 8 = 96 m². Cost = 96 × $24 = $2,304.", "skill": "Choose area rather than perimeter for surface costs."}, {"day": 9, "topic": "Exponential modelling", "context": "A machine valued at $150 thousand depreciates by 8% per year for 3 years.", "working": ["V = 150(1 + 0.08)^3", "V = $188.96 thousand"], "challenge": "Identify the modelling error and find the value to the nearest $100.", "hint": "Depreciation means the multiplier should be less than one.", "solution": "The student used a growth multiplier. Depreciation uses 1 − 0.08 = 0.92. V = 150(1 − 0.08)^3 thousand = $116,800 (nearest $100).", "skill": "Use a decay multiplier for depreciation."}, {"day": 10, "topic": "Linear relationships", "context": "A technician receives a base fee of $200 for an 8-hour shift, plus $12 for each hour beyond 8. They work 9 hours.", "working": ["Pay = 200 + 9 × 12", "= $308"], "challenge": "Explain the error and determine the correct pay.", "hint": "How many hours are actually overtime?", "solution": "The student paid overtime for all 9 hours rather than only 1. Pay = 200 + (9 − 8) × 12 = $212.", "skill": "Interpret a piecewise payment rule."}, {"day": 11, "topic": "Statistics", "context": "The five measurements are 10, 12, 14, 16, 18. A student calculates the population standard deviation.", "working": ["Mean = 14.0", "Variance = Σ(x − mean)² / 5 = 8.00", "Standard deviation = 8.00"], "challenge": "Find the error and give the population standard deviation to 2 decimal places.", "hint": "Variance and standard deviation are different quantities.", "solution": "The final line labels variance as standard deviation. Take the square root: σ = √8.00 = 2.83 (2 d.p.).", "skill": "Distinguish variance from standard deviation."}, {"day": 12, "topic": "Navigation and bearings", "context": "A boat travels 20 km on a bearing of 035° (clockwise from north). Find its northward displacement.", "working": ["Northward displacement = 20 / cos 35°", "= 24.4 km"], "challenge": "Explain the error and calculate the correct northward displacement to 1 decimal place.", "hint": "Draw a right triangle: the northward component is adjacent to the bearing angle.", "solution": "The student divided instead of multiplying. cos 35° = northward/20, so northward = 20 cos 35° = 16.4 km (1 d.p.).", "skill": "Resolve a bearing into north/east components."}, {"day": 13, "topic": "Volume", "context": "A cylindrical water tank has radius 4 m and height 9 m.", "working": ["V = πr² + h", "V = π × 4² + 9", "V ≈ 59.3 m³"], "challenge": "Identify the formula error and find the correct volume to 1 decimal place.", "hint": "Volume is the area of the circular base multiplied by height.", "solution": "The correct formula is V = πr²h, not πr² + h. V = π × 4² × 9 = 452.4 m³ (1 d.p.).", "skill": "Apply the cylinder volume formula."}, {"day": 14, "topic": "Percentages and data", "context": "A survey of 100 people found that 20% use public transport to commute.", "working": ["Number = 100 × 20", "= 2000 people"], "challenge": "Find the mistake and calculate the correct number of people.", "hint": "A percentage must be written as a decimal before multiplication.", "solution": "The student used 20 rather than 20/100 = 0.20. Number = 100 × 0.20 = 20 people.", "skill": "Convert percentages to proportions."}, {"day": 15, "topic": "Financial modelling", "context": "A business has fixed costs of $400, variable costs of $100 per item and sells each item for $160. It sells 15 items.", "working": ["Profit = revenue − variable costs", "= 15(160 − 100)", "= $900"], "challenge": "Explain the omission and calculate the correct profit.", "hint": "Are all costs variable?", "solution": "The student omitted fixed costs. Profit = 15(160 − 100) − 400 = $500.", "skill": "Model profit including fixed and variable costs."}, {"day": 16, "topic": "Compound interest", "context": "An investment of $4,500 earns 4% compound interest annually for 3 years.", "working": ["A = P(1 + r)^n", "A = 4500(1 + 0.04)^3", "A = 4500(1 + 3 × 0.04)", "A = $5,040.00"], "challenge": "Identify the first incorrect line and calculate the correct final balance.", "hint": "Compare repeated multiplication with adding the interest rate several times.", "solution": "The third line is incorrect: (1 + r)^n is not equal to 1 + nr. Correctly, A = 4500(1 + 0.04)^3 = $5,061.89 (nearest cent).", "skill": "Recognise compound growth rather than simple interest."}, {"day": 17, "topic": "Financial mathematics", "context": "A laptop has a marked price of $900. A 12% discount is applied, followed by 10% GST on the discounted price.", "working": ["Final price = 900 × (1 − (12 + 10)/100)", "= $702.00"], "challenge": "Explain the error and determine the final price.", "hint": "Do the discount and GST act on the same original amount?", "solution": "The student added percentages and treated GST as another discount. Apply the discount first: 900 × 0.88 = $792.00. Then multiply by 1.10: final price = $871.20.", "skill": "Apply successive percentage changes in order."}, {"day": 18, "topic": "Trigonometry", "context": "In a right-angled triangle, an acute angle is 32°. The side adjacent to that angle is 9 cm. Find the opposite side.", "working": ["sin 32° = opposite / 9", "opposite = 9 × sin 32°", "opposite = 4.77 cm"], "challenge": "Identify the incorrect trigonometric ratio and find the opposite side to 1 decimal place.", "hint": "Which ratio relates opposite and adjacent?", "solution": "The first line uses sine but 9 cm is adjacent, not the hypotenuse. Use tan 32° = opposite/9. Thus opposite = 9 tan 32° = 5.6 cm (1 d.p.).", "skill": "Select the correct trigonometric ratio."}, {"day": 19, "topic": "Rates and measurement", "context": "A car travels at a constant speed of 65 km/h for 40 minutes.", "working": ["distance = speed × time", "distance = 65 × 40", "distance = 2600 km"], "challenge": "Identify the mistake and calculate the correct distance in kilometres.", "hint": "Check that time and speed use compatible units.", "solution": "The student used minutes with km/h. Time = 40/60 hours. Distance = 65 × (40/60) = 43.33 km (2 d.p.).", "skill": "Convert units before using a rate."}, {"day": 20, "topic": "Statistical analysis", "context": "Seven delivery times (minutes) are 13, 15, 18, 19, 20, 21, 51. A student wants the typical delivery time.", "working": ["Mean = (13 + 15 + 18 + 19 + 20 + 21 + 51) / 7 = 22.4", "Therefore a typical delivery takes about 22.4 minutes."], "challenge": "Explain why the conclusion could be misleading and give a more suitable typical value.", "hint": "Consider whether one value is unusually large.", "solution": "The arithmetic mean is 22.4 minutes, but 51 minutes is an outlier and pulls the mean upwards. The median, the fourth ordered value, is 19 minutes, a more representative typical time.", "skill": "Interpret mean and median in the presence of outliers."}, {"day": 21, "topic": "Probability", "context": "A bag contains 4 red and 6 blue counters. Two counters are drawn without replacement.", "working": ["P(two red) = 4/10 × 4/10", "= 0.1600"], "challenge": "Identify the error and calculate the correct probability to 3 decimal places.", "hint": "Does the number of red counters stay the same after the first draw?", "solution": "The draws are dependent. After a red is drawn, 3 red counters remain out of 9. P(two red) = (4/10) × (3/9) = 0.133 (3 d.p.).", "skill": "Calculate probability without replacement."}, {"day": 22, "topic": "Networks", "context": "A road network has four towns A, B, C and D. The roads are A–B: 5 km, B–D: 9 km, A–C: 6 km, C–D: 6 km, and B–C: 3 km. All roads are two-way.", "working": ["Route A–B–D = 5 + 9 = 14 km", "Therefore A–B–D is the shortest route."], "challenge": "Identify the reasoning error and determine the shortest route from A to D.", "hint": "Check every plausible route, not just the first one.", "solution": "The student checked only one route. A–B–D = 14 km; A–C–D = 12 km; A–B–C–D = 14 km; A–C–B–D = 18 km. The minimum is 12 km. A–B–D is not necessarily the shortest.", "skill": "Compare route totals to identify a shortest path."}, {"day": 23, "topic": "Measurement", "context": "A rectangular floor is 14 m long and 9 m wide. New flooring costs $26 per square metre.", "working": ["Area = 2(14 + 9) = 46 m²", "Cost = 46 × 26 = $1,196"], "challenge": "Find the first error and calculate the correct flooring cost.", "hint": "Is the formula used for area or perimeter?", "solution": "The student calculated perimeter instead of area. Area = 14 × 9 = 126 m². Cost = 126 × $26 = $3,276.", "skill": "Choose area rather than perimeter for surface costs."}, {"day": 24, "topic": "Exponential modelling", "context": "A machine valued at $170 thousand depreciates by 10% per year for 4 years.", "working": ["V = 170(1 + 0.10)^4", "V = $248.90 thousand"], "challenge": "Identify the modelling error and find the value to the nearest $100.", "hint": "Depreciation means the multiplier should be less than one.", "solution": "The student used a growth multiplier. Depreciation uses 1 − 0.10 = 0.90. V = 170(1 − 0.10)^4 thousand = $111,500 (nearest $100).", "skill": "Use a decay multiplier for depreciation."}, {"day": 25, "topic": "Linear relationships", "context": "A technician receives a base fee of $225 for an 8-hour shift, plus $14 for each hour beyond 8. They work 10 hours.", "working": ["Pay = 225 + 10 × 14", "= $365"], "challenge": "Explain the error and determine the correct pay.", "hint": "How many hours are actually overtime?", "solution": "The student paid overtime for all 10 hours rather than only 2. Pay = 225 + (10 − 8) × 14 = $253.", "skill": "Interpret a piecewise payment rule."}, {"day": 26, "topic": "Statistics", "context": "The five measurements are 11, 13, 15, 17, 19. A student calculates the population standard deviation.", "working": ["Mean = 15.0", "Variance = Σ(x − mean)² / 5 = 8.00", "Standard deviation = 8.00"], "challenge": "Find the error and give the population standard deviation to 2 decimal places.", "hint": "Variance and standard deviation are different quantities.", "solution": "The final line labels variance as standard deviation. Take the square root: σ = √8.00 = 2.83 (2 d.p.).", "skill": "Distinguish variance from standard deviation."}, {"day": 27, "topic": "Navigation and bearings", "context": "A boat travels 25 km on a bearing of 038° (clockwise from north). Find its northward displacement.", "working": ["Northward displacement = 25 / cos 38°", "= 31.7 km"], "challenge": "Explain the error and calculate the correct northward displacement to 1 decimal place.", "hint": "Draw a right triangle: the northward component is adjacent to the bearing angle.", "solution": "The student divided instead of multiplying. cos 38° = northward/25, so northward = 25 cos 38° = 19.7 km (1 d.p.).", "skill": "Resolve a bearing into north/east components."}, {"day": 28, "topic": "Volume", "context": "A cylindrical water tank has radius 5 m and height 10 m.", "working": ["V = πr² + h", "V = π × 5² + 10", "V ≈ 88.5 m³"], "challenge": "Identify the formula error and find the correct volume to 1 decimal place.", "hint": "Volume is the area of the circular base multiplied by height.", "solution": "The correct formula is V = πr²h, not πr² + h. V = π × 5² × 10 = 785.4 m³ (1 d.p.).", "skill": "Apply the cylinder volume formula."}, {"day": 29, "topic": "Percentages and data", "context": "A survey of 120 people found that 25% use public transport to commute.", "working": ["Number = 120 × 25", "= 3000 people"], "challenge": "Find the mistake and calculate the correct number of people.", "hint": "A percentage must be written as a decimal before multiplication.", "solution": "The student used 25 rather than 25/100 = 0.25. Number = 120 × 0.25 = 30 people.", "skill": "Convert percentages to proportions."}, {"day": 30, "topic": "Financial modelling", "context": "A business has fixed costs of $450, variable costs of $120 per item and sells each item for $180. It sells 17 items.", "working": ["Profit = revenue − variable costs", "= 17(180 − 120)", "= $1020"], "challenge": "Explain the omission and calculate the correct profit.", "hint": "Are all costs variable?", "solution": "The student omitted fixed costs. Profit = 17(180 − 120) − 450 = $570.", "skill": "Model profit including fixed and variable costs."}, {"day": 31, "topic": "Compound interest", "context": "An investment of $5,000 earns 5% compound interest annually for 4 years.", "working": ["A = P(1 + r)^n", "A = 5000(1 + 0.05)^4", "A = 5000(1 + 4 × 0.05)", "A = $6,000.00"], "challenge": "Identify the first incorrect line and calculate the correct final balance.", "hint": "Compare repeated multiplication with adding the interest rate several times.", "solution": "The third line is incorrect: (1 + r)^n is not equal to 1 + nr. Correctly, A = 5000(1 + 0.05)^4 = $6,077.53 (nearest cent).", "skill": "Recognise compound growth rather than simple interest."}, {"day": 32, "topic": "Financial mathematics", "context": "A laptop has a marked price of $1,000. A 14% discount is applied, followed by 10% GST on the discounted price.", "working": ["Final price = 1000 × (1 − (14 + 10)/100)", "= $760.00"], "challenge": "Explain the error and determine the final price.", "hint": "Do the discount and GST act on the same original amount?", "solution": "The student added percentages and treated GST as another discount. Apply the discount first: 1000 × 0.86 = $860.00. Then multiply by 1.10: final price = $946.00.", "skill": "Apply successive percentage changes in order."}, {"day": 33, "topic": "Trigonometry", "context": "In a right-angled triangle, an acute angle is 36°. The side adjacent to that angle is 10 cm. Find the opposite side.", "working": ["sin 36° = opposite / 10", "opposite = 10 × sin 36°", "opposite = 5.88 cm"], "challenge": "Identify the incorrect trigonometric ratio and find the opposite side to 1 decimal place.", "hint": "Which ratio relates opposite and adjacent?", "solution": "The first line uses sine but 10 cm is adjacent, not the hypotenuse. Use tan 36° = opposite/10. Thus opposite = 10 tan 36° = 7.3 cm (1 d.p.).", "skill": "Select the correct trigonometric ratio."}, {"day": 34, "topic": "Rates and measurement", "context": "A car travels at a constant speed of 70 km/h for 45 minutes.", "working": ["distance = speed × time", "distance = 70 × 45", "distance = 3150 km"], "challenge": "Identify the mistake and calculate the correct distance in kilometres.", "hint": "Check that time and speed use compatible units.", "solution": "The student used minutes with km/h. Time = 45/60 hours. Distance = 70 × (45/60) = 52.50 km (2 d.p.).", "skill": "Convert units before using a rate."}, {"day": 35, "topic": "Statistical analysis", "context": "Seven delivery times (minutes) are 14, 16, 19, 20, 21, 22, 52. A student wants the typical delivery time.", "working": ["Mean = (14 + 16 + 19 + 20 + 21 + 22 + 52) / 7 = 23.4", "Therefore a typical delivery takes about 23.4 minutes."], "challenge": "Explain why the conclusion could be misleading and give a more suitable typical value.", "hint": "Consider whether one value is unusually large.", "solution": "The arithmetic mean is 23.4 minutes, but 52 minutes is an outlier and pulls the mean upwards. The median, the fourth ordered value, is 20 minutes, a more representative typical time.", "skill": "Interpret mean and median in the presence of outliers."}, {"day": 36, "topic": "Probability", "context": "A bag contains 5 red and 7 blue counters. Two counters are drawn without replacement.", "working": ["P(two red) = 5/12 × 5/12", "= 0.1736"], "challenge": "Identify the error and calculate the correct probability to 3 decimal places.", "hint": "Does the number of red counters stay the same after the first draw?", "solution": "The draws are dependent. After a red is drawn, 4 red counters remain out of 11. P(two red) = (5/12) × (4/11) = 0.152 (3 d.p.).", "skill": "Calculate probability without replacement."}, {"day": 37, "topic": "Networks", "context": "A road network has four towns A, B, C and D. The roads are A–B: 6 km, B–D: 10 km, A–C: 7 km, C–D: 7 km, and B–C: 4 km. All roads are two-way.", "working": ["Route A–B–D = 6 + 10 = 16 km", "Therefore A–B–D is the shortest route."], "challenge": "Identify the reasoning error and determine the shortest route from A to D.", "hint": "Check every plausible route, not just the first one.", "solution": "The student checked only one route. A–B–D = 16 km; A–C–D = 14 km; A–B–C–D = 17 km; A–C–B–D = 21 km. The minimum is 14 km. A–B–D is not necessarily the shortest.", "skill": "Compare route totals to identify a shortest path."}, {"day": 38, "topic": "Measurement", "context": "A rectangular floor is 16 m long and 10 m wide. New flooring costs $28 per square metre.", "working": ["Area = 2(16 + 10) = 52 m²", "Cost = 52 × 28 = $1,456"], "challenge": "Find the first error and calculate the correct flooring cost.", "hint": "Is the formula used for area or perimeter?", "solution": "The student calculated perimeter instead of area. Area = 16 × 10 = 160 m². Cost = 160 × $28 = $4,480.", "skill": "Choose area rather than perimeter for surface costs."}, {"day": 39, "topic": "Exponential modelling", "context": "A machine valued at $190 thousand depreciates by 12% per year for 5 years.", "working": ["V = 190(1 + 0.12)^5", "V = $334.84 thousand"], "challenge": "Identify the modelling error and find the value to the nearest $100.", "hint": "Depreciation means the multiplier should be less than one.", "solution": "The student used a growth multiplier. Depreciation uses 1 − 0.12 = 0.88. V = 190(1 − 0.12)^5 thousand = $100,300 (nearest $100).", "skill": "Use a decay multiplier for depreciation."}, {"day": 40, "topic": "Linear relationships", "context": "A technician receives a base fee of $250 for an 8-hour shift, plus $16 for each hour beyond 8. They work 11 hours.", "working": ["Pay = 250 + 11 × 16", "= $426"], "challenge": "Explain the error and determine the correct pay.", "hint": "How many hours are actually overtime?", "solution": "The student paid overtime for all 11 hours rather than only 3. Pay = 250 + (11 − 8) × 16 = $298.", "skill": "Interpret a piecewise payment rule."}, {"day": 41, "topic": "Statistics", "context": "The five measurements are 12, 14, 16, 18, 20. A student calculates the population standard deviation.", "working": ["Mean = 16.0", "Variance = Σ(x − mean)² / 5 = 8.00", "Standard deviation = 8.00"], "challenge": "Find the error and give the population standard deviation to 2 decimal places.", "hint": "Variance and standard deviation are different quantities.", "solution": "The final line labels variance as standard deviation. Take the square root: σ = √8.00 = 2.83 (2 d.p.).", "skill": "Distinguish variance from standard deviation."}, {"day": 42, "topic": "Navigation and bearings", "context": "A boat travels 30 km on a bearing of 041° (clockwise from north). Find its northward displacement.", "working": ["Northward displacement = 30 / cos 41°", "= 39.8 km"], "challenge": "Explain the error and calculate the correct northward displacement to 1 decimal place.", "hint": "Draw a right triangle: the northward component is adjacent to the bearing angle.", "solution": "The student divided instead of multiplying. cos 41° = northward/30, so northward = 30 cos 41° = 22.6 km (1 d.p.).", "skill": "Resolve a bearing into north/east components."}, {"day": 43, "topic": "Volume", "context": "A cylindrical water tank has radius 6 m and height 11 m.", "working": ["V = πr² + h", "V = π × 6² + 11", "V ≈ 124.1 m³"], "challenge": "Identify the formula error and find the correct volume to 1 decimal place.", "hint": "Volume is the area of the circular base multiplied by height.", "solution": "The correct formula is V = πr²h, not πr² + h. V = π × 6² × 11 = 1244.1 m³ (1 d.p.).", "skill": "Apply the cylinder volume formula."}, {"day": 44, "topic": "Percentages and data", "context": "A survey of 140 people found that 30% use public transport to commute.", "working": ["Number = 140 × 30", "= 4200 people"], "challenge": "Find the mistake and calculate the correct number of people.", "hint": "A percentage must be written as a decimal before multiplication.", "solution": "The student used 30 rather than 30/100 = 0.30. Number = 140 × 0.30 = 42 people.", "skill": "Convert percentages to proportions."}, {"day": 45, "topic": "Financial modelling", "context": "A business has fixed costs of $500, variable costs of $140 per item and sells each item for $200. It sells 19 items.", "working": ["Profit = revenue − variable costs", "= 19(200 − 140)", "= $1140"], "challenge": "Explain the omission and calculate the correct profit.", "hint": "Are all costs variable?", "solution": "The student omitted fixed costs. Profit = 19(200 − 140) − 500 = $640.", "skill": "Model profit including fixed and variable costs."}, {"day": 46, "topic": "Compound interest", "context": "An investment of $5,500 earns 6% compound interest annually for 2 years.", "working": ["A = P(1 + r)^n", "A = 5500(1 + 0.06)^2", "A = 5500(1 + 2 × 0.06)", "A = $6,160.00"], "challenge": "Identify the first incorrect line and calculate the correct final balance.", "hint": "Compare repeated multiplication with adding the interest rate several times.", "solution": "The third line is incorrect: (1 + r)^n is not equal to 1 + nr. Correctly, A = 5500(1 + 0.06)^2 = $6,179.80 (nearest cent).", "skill": "Recognise compound growth rather than simple interest."}, {"day": 47, "topic": "Financial mathematics", "context": "A laptop has a marked price of $1,100. A 16% discount is applied, followed by 10% GST on the discounted price.", "working": ["Final price = 1100 × (1 − (16 + 10)/100)", "= $814.00"], "challenge": "Explain the error and determine the final price.", "hint": "Do the discount and GST act on the same original amount?", "solution": "The student added percentages and treated GST as another discount. Apply the discount first: 1100 × 0.84 = $924.00. Then multiply by 1.10: final price = $1,016.40.", "skill": "Apply successive percentage changes in order."}, {"day": 48, "topic": "Trigonometry", "context": "In a right-angled triangle, an acute angle is 40°. The side adjacent to that angle is 11 cm. Find the opposite side.", "working": ["sin 40° = opposite / 11", "opposite = 11 × sin 40°", "opposite = 7.07 cm"], "challenge": "Identify the incorrect trigonometric ratio and find the opposite side to 1 decimal place.", "hint": "Which ratio relates opposite and adjacent?", "solution": "The first line uses sine but 11 cm is adjacent, not the hypotenuse. Use tan 40° = opposite/11. Thus opposite = 11 tan 40° = 9.2 cm (1 d.p.).", "skill": "Select the correct trigonometric ratio."}, {"day": 49, "topic": "Rates and measurement", "context": "A car travels at a constant speed of 75 km/h for 50 minutes.", "working": ["distance = speed × time", "distance = 75 × 50", "distance = 3750 km"], "challenge": "Identify the mistake and calculate the correct distance in kilometres.", "hint": "Check that time and speed use compatible units.", "solution": "The student used minutes with km/h. Time = 50/60 hours. Distance = 75 × (50/60) = 62.50 km (2 d.p.).", "skill": "Convert units before using a rate."}, {"day": 50, "topic": "Statistical analysis", "context": "Seven delivery times (minutes) are 15, 17, 20, 21, 22, 23, 53. A student wants the typical delivery time.", "working": ["Mean = (15 + 17 + 20 + 21 + 22 + 23 + 53) / 7 = 24.4", "Therefore a typical delivery takes about 24.4 minutes."], "challenge": "Explain why the conclusion could be misleading and give a more suitable typical value.", "hint": "Consider whether one value is unusually large.", "solution": "The arithmetic mean is 24.4 minutes, but 53 minutes is an outlier and pulls the mean upwards. The median, the fourth ordered value, is 21 minutes, a more representative typical time.", "skill": "Interpret mean and median in the presence of outliers."}, {"day": 51, "topic": "Probability", "context": "A bag contains 6 red and 8 blue counters. Two counters are drawn without replacement.", "working": ["P(two red) = 6/14 × 6/14", "= 0.1837"], "challenge": "Identify the error and calculate the correct probability to 3 decimal places.", "hint": "Does the number of red counters stay the same after the first draw?", "solution": "The draws are dependent. After a red is drawn, 5 red counters remain out of 13. P(two red) = (6/14) × (5/13) = 0.165 (3 d.p.).", "skill": "Calculate probability without replacement."}, {"day": 52, "topic": "Networks", "context": "A road network has four towns A, B, C and D. The roads are A–B: 7 km, B–D: 11 km, A–C: 8 km, C–D: 8 km, and B–C: 5 km. All roads are two-way.", "working": ["Route A–B–D = 7 + 11 = 18 km", "Therefore A–B–D is the shortest route."], "challenge": "Identify the reasoning error and determine the shortest route from A to D.", "hint": "Check every plausible route, not just the first one.", "solution": "The student checked only one route. A–B–D = 18 km; A–C–D = 16 km; A–B–C–D = 20 km; A–C–B–D = 24 km. The minimum is 16 km. A–B–D is not necessarily the shortest.", "skill": "Compare route totals to identify a shortest path."}, {"day": 53, "topic": "Measurement", "context": "A rectangular floor is 18 m long and 11 m wide. New flooring costs $30 per square metre.", "working": ["Area = 2(18 + 11) = 58 m²", "Cost = 58 × 30 = $1,740"], "challenge": "Find the first error and calculate the correct flooring cost.", "hint": "Is the formula used for area or perimeter?", "solution": "The student calculated perimeter instead of area. Area = 18 × 11 = 198 m². Cost = 198 × $30 = $5,940.", "skill": "Choose area rather than perimeter for surface costs."}, {"day": 54, "topic": "Exponential modelling", "context": "A machine valued at $210 thousand depreciates by 14% per year for 3 years.", "working": ["V = 210(1 + 0.14)^3", "V = $311.12 thousand"], "challenge": "Identify the modelling error and find the value to the nearest $100.", "hint": "Depreciation means the multiplier should be less than one.", "solution": "The student used a growth multiplier. Depreciation uses 1 − 0.14 = 0.86. V = 210(1 − 0.14)^3 thousand = $133,600 (nearest $100).", "skill": "Use a decay multiplier for depreciation."}, {"day": 55, "topic": "Linear relationships", "context": "A technician receives a base fee of $275 for an 8-hour shift, plus $18 for each hour beyond 8. They work 12 hours.", "working": ["Pay = 275 + 12 × 18", "= $491"], "challenge": "Explain the error and determine the correct pay.", "hint": "How many hours are actually overtime?", "solution": "The student paid overtime for all 12 hours rather than only 4. Pay = 275 + (12 − 8) × 18 = $347.", "skill": "Interpret a piecewise payment rule."}, {"day": 56, "topic": "Statistics", "context": "The five measurements are 13, 15, 17, 19, 21. A student calculates the population standard deviation.", "working": ["Mean = 17.0", "Variance = Σ(x − mean)² / 5 = 8.00", "Standard deviation = 8.00"], "challenge": "Find the error and give the population standard deviation to 2 decimal places.", "hint": "Variance and standard deviation are different quantities.", "solution": "The final line labels variance as standard deviation. Take the square root: σ = √8.00 = 2.83 (2 d.p.).", "skill": "Distinguish variance from standard deviation."}, {"day": 57, "topic": "Navigation and bearings", "context": "A boat travels 35 km on a bearing of 044° (clockwise from north). Find its northward displacement.", "working": ["Northward displacement = 35 / cos 44°", "= 48.7 km"], "challenge": "Explain the error and calculate the correct northward displacement to 1 decimal place.", "hint": "Draw a right triangle: the northward component is adjacent to the bearing angle.", "solution": "The student divided instead of multiplying. cos 44° = northward/35, so northward = 35 cos 44° = 25.2 km (1 d.p.).", "skill": "Resolve a bearing into north/east components."}, {"day": 58, "topic": "Volume", "context": "A cylindrical water tank has radius 7 m and height 12 m.", "working": ["V = πr² + h", "V = π × 7² + 12", "V ≈ 165.9 m³"], "challenge": "Identify the formula error and find the correct volume to 1 decimal place.", "hint": "Volume is the area of the circular base multiplied by height.", "solution": "The correct formula is V = πr²h, not πr² + h. V = π × 7² × 12 = 1847.3 m³ (1 d.p.).", "skill": "Apply the cylinder volume formula."}, {"day": 59, "topic": "Percentages and data", "context": "A survey of 160 people found that 35% use public transport to commute.", "working": ["Number = 160 × 35", "= 5600 people"], "challenge": "Find the mistake and calculate the correct number of people.", "hint": "A percentage must be written as a decimal before multiplication.", "solution": "The student used 35 rather than 35/100 = 0.35. Number = 160 × 0.35 = 56 people.", "skill": "Convert percentages to proportions."}, {"day": 60, "topic": "Financial modelling", "context": "A business has fixed costs of $550, variable costs of $160 per item and sells each item for $220. It sells 21 items.", "working": ["Profit = revenue − variable costs", "= 21(220 − 160)", "= $1260"], "challenge": "Explain the omission and calculate the correct profit.", "hint": "Are all costs variable?", "solution": "The student omitted fixed costs. Profit = 21(220 − 160) − 550 = $710.", "skill": "Model profit including fixed and variable costs."}, {"day": 61, "topic": "Compound interest", "context": "An investment of $6,000 earns 7% compound interest annually for 3 years.", "working": ["A = P(1 + r)^n", "A = 6000(1 + 0.07)^3", "A = 6000(1 + 3 × 0.07)", "A = $7,260.00"], "challenge": "Identify the first incorrect line and calculate the correct final balance.", "hint": "Compare repeated multiplication with adding the interest rate several times.", "solution": "The third line is incorrect: (1 + r)^n is not equal to 1 + nr. Correctly, A = 6000(1 + 0.07)^3 = $7,350.26 (nearest cent).", "skill": "Recognise compound growth rather than simple interest."}, {"day": 62, "topic": "Financial mathematics", "context": "A laptop has a marked price of $1,200. A 18% discount is applied, followed by 10% GST on the discounted price.", "working": ["Final price = 1200 × (1 − (18 + 10)/100)", "= $864.00"], "challenge": "Explain the error and determine the final price.", "hint": "Do the discount and GST act on the same original amount?", "solution": "The student added percentages and treated GST as another discount. Apply the discount first: 1200 × 0.82 = $984.00. Then multiply by 1.10: final price = $1,082.40.", "skill": "Apply successive percentage changes in order."}, {"day": 63, "topic": "Trigonometry", "context": "In a right-angled triangle, an acute angle is 44°. The side adjacent to that angle is 12 cm. Find the opposite side.", "working": ["sin 44° = opposite / 12", "opposite = 12 × sin 44°", "opposite = 8.34 cm"], "challenge": "Identify the incorrect trigonometric ratio and find the opposite side to 1 decimal place.", "hint": "Which ratio relates opposite and adjacent?", "solution": "The first line uses sine but 12 cm is adjacent, not the hypotenuse. Use tan 44° = opposite/12. Thus opposite = 12 tan 44° = 11.6 cm (1 d.p.).", "skill": "Select the correct trigonometric ratio."}, {"day": 64, "topic": "Rates and measurement", "context": "A car travels at a constant speed of 80 km/h for 55 minutes.", "working": ["distance = speed × time", "distance = 80 × 55", "distance = 4400 km"], "challenge": "Identify the mistake and calculate the correct distance in kilometres.", "hint": "Check that time and speed use compatible units.", "solution": "The student used minutes with km/h. Time = 55/60 hours. Distance = 80 × (55/60) = 73.33 km (2 d.p.).", "skill": "Convert units before using a rate."}, {"day": 65, "topic": "Statistical analysis", "context": "Seven delivery times (minutes) are 16, 18, 21, 22, 23, 24, 54. A student wants the typical delivery time.", "working": ["Mean = (16 + 18 + 21 + 22 + 23 + 24 + 54) / 7 = 25.4", "Therefore a typical delivery takes about 25.4 minutes."], "challenge": "Explain why the conclusion could be misleading and give a more suitable typical value.", "hint": "Consider whether one value is unusually large.", "solution": "The arithmetic mean is 25.4 minutes, but 54 minutes is an outlier and pulls the mean upwards. The median, the fourth ordered value, is 22 minutes, a more representative typical time.", "skill": "Interpret mean and median in the presence of outliers."}, {"day": 66, "topic": "Probability", "context": "A bag contains 7 red and 9 blue counters. Two counters are drawn without replacement.", "working": ["P(two red) = 7/16 × 7/16", "= 0.1914"], "challenge": "Identify the error and calculate the correct probability to 3 decimal places.", "hint": "Does the number of red counters stay the same after the first draw?", "solution": "The draws are dependent. After a red is drawn, 6 red counters remain out of 15. P(two red) = (7/16) × (6/15) = 0.175 (3 d.p.).", "skill": "Calculate probability without replacement."}, {"day": 67, "topic": "Networks", "context": "A road network has four towns A, B, C and D. The roads are A–B: 8 km, B–D: 12 km, A–C: 9 km, C–D: 9 km, and B–C: 6 km. All roads are two-way.", "working": ["Route A–B–D = 8 + 12 = 20 km", "Therefore A–B–D is the shortest route."], "challenge": "Identify the reasoning error and determine the shortest route from A to D.", "hint": "Check every plausible route, not just the first one.", "solution": "The student checked only one route. A–B–D = 20 km; A–C–D = 18 km; A–B–C–D = 23 km; A–C–B–D = 27 km. The minimum is 18 km. A–B–D is not necessarily the shortest.", "skill": "Compare route totals to identify a shortest path."}, {"day": 68, "topic": "Measurement", "context": "A rectangular floor is 20 m long and 12 m wide. New flooring costs $32 per square metre.", "working": ["Area = 2(20 + 12) = 64 m²", "Cost = 64 × 32 = $2,048"], "challenge": "Find the first error and calculate the correct flooring cost.", "hint": "Is the formula used for area or perimeter?", "solution": "The student calculated perimeter instead of area. Area = 20 × 12 = 240 m². Cost = 240 × $32 = $7,680.", "skill": "Choose area rather than perimeter for surface costs."}, {"day": 69, "topic": "Exponential modelling", "context": "A machine valued at $230 thousand depreciates by 16% per year for 4 years.", "working": ["V = 230(1 + 0.16)^4", "V = $416.45 thousand"], "challenge": "Identify the modelling error and find the value to the nearest $100.", "hint": "Depreciation means the multiplier should be less than one.", "solution": "The student used a growth multiplier. Depreciation uses 1 − 0.16 = 0.84. V = 230(1 − 0.16)^4 thousand = $114,500 (nearest $100).", "skill": "Use a decay multiplier for depreciation."}, {"day": 70, "topic": "Linear relationships", "context": "A technician receives a base fee of $300 for an 8-hour shift, plus $20 for each hour beyond 8. They work 13 hours.", "working": ["Pay = 300 + 13 × 20", "= $560"], "challenge": "Explain the error and determine the correct pay.", "hint": "How many hours are actually overtime?", "solution": "The student paid overtime for all 13 hours rather than only 5. Pay = 300 + (13 − 8) × 20 = $400.", "skill": "Interpret a piecewise payment rule."}, {"day": 71, "topic": "Statistics", "context": "The five measurements are 14, 16, 18, 20, 22. A student calculates the population standard deviation.", "working": ["Mean = 18.0", "Variance = Σ(x − mean)² / 5 = 8.00", "Standard deviation = 8.00"], "challenge": "Find the error and give the population standard deviation to 2 decimal places.", "hint": "Variance and standard deviation are different quantities.", "solution": "The final line labels variance as standard deviation. Take the square root: σ = √8.00 = 2.83 (2 d.p.).", "skill": "Distinguish variance from standard deviation."}, {"day": 72, "topic": "Navigation and bearings", "context": "A boat travels 40 km on a bearing of 047° (clockwise from north). Find its northward displacement.", "working": ["Northward displacement = 40 / cos 47°", "= 58.7 km"], "challenge": "Explain the error and calculate the correct northward displacement to 1 decimal place.", "hint": "Draw a right triangle: the northward component is adjacent to the bearing angle.", "solution": "The student divided instead of multiplying. cos 47° = northward/40, so northward = 40 cos 47° = 27.3 km (1 d.p.).", "skill": "Resolve a bearing into north/east components."}, {"day": 73, "topic": "Volume", "context": "A cylindrical water tank has radius 8 m and height 13 m.", "working": ["V = πr² + h", "V = π × 8² + 13", "V ≈ 214.1 m³"], "challenge": "Identify the formula error and find the correct volume to 1 decimal place.", "hint": "Volume is the area of the circular base multiplied by height.", "solution": "The correct formula is V = πr²h, not πr² + h. V = π × 8² × 13 = 2613.8 m³ (1 d.p.).", "skill": "Apply the cylinder volume formula."}, {"day": 74, "topic": "Percentages and data", "context": "A survey of 180 people found that 40% use public transport to commute.", "working": ["Number = 180 × 40", "= 7200 people"], "challenge": "Find the mistake and calculate the correct number of people.", "hint": "A percentage must be written as a decimal before multiplication.", "solution": "The student used 40 rather than 40/100 = 0.40. Number = 180 × 0.40 = 72 people.", "skill": "Convert percentages to proportions."}, {"day": 75, "topic": "Financial modelling", "context": "A business has fixed costs of $600, variable costs of $180 per item and sells each item for $240. It sells 23 items.", "working": ["Profit = revenue − variable costs", "= 23(240 − 180)", "= $1380"], "challenge": "Explain the omission and calculate the correct profit.", "hint": "Are all costs variable?", "solution": "The student omitted fixed costs. Profit = 23(240 − 180) − 600 = $780.", "skill": "Model profit including fixed and variable costs."}, {"day": 76, "topic": "Compound interest", "context": "An investment of $6,500 earns 8% compound interest annually for 4 years.", "working": ["A = P(1 + r)^n", "A = 6500(1 + 0.08)^4", "A = 6500(1 + 4 × 0.08)", "A = $8,580.00"], "challenge": "Identify the first incorrect line and calculate the correct final balance.", "hint": "Compare repeated multiplication with adding the interest rate several times.", "solution": "The third line is incorrect: (1 + r)^n is not equal to 1 + nr. Correctly, A = 6500(1 + 0.08)^4 = $8,843.18 (nearest cent).", "skill": "Recognise compound growth rather than simple interest."}, {"day": 77, "topic": "Financial mathematics", "context": "A laptop has a marked price of $1,300. A 20% discount is applied, followed by 10% GST on the discounted price.", "working": ["Final price = 1300 × (1 − (20 + 10)/100)", "= $910.00"], "challenge": "Explain the error and determine the final price.", "hint": "Do the discount and GST act on the same original amount?", "solution": "The student added percentages and treated GST as another discount. Apply the discount first: 1300 × 0.80 = $1,040.00. Then multiply by 1.10: final price = $1,144.00.", "skill": "Apply successive percentage changes in order."}, {"day": 78, "topic": "Trigonometry", "context": "In a right-angled triangle, an acute angle is 48°. The side adjacent to that angle is 13 cm. Find the opposite side.", "working": ["sin 48° = opposite / 13", "opposite = 13 × sin 48°", "opposite = 9.66 cm"], "challenge": "Identify the incorrect trigonometric ratio and find the opposite side to 1 decimal place.", "hint": "Which ratio relates opposite and adjacent?", "solution": "The first line uses sine but 13 cm is adjacent, not the hypotenuse. Use tan 48° = opposite/13. Thus opposite = 13 tan 48° = 14.4 cm (1 d.p.).", "skill": "Select the correct trigonometric ratio."}, {"day": 79, "topic": "Rates and measurement", "context": "A car travels at a constant speed of 85 km/h for 60 minutes.", "working": ["distance = speed × time", "distance = 85 × 60", "distance = 5100 km"], "challenge": "Identify the mistake and calculate the correct distance in kilometres.", "hint": "Check that time and speed use compatible units.", "solution": "The student used minutes with km/h. Time = 60/60 hours. Distance = 85 × (60/60) = 85.00 km (2 d.p.).", "skill": "Convert units before using a rate."}, {"day": 80, "topic": "Statistical analysis", "context": "Seven delivery times (minutes) are 17, 19, 22, 23, 24, 25, 55. A student wants the typical delivery time.", "working": ["Mean = (17 + 19 + 22 + 23 + 24 + 25 + 55) / 7 = 26.4", "Therefore a typical delivery takes about 26.4 minutes."], "challenge": "Explain why the conclusion could be misleading and give a more suitable typical value.", "hint": "Consider whether one value is unusually large.", "solution": "The arithmetic mean is 26.4 minutes, but 55 minutes is an outlier and pulls the mean upwards. The median, the fourth ordered value, is 23 minutes, a more representative typical time.", "skill": "Interpret mean and median in the presence of outliers."}, {"day": 81, "topic": "Probability", "context": "A bag contains 8 red and 10 blue counters. Two counters are drawn without replacement.", "working": ["P(two red) = 8/18 × 8/18", "= 0.1975"], "challenge": "Identify the error and calculate the correct probability to 3 decimal places.", "hint": "Does the number of red counters stay the same after the first draw?", "solution": "The draws are dependent. After a red is drawn, 7 red counters remain out of 17. P(two red) = (8/18) × (7/17) = 0.183 (3 d.p.).", "skill": "Calculate probability without replacement."}, {"day": 82, "topic": "Networks", "context": "A road network has four towns A, B, C and D. The roads are A–B: 9 km, B–D: 13 km, A–C: 10 km, C–D: 10 km, and B–C: 7 km. All roads are two-way.", "working": ["Route A–B–D = 9 + 13 = 22 km", "Therefore A–B–D is the shortest route."], "challenge": "Identify the reasoning error and determine the shortest route from A to D.", "hint": "Check every plausible route, not just the first one.", "solution": "The student checked only one route. A–B–D = 22 km; A–C–D = 20 km; A–B–C–D = 26 km; A–C–B–D = 30 km. The minimum is 20 km. A–B–D is not necessarily the shortest.", "skill": "Compare route totals to identify a shortest path."}, {"day": 83, "topic": "Measurement", "context": "A rectangular floor is 22 m long and 13 m wide. New flooring costs $34 per square metre.", "working": ["Area = 2(22 + 13) = 70 m²", "Cost = 70 × 34 = $2,380"], "challenge": "Find the first error and calculate the correct flooring cost.", "hint": "Is the formula used for area or perimeter?", "solution": "The student calculated perimeter instead of area. Area = 22 × 13 = 286 m². Cost = 286 × $34 = $9,724.", "skill": "Choose area rather than perimeter for surface costs."}, {"day": 84, "topic": "Exponential modelling", "context": "A machine valued at $250 thousand depreciates by 18% per year for 5 years.", "working": ["V = 250(1 + 0.18)^5", "V = $571.94 thousand"], "challenge": "Identify the modelling error and find the value to the nearest $100.", "hint": "Depreciation means the multiplier should be less than one.", "solution": "The student used a growth multiplier. Depreciation uses 1 − 0.18 = 0.82. V = 250(1 − 0.18)^5 thousand = $92,700 (nearest $100).", "skill": "Use a decay multiplier for depreciation."}, {"day": 85, "topic": "Linear relationships", "context": "A technician receives a base fee of $325 for an 8-hour shift, plus $22 for each hour beyond 8. They work 14 hours.", "working": ["Pay = 325 + 14 × 22", "= $633"], "challenge": "Explain the error and determine the correct pay.", "hint": "How many hours are actually overtime?", "solution": "The student paid overtime for all 14 hours rather than only 6. Pay = 325 + (14 − 8) × 22 = $457.", "skill": "Interpret a piecewise payment rule."}, {"day": 86, "topic": "Statistics", "context": "The five measurements are 15, 17, 19, 21, 23. A student calculates the population standard deviation.", "working": ["Mean = 19.0", "Variance = Σ(x − mean)² / 5 = 8.00", "Standard deviation = 8.00"], "challenge": "Find the error and give the population standard deviation to 2 decimal places.", "hint": "Variance and standard deviation are different quantities.", "solution": "The final line labels variance as standard deviation. Take the square root: σ = √8.00 = 2.83 (2 d.p.).", "skill": "Distinguish variance from standard deviation."}, {"day": 87, "topic": "Navigation and bearings", "context": "A boat travels 45 km on a bearing of 050° (clockwise from north). Find its northward displacement.", "working": ["Northward displacement = 45 / cos 50°", "= 70.0 km"], "challenge": "Explain the error and calculate the correct northward displacement to 1 decimal place.", "hint": "Draw a right triangle: the northward component is adjacent to the bearing angle.", "solution": "The student divided instead of multiplying. cos 50° = northward/45, so northward = 45 cos 50° = 28.9 km (1 d.p.).", "skill": "Resolve a bearing into north/east components."}, {"day": 88, "topic": "Volume", "context": "A cylindrical water tank has radius 9 m and height 14 m.", "working": ["V = πr² + h", "V = π × 9² + 14", "V ≈ 268.5 m³"], "challenge": "Identify the formula error and find the correct volume to 1 decimal place.", "hint": "Volume is the area of the circular base multiplied by height.", "solution": "The correct formula is V = πr²h, not πr² + h. V = π × 9² × 14 = 3562.6 m³ (1 d.p.).", "skill": "Apply the cylinder volume formula."}, {"day": 89, "topic": "Percentages and data", "context": "A survey of 200 people found that 45% use public transport to commute.", "working": ["Number = 200 × 45", "= 9000 people"], "challenge": "Find the mistake and calculate the correct number of people.", "hint": "A percentage must be written as a decimal before multiplication.", "solution": "The student used 45 rather than 45/100 = 0.45. Number = 200 × 0.45 = 90 people.", "skill": "Convert percentages to proportions."}, {"day": 90, "topic": "Financial modelling", "context": "A business has fixed costs of $650, variable costs of $200 per item and sells each item for $260. It sells 25 items.", "working": ["Profit = revenue − variable costs", "= 25(260 − 200)", "= $1500"], "challenge": "Explain the omission and calculate the correct profit.", "hint": "Are all costs variable?", "solution": "The student omitted fixed costs. Profit = 25(260 − 200) − 650 = $850.", "skill": "Model profit including fixed and variable costs."}];
-const START='2026-11-19';
-const MS=86400000;
-const sydDate=()=>{const parts=new Intl.DateTimeFormat('en-GB',{timeZone:'Australia/Sydney',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());const get=t=>parts.find(p=>p.type===t).value;return get('year')+'-'+get('month')+'-'+get('day')};
-const ordinal=d=>Math.floor((Date.parse(d+'T00:00:00Z')-Date.parse(START+'T00:00:00Z'))/MS);
-const indexFor=offset=>((offset%90)+90)%90;
-let preview=false, selected=0, mode='today';
-const $=id=>document.getElementById(id);
-const escapeHtml=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-for(let i=1;i<=90;i++){const o=document.createElement('option');o.value=i-1;o.textContent='Day '+i;$('daySelect').appendChild(o)}
-function render(){const elapsed=Math.max(0,ordinal(sydDate()));const day=preview?selected:indexFor(elapsed+(mode==='yesterday'?-1:0));const q=QUESTIONS[day];$('meta').textContent='CHALLENGE '+String(day+1).padStart(2,'0')+' OF 90';$('topic').textContent=q.topic;$('context').textContent=q.context;$('steps').replaceChildren();q.working.forEach(s=>{const d=document.createElement('div');d.textContent=s;$('steps').appendChild(d)});$('challenge').textContent=q.challenge;$('hint').textContent=q.hint;$('solution').replaceChildren();const b=document.createElement('strong');b.textContent='Worked solution';const p=document.createElement('p');p.textContent=q.solution;const sk=document.createElement('p');sk.innerHTML='<strong>HSC skill:</strong> '+escapeHtml(q.skill)+' <em>(Not an official marking guideline.)</em>';$('solution').append(b,p,sk);$('hint').classList.add('hidden');$('solution').classList.add('hidden');$('hintBtn').textContent='Show hint';$('answerBtn').textContent='Show worked solution';$('previewControls').classList.toggle('hidden',!preview);$('daySelect').value=day;const allowed=preview||mode==='yesterday'&&elapsed>0;$('answerBtn').classList.toggle('hidden',!allowed);$('locked').textContent=allowed?'':"Today's worked solution unlocks tomorrow (Sydney time).";if(mode==='yesterday'&&!preview&&elapsed===0){$('locked').textContent='No previous challenge yet. The first solution unlocks tomorrow.';}$('yesterdayBtn').textContent='Yesterday’s solution';}
-$('todayBtn').onclick=()=>{preview=false;mode='today';render()};$('yesterdayBtn').onclick=()=>{preview=false;mode='yesterday';render()};$('previewBtn').onclick=()=>{preview=!preview;selected=indexFor(Math.max(0,ordinal(sydDate())));mode='today';render()};$('daySelect').onchange=e=>{selected=Number(e.target.value);render()};$('hintBtn').onclick=()=>{const hidden=$('hint').classList.toggle('hidden');$('hintBtn').textContent=hidden?'Show hint':'Hide hint'};$('answerBtn').onclick=()=>{const hidden=$('solution').classList.toggle('hidden');$('answerBtn').textContent=hidden?'Show worked solution':'Hide worked solution'};render();
-</script></body></html>
+
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Spot the Mistake | HSC Easy</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+  color:#30364e;
+  background:
+    radial-gradient(circle at top left,#ffe2ee,transparent 45%),
+    radial-gradient(circle at top right,#d9f7f1,transparent 45%),
+    #f8f5ff;
+}
+main{max-width:850px;margin:auto;padding:28px 16px 65px}
+h1{font-size:clamp(2rem,6vw,3rem);margin:10px 0}
+h2{margin:0 0 12px}
+p{line-height:1.65}
+.muted{color:#657087}
+.top{text-align:center;margin:30px 0}
+.tag{
+  display:inline-block;
+  background:#eae0ff;
+  color:#6845a0;
+  padding:8px 14px;
+  border-radius:30px;
+  font-size:.8rem;
+  font-weight:800;
+}
+.panel{
+  background:white;
+  border:1px solid #eee5f8;
+  border-radius:23px;
+  padding:clamp(20px,4vw,34px);
+  margin:20px 0;
+  box-shadow:0 12px 30px #40306013;
+}
+.working{
+  background:#f5f0ff;
+  border-left:5px solid #9775cf;
+  padding:20px;
+  border-radius:12px;
+  margin:22px 0;
+}
+.working div{
+  margin:9px 0;
+  line-height:1.6;
+  overflow-wrap:anywhere;
+}
+button,.link{
+  background:#7655b3;
+  color:white;
+  border:0;
+  border-radius:12px;
+  padding:13px 19px;
+  font:inherit;
+  font-weight:750;
+  cursor:pointer;
+  margin:5px 6px 5px 0;
+  text-decoration:none;
+  display:inline-block;
+}
+button:hover,.link:hover{filter:brightness(.92)}
+button.secondary{
+  background:#eee6fb;
+  color:#60418e;
+}
+button.pink{background:#b64f85}
+button:focus-visible,select:focus-visible{
+  outline:3px solid #e8a949;
+  outline-offset:3px;
+}
+select{
+  padding:12px;
+  border:1px solid #cfc3e6;
+  border-radius:10px;
+  font:inherit;
+  background:white;
+  max-width:100%;
+}
+.notice{
+  background:#eaf8f3;
+  border-radius:12px;
+  padding:16px;
+  line-height:1.6;
+  margin-top:16px;
+}
+.solution{
+  background:#f0fbf7;
+  border-left:5px solid #319b84;
+  padding:18px;
+  border-radius:12px;
+  line-height:1.75;
+  margin-top:18px;
+}
+.hidden{display:none!important}
+.small{font-size:.9rem}
+footer{text-align:center;color:#69748a;margin-top:35px}
+@media(max-width:550px){
+  button{width:100%;margin:5px 0}
+}
+</style>
+</head>
+<body>
+<main>
+
+<a class="link" href="index.html">← HSC Easy Home</a>
+
+<header class="top">
+  <span class="tag">STAGE 6 · MATHEMATICS STANDARD</span>
+  <h1>🔎 Spot the Mistake</h1>
+  <p class="muted">
+    One new HSC-style error-analysis challenge every day.
+    Find the mistake, explain why it is wrong,
+    and show the correct mathematics.
+  </p>
+  <p><strong>Suggested time: 5–7 minutes</strong></p>
+</header>
+
+<section class="panel">
+  <h2>📅 Daily Challenge</h2>
+  <p id="dateLabel" class="muted"></p>
+  <p id="dayLabel"></p>
+  <button id="todayBtn" onclick="showToday()">
+    Today's Challenge
+  </button>
+  <button class="secondary" onclick="showYesterday()">
+    Yesterday's Solution
+  </button>
+  <button class="pink" onclick="toggleTeacher()">
+    👩‍🏫 Teacher Preview
+  </button>
+</section>
+
+<section id="teacherPanel" class="panel hidden">
+  <h2>👩‍🏫 Teacher Preview</h2>
+  <p class="muted">
+    Preview any of the 90 challenges and their solutions.
+    This feature is not password-protected.
+  </p>
+  <label for="daySelect"><strong>Select a challenge:</strong></label>
+  <select id="daySelect" onchange="previewDay()"></select>
+  <button class="secondary" onclick="showToday()">
+    Return to Today
+  </button>
+</section>
+
+<section id="questionPanel" class="panel">
+  <span class="tag" id="topicLabel"></span>
+  <h2 id="questionTitle" style="margin-top:15px"></h2>
+
+  <p id="context"></p>
+
+  <div class="working">
+    <strong>📝 A student's working:</strong>
+    <div id="workingLines"></div>
+  </div>
+
+  <p><strong>Your challenge:</strong></p>
+  <p id="challenge"></p>
+
+  <button class="secondary" onclick="toggleHint()">
+    💡 Show / Hide Hint
+  </button>
+
+  <div id="hintBox" class="notice hidden"></div>
+
+  <div id="solutionArea"></div>
+</section>
+
+<footer>
+  <strong>HSC Easy</strong> · Making Maths Make Sense
+  <p class="small">
+    Original practice questions, not official HSC examination questions.
+  </p>
+</footer>
+
+</main>
+
+<script>
+"use strict";
+
+/*
+  Daily challenge settings
+  Start date: 19 November 2026, Sydney time.
+  Questions repeat after 90 days.
+*/
+const START = "2026-11-19";
+const TOTAL = 90;
+
+const $ = id => document.getElementById(id);
+const money = n => "$" + Number(n).toFixed(2);
+const dp = (n,p=2) => Number(n).toFixed(p);
+
+function makeQuestion(day){
+  const type=(day-1)%15;
+  const v=Math.floor((day-1)/15);
+  const q={
+    day,
+    topic:"",
+    context:"",
+    working:[],
+    challenge:
+      "Identify the first mistake, explain why it is incorrect, " +
+      "and calculate the correct answer.",
+    hint:"",
+    solution:"",
+    skill:""
+  };
+
+  switch(type){
+
+  case 0:{
+    const P=4000+v*500;
+    const r=3+v;
+    const n=2+v%3;
+    const rate=r/100;
+    const wrong=P*(1+n*rate);
+    const correct=P*Math.pow(1+rate,n);
+
+    q.topic="Compound Interest";
+    q.context=
+      `An investment of ${money(P)} earns ${r}% `+
+      `compound interest per annum for ${n} years.`;
+    q.working=[
+      "A = P(1 + r)ⁿ",
+      `A = ${P}(1 + ${rate})^${n}`,
+      `A = ${P}(1 + ${n} × ${rate})`,
+      `A = ${money(wrong)}`
+    ];
+    q.hint=
+      "Compare repeated multiplication with simple interest.";
+    q.solution=
+      "The student has treated compound interest as simple interest. "+
+      `The growth factor must be raised to the power ${n}. `+
+      `A = ${P}(1 + ${rate})^${n} = ${money(correct)}.`;
+    q.skill="Compound growth and exponential calculations.";
+    break;
+  }
+
+  case 1:{
+    const P=800+v*100;
+    const discount=10+v*2;
+    const gst=10;
+    const wrong=P*(1-(discount+gst)/100);
+    const correct=P*(1-discount/100)*1.1;
+
+    q.topic="Discounts and GST";
+    q.context=
+      `An item costs ${money(P)}. A ${discount}% discount `+
+      "is applied, followed by 10% GST on the discounted price.";
+    q.working=[
+      `Final price = ${P} × (1 − (${discount} + 10)/100)`,
+      `Final price = ${money(wrong)}`
+    ];
+    q.hint=
+      "Does GST increase or decrease the price? "+
+      "Which price is GST applied to?";
+    q.solution=
+      "The student has subtracted GST instead of adding it. "+
+      "The two percentages must also be applied in sequence. "+
+      `Final price = ${P} × ${dp(1-discount/100)} × 1.10 `+
+      `= ${money(correct)}.`;
+    q.skill="Successive percentage changes.";
+    break;
+  }
+
+  case 2:{
+    const P=12000+v*2000;
+    const r=12+v;
+    const n=3;
+    const correct=P*Math.pow(1-r/100,n);
+    const wrong=P*(1-n*r/100);
+
+    q.topic="Depreciation";
+    q.context=
+      `A vehicle is purchased for ${money(P)} and depreciates `+
+      `by ${r}% each year for ${n} years.`;
+    q.working=[
+      `Value lost = ${n} × ${r}% = ${n*r}%`,
+      `Final value = ${P} × (1 − ${n*r}/100)`,
+      `Final value = ${money(wrong)}`
+    ];
+    q.hint=
+      "The percentage decrease is applied to the new value each year.";
+    q.solution=
+      "The student has used straight-line depreciation rather than "+
+      "reducing-balance depreciation. "+
+      `Correct value = ${P}(1 − ${r/100})^${n} `+
+      `= ${money(correct)}.`;
+    q.skill="Reducing-balance depreciation.";
+    break;
+  }
+
+  case 3:{
+    const P=2500+v*500;
+    const r=4+v;
+    const months=18+v*6;
+    const correct=P*r/100*months/12;
+    const wrong=P*r/100*months;
+
+    q.topic="Simple Interest";
+    q.context=
+      `${money(P)} is invested at ${r}% simple interest `+
+      `per annum for ${months} months.`;
+    q.working=[
+      "I = Prt",
+      `I = ${P} × ${r/100} × ${months}`,
+      `I = ${money(wrong)}`
+    ];
+    q.hint=
+      "Check the units of time in the interest formula.";
+    q.solution=
+      "The rate is annual, but the student has used months "+
+      "without converting to years. "+
+      `t = ${months}/12 = ${dp(months/12)} years. `+
+      `I = ${P} × ${r/100} × (${months}/12) `+
+      `= ${money(correct)}.`;
+    q.skill="Simple interest and time conversions.";
+    break;
+  }
+
+  case 4:{
+    const x1=1+v;
+    const x2=x1+4;
+    const y1=3+v;
+    const y2=y1+12;
+    const wrong=(x2-x1)/(y2-y1);
+    const correct=(y2-y1)/(x2-x1);
+
+    q.topic="Linear Relationships";
+    q.context=
+      `A line passes through A(${x1}, ${y1}) `+
+      `and B(${x2}, ${y2}). Find its gradient.`;
+    q.working=[
+      "m = change in x / change in y",
+      `m = (${x2} − ${x1}) / (${y2} − ${y1})`,
+      `m = ${dp(wrong)}`
+    ];
+    q.hint="Which variable belongs in the numerator?";
+    q.solution=
+      "The gradient formula has been reversed. "+
+      "Gradient = change in y divided by change in x. "+
+      `m = (${y2} − ${y1}) / (${x2} − ${x1}) = ${correct}.`;
+    q.skill="Gradient from two points.";
+    break;
+  }
+
+  case 5:{
+    const fixed=5+v*2;
+    const rate=2+v;
+    const km=12+v*3;
+    const wrong=rate*km;
+    const correct=fixed+rate*km;
+
+    q.topic="Linear Modelling";
+    q.context=
+      `A taxi charges a ${money(fixed)} booking fee `+
+      `plus ${money(rate)} per kilometre. `+
+      `A passenger travels ${km} km.`;
+    q.working=[
+      "Cost = rate × distance",
+      `C = ${rate} × ${km}`,
+      `C = ${money(wrong)}`
+    ];
+    q.hint="What does the booking fee represent in a linear model?";
+    q.solution=
+      "The student has omitted the fixed booking fee. "+
+      `C = ${fixed} + ${rate} × ${km} = ${money(correct)}.`;
+    q.skill="Interpreting the intercept in a linear model.";
+    break;
+  }
+
+  case 6:{
+    const angle=30+v*5;
+    const hyp=10+v*2;
+    const rad=angle*Math.PI/180;
+    const wrong=hyp*Math.cos(rad);
+    const correct=hyp*Math.sin(rad);
+
+    q.topic="Right-Angled Trigonometry";
+    q.context=
+      `In a right-angled triangle, the hypotenuse is ${hyp} m `+
+      `and an acute angle is ${angle}°. `+
+      "Find the side opposite this angle.";
+    q.working=[
+      "cos θ = opposite / hypotenuse",
+      `x = ${hyp} cos(${angle}°)`,
+      `x = ${dp(wrong)} m`
+    ];
+    q.hint="Which trigonometric ratio uses opposite and hypotenuse?";
+    q.solution=
+      "The student has used cosine instead of sine. "+
+      "sin θ = opposite / hypotenuse. "+
+      `x = ${hyp} sin(${angle}°) = ${dp(correct)} m.`;
+    q.skill="Choosing the correct trigonometric ratio.";
+    break;
+  }
+
+  case 7:{
+    const A=35+v*4;
+    const B=65+v*3;
+    const a=8+v;
+    const radA=A*Math.PI/180;
+    const radB=B*Math.PI/180;
+    const wrong=a*Math.sin(radA)/Math.sin(radB);
+    const correct=a*Math.sin(radB)/Math.sin(radA);
+
+    q.topic="Sine Rule";
+    q.context=
+      `In triangle ABC, angle A = ${A}°, `+
+      `angle B = ${B}°, and side a = ${a} cm. `+
+      "Find side b.";
+    q.working=[
+      "a / sin A = b / sin B",
+      `b = ${a} × sin(${A}°) / sin(${B}°)`,
+      `b = ${dp(wrong)} cm`
+    ];
+    q.hint=
+      "Match each side to its opposite angle, then rearrange carefully.";
+    q.solution=
+      "The student has inverted the sine ratio when rearranging. "+
+      `b = ${a} × sin(${B}°) / sin(${A}°) `+
+      `= ${dp(correct)} cm.`;
+    q.skill="Rearranging the sine rule.";
+    break;
+  }
+
+  case 8:{
+    const red=3+v;
+    const blue=5+v;
+    const total=red+blue;
+    const wrong=Math.pow(red/total,2);
+    const correct=(red/total)*((red-1)/(total-1));
+
+    q.topic="Probability Without Replacement";
+    q.context=
+      `A bag contains ${red} red and ${blue} blue counters. `+
+      "Two counters are selected without replacement. "+
+      "Find the probability that both are red.";
+    q.working=[
+      `P(red then red) = ${red}/${total} × ${red}/${total}`,
+      `P = ${dp(wrong,4)}`
+    ];
+    q.hint="What changes after the first red counter is removed?";
+    q.solution=
+      "The student has assumed replacement. "+
+      "After the first red counter is removed, "+
+      `there are ${red-1} red counters out of ${total-1}. `+
+      `P = (${red}/${total}) × (${red-1}/${total-1}) `+
+      `= ${dp(correct,4)}.`;
+    q.skill="Dependent probability events.";
+    break;
+  }
+
+  case 9:{
+    const total=100+v*20;
+    const A=40+v*5;
+    const B=35+v*4;
+    const both=15+v*2;
+    const wrong=(A+B)/total;
+    const correct=(A+B-both)/total;
+
+    q.topic="Venn Diagrams and Probability";
+    q.context=
+      `In a survey of ${total} students, ${A} study Biology, `+
+      `${B} study Chemistry and ${both} study both. `+
+      "Find the probability that a randomly selected student "+
+      "studies at least one of these subjects.";
+    q.working=[
+      "P(A or B) = P(A) + P(B)",
+      `P = (${A} + ${B}) / ${total}`,
+      `P = ${dp(wrong,3)}`
+    ];
+    q.hint="Have any students been counted twice?";
+    q.solution=
+      "The students studying both subjects have been counted twice. "+
+      `P(A ∪ B) = (${A} + ${B} − ${both})/${total} `+
+      `= ${dp(correct,3)}.`;
+    q.skill="Addition rule for overlapping events.";
+    break;
+  }
+
+  case 10:{
+    const values=[4+v,6+v,8+v,10+v,12+v];
+    const sum=values.reduce((a,b)=>a+b,0);
+    const wrong=sum/4;
+    const correct=sum/5;
+
+    q.topic="Statistical Analysis — Mean";
+    q.context=
+      "The following five observations are recorded: "+
+      values.join(", ")+". Find the mean.";
+    q.working=[
+      `Sum = ${values.join(" + ")} = ${sum}`,
+      `Mean = ${sum} / 4`,
+      `Mean = ${dp(wrong)}`
+    ];
+    q.hint="How many observations are in the data set?";
+    q.solution=
+      "The student has divided by four instead of five. "+
+      `Mean = ${sum}/5 = ${dp(correct)}.`;
+    q.skill="Calculating and interpreting the mean.";
+    break;
+  }
+
+  case 11:{
+    const values=[3+v,7+v,9+v,11+v,20+v,25+v];
+    const wrong=values[2];
+    const correct=(values[2]+values[3])/2;
+
+    q.topic="Statistical Analysis — Median";
+    q.context=
+      "The following six values are already in ascending order: "+
+      values.join(", ")+". Find the median.";
+    q.working=[
+      "The median is the middle value.",
+      `Median = ${wrong}`
+    ];
+    q.hint=
+      "What happens when a data set contains an even number of values?";
+    q.solution=
+      "There are six observations, so there is no single middle value. "+
+      `Median = (${values[2]} + ${values[3]}) / 2 `+
+      `= ${correct}.`;
+    q.skill="Finding the median of an even-sized data set.";
+    break;
+  }
+
+  case 12:{
+    const scale=2+v;
+    const area=15+v*5;
+    const wrong=area*scale;
+    const correct=area*scale*scale;
+
+    q.topic="Similarity and Area";
+    q.context=
+      `A rectangle has an area of ${area} cm². `+
+      `All its side lengths are enlarged by a scale factor of ${scale}. `+
+      "Find the area of the enlarged rectangle.";
+    q.working=[
+      "New area = original area × scale factor",
+      `New area = ${area} × ${scale}`,
+      `New area = ${wrong} cm²`
+    ];
+    q.hint=
+      "If both length and width are multiplied, "+
+      "how does that affect the area?";
+    q.solution=
+      "The student has used the linear scale factor for area. "+
+      "The area scale factor is the square of the length scale factor. "+
+      `New area = ${area} × ${scale}² = ${correct} cm².`;
+    q.skill="Area scale factors in similar shapes.";
+    break;
+  }
+
+  case 13:{
+    const AB=4+v;
+    const BC=5+v;
+    const AC=12+v;
+    const CD=3+v;
+    const BD=10+v;
+    const wrong=AC+CD;
+    const correct=AB+BC+CD;
+
+    q.topic="Networks — Shortest Paths";
+    q.context=
+      "A network contains the following two-way connections: "+
+      `A–B = ${AB} km, B–C = ${BC} km, `+
+      `A–C = ${AC} km, C–D = ${CD} km, `+
+      `and B–D = ${BD} km. `+
+      "Find the shortest route from A to D.";
+    q.working=[
+      "Choose the direct connection from A to C.",
+      `A → C → D = ${AC} + ${CD}`,
+      `Total = ${wrong} km`
+    ];
+    q.hint=
+      "Compare several complete routes, "+
+      "not just the route with the fewest edges.";
+    q.solution=
+      "The student has assumed that fewer edges means "+
+      "a shorter distance. "+
+      `A → B → C → D = ${AB} + ${BC} + ${CD} `+
+      `= ${correct} km. `+
+      `A → B → D = ${AB+BD} km, `+
+      `and A → C → D = ${wrong} km. `+
+      "The shortest route is A → B → C → D.";
+    q.skill="Comparing weighted network paths.";
+    break;
+  }
+
+  case 14:{
+    const distance=120+v*30;
+    const minutes=90+v*15;
+    const wrong=distance/minutes;
+    const correct=distance/(minutes/60);
+
+    q.topic="Rates and Unit Conversion";
+    q.context=
+      `A vehicle travels ${distance} km in ${minutes} minutes. `+
+      "Calculate its average speed in km/h.";
+    q.working=[
+      "Average speed = distance / time",
+      `Speed = ${distance} / ${minutes}`,
+      `Speed = ${dp(wrong,2)} km/h`
+    ];
+    q.hint=
+      "Check that the time unit matches the requested speed unit.";
+    q.solution=
+      "The student has used minutes as though they were hours. "+
+      `Time = ${minutes}/60 = ${dp(minutes/60)} hours. `+
+      `Speed = ${distance} / (${minutes}/60) `+
+      `= ${dp(correct,2)} km/h.`;
+    q.skill="Average speed and time conversions.";
+    break;
+  }
+
+  }
+
+  return q;
+}
+
+/* Build the full 90-day bank */
+const BANK=Array.from(
+  {length:TOTAL},
+  (_,i)=>makeQuestion(i+1)
+);
+
+/* Sydney calendar dates */
+function sydneyDate(){
+  const parts=new Intl.DateTimeFormat("en-CA",{
+    timeZone:"Australia/Sydney",
+    year:"numeric",
+    month:"2-digit",
+    day:"2-digit"
+  }).formatToParts(new Date());
+
+  const get=type=>parts.find(p=>p.type===type).value;
+  return `${get("year")}-${get("month")}-${get("day")}`;
+}
+
+function dayNumber(dateString){
+  const [y,m,d]=dateString.split("-").map(Number);
+  const [sy,sm,sd]=START.split("-").map(Number);
+
+  const now=Date.UTC(y,m-1,d);
+  const start=Date.UTC(sy,sm-1,sd);
+
+  const elapsed=Math.floor((now-start)/86400000);
+  return ((elapsed%TOTAL)+TOTAL)%TOTAL+1;
+}
+
+let currentDay=dayNumber(sydneyDate());
+let viewingDay=currentDay;
+let teacherMode=false;
+let showingYesterday=false;
+
+function render(day,allowSolution=false){
+  const q=BANK[day-1];
+  viewingDay=day;
+
+  $("topicLabel").textContent=q.topic;
+  $("questionTitle").textContent=
+    "Challenge "+String(day).padStart(2,"0");
+  $("context").textContent=q.context;
+  $("challenge").textContent=q.challenge;
+
+  $("workingLines").replaceChildren();
+
+  q.working.forEach(line=>{
+    const div=document.createElement("div");
+    div.textContent=line;
+    $("workingLines").appendChild(div);
+  });
+
+  $("hintBox").textContent=q.hint;
+  $("hintBox").classList.add("hidden");
+
+  $("solutionArea").replaceChildren();
+
+  if(allowSolution || teacherMode){
+    const box=document.createElement("div");
+    box.className="solution";
+
+    const heading=document.createElement("h3");
+    heading.textContent="✅ Worked Solution";
+
+    const explanation=document.createElement("p");
+    explanation.textContent=q.solution;
+
+    const skill=document.createElement("p");
+    const strong=document.createElement("strong");
+    strong.textContent="HSC skill: ";
+    skill.append(strong,document.createTextNode(q.skill));
+
+    box.append(heading,explanation,skill);
+    $("solutionArea").appendChild(box);
+  }else{
+    const box=document.createElement("div");
+    box.className="notice";
+    box.textContent=
+      "🔒 The worked solution will be revealed tomorrow. "+
+      "Record your working so you can check it next lesson.";
+    $("solutionArea").appendChild(box);
+  }
+
+  $("daySelect").value=String(day);
+}
+
+function showToday(){
+  teacherMode=false;
+  showingYesterday=false;
+  currentDay=dayNumber(sydneyDate());
+  render(currentDay,false);
+  $("dayLabel").textContent=
+    "Today's challenge · Day "+currentDay+" of 90";
+  $("questionPanel").scrollIntoView({behavior:"smooth"});
+}
+
+function showYesterday(){
+  teacherMode=false;
+  showingYesterday=true;
+  currentDay=dayNumber(sydneyDate());
+  const yesterday=((currentDay+88)%90)+1;
+  render(yesterday,true);
+  $("dayLabel").textContent=
+    "Yesterday's challenge · Day "+yesterday+" of 90";
+  $("questionPanel").scrollIntoView({behavior:"smooth"});
+}
+
+function toggleTeacher(){
+  const panel=$("teacherPanel");
+  panel.classList.toggle("hidden");
+
+  if(!panel.classList.contains("hidden")){
+    teacherMode=true;
+    render(viewingDay,true);
+    $("dayLabel").textContent=
+      "Teacher Preview · Day "+viewingDay+" of 90";
+    panel.scrollIntoView({behavior:"smooth"});
+  }else{
+    showToday();
+  }
+}
+
+function previewDay(){
+  teacherMode=true;
+  const day=Number($("daySelect").value);
+  render(day,true);
+  $("dayLabel").textContent=
+    "Teacher Preview · Day "+day+" of 90";
+}
+
+function toggleHint(){
+  $("hintBox").classList.toggle("hidden");
+}
+
+function initialise(){
+  for(let i=1;i<=TOTAL;i++){
+    const option=document.createElement("option");
+    option.value=i;
+    option.textContent="Day "+i+" — "+BANK[i-1].topic;
+    $("daySelect").appendChild(option);
+  }
+
+  const today=sydneyDate();
+  $("dateLabel").textContent=
+    "Sydney date: "+today;
+
+  currentDay=dayNumber(today);
+  render(currentDay,false);
+  $("dayLabel").textContent=
+    "Today's challenge · Day "+currentDay+" of 90";
+}
+
+initialise();
+</script>
+</body>
+</html>
