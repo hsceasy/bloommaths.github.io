@@ -1,9 +1,8 @@
-
 <!doctype html>
 <html lang="en-AU">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>HSC Easy | Interactive Maths Resources</title>
 
 <style>
@@ -64,13 +63,13 @@ header p {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0,1fr));
   gap: 22px;
 }
 
 .stage-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0,1fr));
   gap: 22px;
 }
 
@@ -100,23 +99,21 @@ header p {
 
 .stage-card:focus-visible,
 .button:focus-visible,
-.dashboard-card:focus-visible,
-.escape-card:focus-visible,
 .back-button:focus-visible {
   outline: 4px solid #f5b14c;
   outline-offset: 3px;
 }
 
 .stage-card.stage4 {
-  background: linear-gradient(145deg, #d9f7f1, #c6e8ff);
+  background: linear-gradient(145deg,#d9f7f1,#c6e8ff);
 }
 
 .stage-card.stage5 {
-  background: linear-gradient(145deg, #fff0d9, #ffe1e9);
+  background: linear-gradient(145deg,#fff0d9,#ffe1e9);
 }
 
 .stage-card.stage6 {
-  background: linear-gradient(145deg, #e9dcff, #ffdce9);
+  background: linear-gradient(145deg,#e9dcff,#ffdce9);
 }
 
 .stage-icon {
@@ -151,19 +148,11 @@ header p {
 }
 
 .art.standard {
-  background: linear-gradient(135deg, #c3f0e7, #b6dcf7);
+  background: linear-gradient(135deg,#c3f0e7,#b6dcf7);
 }
 
 .art.gifted {
-  background: linear-gradient(135deg, #e4d0ff, #ffdce9);
-}
-
-.art.senior {
-  background: linear-gradient(135deg, #e8d6ff, #c9e6ff);
-}
-
-.art.mistake {
-  background: linear-gradient(135deg, #ffe0eb, #e8d9ff, #d8f4f2);
+  background: linear-gradient(135deg,#e4d0ff,#ffdce9);
 }
 
 .art::before, .art::after {
@@ -230,11 +219,6 @@ header p {
   color: #6843a4;
 }
 
-.mistake-tag {
-  background: #ffe6ef;
-  color: #a23c6b;
-}
-
 h2 {
   font-size: 1.65rem;
   letter-spacing: -.025em;
@@ -273,7 +257,6 @@ h2 {
   background: #ad4f82;
 }
 
-/* Hide all inactive screens */
 [hidden] {
   display: none !important;
 }
@@ -321,151 +304,66 @@ h2 {
   color: var(--muted);
 }
 
-/* NEW STAGE 6 DASHBOARD */
+/* Compact Stage 6 dashboard */
 
-.dashboard-intro {
-  text-align: center;
-  color: var(--muted);
-  margin: 0 auto 25px;
-  line-height: 1.6;
-}
-
-.dashboard-grid {
+.stage6-dashboard {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0,1fr));
   gap: 16px;
+  margin: 25px 0;
 }
 
-.dashboard-card {
-  border: 2px solid rgba(255,255,255,.95);
+.stage6-tile {
+  background: #fff;
+  border: 1px solid #e8e4f2;
   border-radius: 22px;
-  padding: 24px;
-  text-align: left;
-  text-decoration: none;
-  color: var(--ink);
-  font: inherit;
-  cursor: pointer;
+  padding: 23px;
+  box-shadow: 0 9px 24px #334a6b12;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  min-height: 180px;
-  box-shadow: 0 9px 25px #334a6b15;
-  transition: transform .2s, box-shadow .2s;
+  gap: 10px;
 }
 
-.dashboard-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 15px 30px #334a6b25;
+.stage6-tile .tile-icon {
+  font-size: 2.3rem;
 }
 
-.dashboard-card.planner {
-  background: #eee5ff;
+.stage6-tile h3 {
+  font-size: 1.23rem;
+  margin: 0;
 }
 
-.dashboard-card.papers {
-  background: #e0f2ff;
-}
-
-.dashboard-card.mistake {
-  background: #ffe5ee;
-}
-
-.dashboard-card.escapes {
-  background: #def4ec;
-}
-
-.dashboard-icon {
-  font-size: 2.5rem;
-  line-height: 1.2;
-  margin-bottom: 10px;
-}
-
-.dashboard-title {
-  font-size: 1.25rem;
-  font-weight: 800;
-  margin-bottom: 6px;
-}
-
-.dashboard-desc {
+.stage6-tile p {
   font-size: .94rem;
-  color: #536177;
   line-height: 1.5;
-}
-
-.dashboard-arrow {
-  align-self: flex-end;
-  margin-top: auto;
-  padding-top: 8px;
-  font-size: 1.3rem;
-  font-weight: 800;
-}
-
-/* ESCAPE ROOMS SUBMENU */
-
-.escape-list {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  max-width: 760px;
-  margin: 0 auto;
-}
-
-.escape-card {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  padding: 20px 22px;
-  border: 2px solid white;
-  border-radius: 20px;
-  color: var(--ink);
-  text-decoration: none;
-  box-shadow: 0 9px 25px #334a6b15;
-  transition: transform .2s, box-shadow .2s;
-}
-
-.escape-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 15px 30px #334a6b25;
-}
-
-.escape-card.business {
-  background: #e8e0ff;
-}
-
-.escape-card.casino {
-  background: #fff0dc;
-}
-
-.escape-card.island {
-  background: #dff3f0;
-}
-
-.escape-icon {
-  font-size: 2.5rem;
-  flex-shrink: 0;
-}
-
-.escape-details {
+  color: var(--muted);
+  margin: 0;
   flex: 1;
 }
 
-.escape-name {
-  display: block;
-  font-size: 1.15rem;
-  font-weight: 800;
-  margin-bottom: 5px;
+.stage6-tile .button {
+  padding: 12px;
+  font-size: .94rem;
 }
 
-.escape-topic {
-  display: block;
-  font-size: .9rem;
-  color: #536177;
-  line-height: 1.5;
+.stage6-tile.lilac {
+  background: #f3edff;
 }
 
-.escape-arrow {
-  font-size: 1.4rem;
-  font-weight: 800;
+.stage6-tile.blush {
+  background: #fff0f5;
+}
+
+.stage6-tile.mint {
+  background: #e9f8f4;
+}
+
+.stage6-tile.blue {
+  background: #eaf2ff;
+}
+
+.stage6-tile.peach {
+  background: #fff3e7;
 }
 
 .teacher-area {
@@ -506,7 +404,7 @@ footer {
     padding: 32px 16px 42px;
   }
 
-  .grid {
+  .grid, .stage6-dashboard {
     grid-template-columns: 1fr;
   }
 
@@ -521,54 +419,6 @@ footer {
   .content {
     padding: 21px;
   }
-
-  .dashboard-grid {
-    gap: 12px;
-  }
-
-  .dashboard-card {
-    min-height: 165px;
-    padding: 17px;
-  }
-
-  .dashboard-icon {
-    font-size: 2rem;
-  }
-
-  .dashboard-title {
-    font-size: 1.05rem;
-  }
-
-  .dashboard-desc {
-    font-size: .82rem;
-  }
-
-  .escape-card {
-    padding: 17px;
-    gap: 12px;
-  }
-
-  .escape-icon {
-    font-size: 2rem;
-  }
-
-  .escape-name {
-    font-size: 1rem;
-  }
-
-  .escape-topic {
-    font-size: .83rem;
-  }
-}
-
-@media(max-width:360px) {
-  .dashboard-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .dashboard-card {
-    min-height: 135px;
-  }
 }
 </style>
 </head>
@@ -577,63 +427,51 @@ footer {
 <main>
 
 <header>
-  <div class="eyebrow">
-    🔐 NSW Years 7–12 Mathematics
-  </div>
-
+  <div class="eyebrow">🔐 NSW Years 7–12 Mathematics</div>
   <h1>HSC Easy</h1>
-
   <p>
     Welcome to Years 7–12 Mathematics Resources!
-    Explore interactive maths escape rooms and daily
-    challenges designed to make learning engaging,
-    challenging and fun.
-    Choose your stage to begin your adventure.
+    Explore interactive maths escape rooms, HSC revision
+    activities and daily challenges designed to make
+    learning engaging, challenging and fun.
+    Choose your stage to begin.
   </p>
 </header>
 
 <!-- MAIN STAGE SELECTION -->
-<section id="stage-selection" aria-label="Choose your stage">
 
+<section id="stage-selection" aria-label="Choose your stage">
   <div class="stage-grid">
 
     <button class="stage-card stage4"
-            type="button"
-            onclick="showStage(4)">
+            type="button" onclick="showStage(4)">
       <span class="stage-icon">🔢</span>
       <h2>Stage 4</h2>
       <p>Years 7–8 Mathematics</p>
-      <span class="stage-link">
-        Explore 4 Games →
-      </span>
+      <span class="stage-link">Explore 4 Games →</span>
     </button>
 
     <button class="stage-card stage5"
-            type="button"
-            onclick="showStage(5)">
+            type="button" onclick="showStage(5)">
       <span class="stage-icon">📐</span>
       <h2>Stage 5</h2>
       <p>Years 9–10 Mathematics</p>
-      <span class="stage-link">
-        Explore Stage 5 →
-      </span>
+      <span class="stage-link">Explore Stage 5 →</span>
     </button>
 
     <button class="stage-card stage6"
-            type="button"
-            onclick="showStage(6)">
+            type="button" onclick="showStage(6)">
       <span class="stage-icon">📈</span>
       <h2>Stage 6</h2>
       <p>Years 11–12 Mathematics</p>
-      <span class="stage-link">
-        Explore Revision &amp; Activities →
-      </span>
+      <span class="stage-link">Explore Revision &amp; Activities →</span>
     </button>
 
   </div>
 </section>
 
-<!-- HOMEPAGE ONLY: PROBLEM OF THE DAY -->
+<!-- HOMEPAGE PROBLEM OF THE DAY -->
+
 <section id="home-problem-of-the-day"
          aria-label="Problem of the Day"
          style="margin:30px 0 42px">
@@ -644,17 +482,11 @@ footer {
     border-radius:27px;
     padding:clamp(22px,5vw,38px);
     box-shadow:0 14px 35px #334a6b1c;
-    text-align:center;
-  ">
+    text-align:center">
 
-    <div style="font-size:2.8rem" aria-hidden="true">
-      🧠
-    </div>
+    <div style="font-size:2.8rem" aria-hidden="true">🧠</div>
 
-    <h2 style="
-      font-size:clamp(1.6rem,4vw,2.3rem);
-      margin:8px 0;
-    ">
+    <h2 style="font-size:clamp(1.6rem,4vw,2.3rem);margin:8px 0">
       Problem of the Day
     </h2>
 
@@ -662,8 +494,7 @@ footer {
       max-width:640px;
       margin:0 auto 18px;
       line-height:1.65;
-      color:#45556b;
-    ">
+      color:#45556b">
       A fresh 5–7 minute maths problem-solving challenge
       every day for Stages 4, 5 and 6.
       Optional hints, yesterday's worked solutions
@@ -675,21 +506,17 @@ footer {
        style="display:inline-block">
       Try Today's Challenge →
     </a>
-
   </div>
 </section>
 
 <!-- STAGE 4 -->
-<section id="stage-4" class="stage-section" hidden>
 
+<section id="stage-4" class="stage-section" hidden>
   <button class="back-button" onclick="showHome()">
     ← Back to Stages
   </button>
 
-  <h2 class="section-title">
-    🔢 Stage 4 Escape Rooms
-  </h2>
-
+  <h2 class="section-title">🔢 Stage 4 Escape Rooms</h2>
   <p class="section-subtitle">
     Years 7–8 · Choose your topic and difficulty
   </p>
@@ -699,25 +526,18 @@ footer {
     <article class="card">
       <div class="art standard" aria-hidden="true">
         <span class="emoji">🧪🔓</span>
-        <span class="image-label">
-          YEARS 7–8 · INTEGERS
-        </span>
+        <span class="image-label">YEARS 7–8 · INTEGERS</span>
       </div>
 
       <div class="content">
-        <span class="tag">
-          STANDARD EDITION
-        </span>
-
+        <span class="tag">STANDARD EDITION</span>
         <h2>The Locked Laboratory</h2>
-
         <p class="desc">
           Explore seven rooms of integer puzzles,
           from negative numbers to BEDMAS and bracket
           challenges. Optional hints, worked examples
           and mini-lessons are available.
         </p>
-
         <a class="button"
            href="locked_laboratory_seven_rooms%20EASY.html">
           Play Standard Game →
@@ -728,24 +548,19 @@ footer {
     <article class="card">
       <div class="art gifted" aria-hidden="true">
         <span class="emoji">🧠🔐</span>
-        <span class="image-label">
-          YEARS 7–8 · INTEGERS
-        </span>
+        <span class="image-label">YEARS 7–8 · INTEGERS</span>
       </div>
 
       <div class="content">
         <span class="tag gifted-tag">
           GIFTED &amp; TALENTED EDITION
         </span>
-
         <h2>The Extension Challenge</h2>
-
         <p class="desc">
           Take on seven more demanding rooms featuring
           multi-step calculations, mathematical reasoning
           and trickier integer problems.
         </p>
-
         <a class="button purple"
            href="locked_laboratory_gifted_extension.html">
           Play Extension Game →
@@ -756,24 +571,17 @@ footer {
     <article class="card">
       <div class="art standard" aria-hidden="true">
         <span class="emoji">🏫🔐</span>
-        <span class="image-label">
-          YEARS 7–8 · FDP
-        </span>
+        <span class="image-label">YEARS 7–8 · FDP</span>
       </div>
 
       <div class="content">
-        <span class="tag">
-          STANDARD EDITION
-        </span>
-
+        <span class="tag">STANDARD EDITION</span>
         <h2>The School Lockdown</h2>
-
         <p class="desc">
           Explore 12 school rooms and solve 48 maths
           puzzles covering fractions, decimals and
           percentages. Can you escape?
         </p>
-
         <a class="button"
            href="the_school_lockdown_complete_12_rooms.html">
           Play Standard Game →
@@ -784,24 +592,19 @@ footer {
     <article class="card">
       <div class="art gifted" aria-hidden="true">
         <span class="emoji">🏫🧠</span>
-        <span class="image-label">
-          YEARS 7–8 · FDP
-        </span>
+        <span class="image-label">YEARS 7–8 · FDP</span>
       </div>
 
       <div class="content">
         <span class="tag gifted-tag">
           GIFTED &amp; TALENTED EDITION
         </span>
-
         <h2>The School Lockdown — Extension</h2>
-
         <p class="desc">
           Take on 12 school rooms and 48 challenging,
           multi-step fractions, decimals and percentages
           problems. Solve every investigation to escape!
         </p>
-
         <a class="button purple"
            href="the_school_lockdown_FDP_EXTENSION%20(2).html">
           Play Extension Game →
@@ -813,25 +616,18 @@ footer {
 </section>
 
 <!-- STAGE 5 -->
-<section id="stage-5" class="stage-section" hidden>
 
+<section id="stage-5" class="stage-section" hidden>
   <button class="back-button" onclick="showHome()">
     ← Back to Stages
   </button>
 
-  <h2 class="section-title">
-    📐 Stage 5 Escape Rooms
-  </h2>
-
-  <p class="section-subtitle">
-    Years 9–10 Mathematics
-  </p>
+  <h2 class="section-title">📐 Stage 5 Escape Rooms</h2>
+  <p class="section-subtitle">Years 9–10 Mathematics</p>
 
   <div class="coming-soon">
     <div class="big">🔐✨</div>
-
     <h3>New Adventures Coming Soon!</h3>
-
     <p>
       Stage 5 maths escape rooms are currently
       being developed. Check back soon!
@@ -839,111 +635,107 @@ footer {
   </div>
 </section>
 
-<!-- STAGE 6 COMPACT DASHBOARD -->
+<!-- STAGE 6 MAIN DASHBOARD -->
+
 <section id="stage-6" class="stage-section" hidden>
 
-  <button class="back-button" onclick="showHome()">
+  <button class="back-button"
+          type="button" onclick="showHome()">
     ← Back to Stages
   </button>
 
-  <h2 class="section-title">
-    📈 Stage 6 Mathematics
-  </h2>
-
-  <p class="dashboard-intro">
-    Years 11–12 · Choose how you want to practise
+  <h2 class="section-title">📈 Stage 6 Mathematics</h2>
+  <p class="section-subtitle">
+    Years 11–12 · HSC revision and interactive challenges
   </p>
 
-  <div class="dashboard-grid">
+  <div class="stage6-dashboard">
 
     <!-- REVISION PLANNER -->
-    <a class="dashboard-card planner"
-       href="hsc_revision_planner.html">
 
-      <span class="dashboard-icon">📊</span>
-
-      <span class="dashboard-title">
-        Revision Planner
-      </span>
-
-      <span class="dashboard-desc">
-        Identify your strengths and create
-        a personalised study plan.
-      </span>
-
-      <span class="dashboard-arrow" aria-hidden="true">
-        →
-      </span>
-    </a>
+    <article class="stage6-tile lilac">
+      <div class="tile-icon">📚</div>
+      <h3>Revision Planner</h3>
+      <p>
+        Identify strengths, revise key topics and
+        create a personalised study plan.
+      </p>
+      <a class="button purple"
+         href="hsc_revision_planner.html">
+        Open Revision Planner →
+      </a>
+    </article>
 
     <!-- HSC PAPERS -->
-    <a class="dashboard-card papers"
-       href="hsc_exam_practice_hub.html">
 
-      <span class="dashboard-icon">📝</span>
-
-      <span class="dashboard-title">
-        HSC Papers
-      </span>
-
-      <span class="dashboard-desc">
-        Past HSC papers, marking guidelines
-        and trial examinations.
-      </span>
-
-      <span class="dashboard-arrow" aria-hidden="true">
-        →
-      </span>
-    </a>
+    <article class="stage6-tile blue">
+      <div class="tile-icon">📄</div>
+      <h3>HSC Papers</h3>
+      <p>
+        Find HSC exam papers and practise
+        exam-style questions.
+      </p>
+      <a class="button purple"
+         href="hsc_exam_practice_hub.html">
+        Explore HSC Papers →
+      </a>
+    </article>
 
     <!-- SPOT THE MISTAKE -->
-    <a class="dashboard-card mistake"
-       href="spot_the_mistake.html">
 
-      <span class="dashboard-icon">🔎</span>
+    <article class="stage6-tile blush">
+      <div class="tile-icon">🔎</div>
+      <h3>Spot the Mistake</h3>
+      <p>
+        Find errors in mathematical working
+        with daily HSC-style challenges.
+      </p>
+      <a class="button pink"
+         href="spot_the_mistake.html">
+        Spot Today's Mistake →
+      </a>
+    </article>
 
-      <span class="dashboard-title">
-        Spot the Mistake
-      </span>
+    <!-- ESCAPE ROOMS -->
 
-      <span class="dashboard-desc">
-        Find and correct mathematical errors
-        in daily HSC-style challenges.
-      </span>
+    <article class="stage6-tile mint">
+      <div class="tile-icon">🔐</div>
+      <h3>Escape Rooms</h3>
+      <p>
+        Unlock mathematical puzzles in our
+        interactive Stage 6 escape rooms.
+      </p>
+      <button class="button"
+              type="button"
+              onclick="showEscapeRooms()"
+              style="border:0;cursor:pointer;font-family:inherit">
+        Explore Escape Rooms →
+      </button>
+    </article>
 
-      <span class="dashboard-arrow" aria-hidden="true">
-        →
-      </span>
-    </a>
+    <!-- NEW HSC EXAM PRACTICE -->
 
-    <!-- ESCAPE ROOMS CATEGORY -->
-    <button class="dashboard-card escapes"
-            type="button"
-            onclick="showEscapeRooms()">
-
-      <span class="dashboard-icon">🔐</span>
-
-      <span class="dashboard-title">
-        Escape Rooms
-      </span>
-
-      <span class="dashboard-desc">
-        Explore interactive maths adventures
-        and unlock new challenges.
-      </span>
-
-      <span class="dashboard-arrow" aria-hidden="true">
-        →
-      </span>
-    </button>
+    <article class="stage6-tile peach">
+      <div class="tile-icon">📝</div>
+      <h3>HSC Exam Practice</h3>
+      <p>
+        Practise 24 original Mathematics Standard 2
+        questions in Guided Practice or Exam Mode,
+        with marking and worked solutions.
+      </p>
+      <a class="button purple"
+         href="hsc_exam_practice.html">
+        Start Exam Practice →
+      </a>
+    </article>
 
   </div>
 </section>
 
-<!-- STAGE 6 ESCAPE ROOMS SUBMENU -->
+<!-- SEPARATE STAGE 6 ESCAPE ROOMS SCREEN -->
+
 <section id="stage-6-escape-rooms"
-         class="stage-section"
-         hidden>
+         class="stage-section" hidden>
 
   <button class="back-button"
           type="button"
@@ -951,93 +743,60 @@ footer {
     ← Back to Stage 6
   </button>
 
-  <h2 class="section-title">
-    🔐 Stage 6 Escape Rooms
-  </h2>
-
+  <h2 class="section-title">🔐 Stage 6 Escape Rooms</h2>
   <p class="section-subtitle">
-    Choose an adventure and put your maths
-    skills to the test.
+    Choose your challenge and see if you can escape!
   </p>
 
-  <div class="escape-list">
+  <div class="stage6-dashboard">
 
-    <!-- BUSINESS BREAKOUT -->
-    <a class="escape-card business"
-       href="the_business_breakout.html">
+    <article class="stage6-tile lilac">
+      <div class="tile-icon">💼🔐</div>
+      <h3>The Business Breakout</h3>
+      <p>
+        Linear relationships, gradients, business
+        applications, simultaneous equations
+        and direct variation.
+      </p>
+      <a class="button purple"
+         href="the_business_breakout.html">
+        Play Business Breakout →
+      </a>
+    </article>
 
-      <span class="escape-icon" aria-hidden="true">
-        💼
-      </span>
+    <article class="stage6-tile blush">
+      <div class="tile-icon">🎰🔐</div>
+      <h3>The Casino Lockdown</h3>
+      <p>
+        Probability with dice, cards, trees,
+        complements, Venn diagrams and two-way tables.
+      </p>
+      <a class="button pink"
+         href="the_casino_lockdown.html">
+        Play Casino Lockdown →
+      </a>
+    </article>
 
-      <span class="escape-details">
-        <span class="escape-name">
-          The Business Breakout
-        </span>
-
-        <span class="escape-topic">
-          Linear Relationships · Year 12
-        </span>
-      </span>
-
-      <span class="escape-arrow" aria-hidden="true">
-        →
-      </span>
-    </a>
-
-    <!-- CASINO LOCKDOWN -->
-    <a class="escape-card casino"
-       href="the_casino_lockdown.html">
-
-      <span class="escape-icon" aria-hidden="true">
-        🎰
-      </span>
-
-      <span class="escape-details">
-        <span class="escape-name">
-          The Casino Lockdown
-        </span>
-
-        <span class="escape-topic">
-          Probability · Mathematics Standard
-        </span>
-      </span>
-
-      <span class="escape-arrow" aria-hidden="true">
-        →
-      </span>
-    </a>
-
-    <!-- ISLAND SIGNAL -->
-    <a class="escape-card island"
-       href="the_island_signal.html">
-
-      <span class="escape-icon" aria-hidden="true">
-        🏝️
-      </span>
-
-      <span class="escape-details">
-        <span class="escape-name">
-          The Island Signal
-        </span>
-
-        <span class="escape-topic">
-          Trigonometry · Year 12
-        </span>
-      </span>
-
-      <span class="escape-arrow" aria-hidden="true">
-        →
-      </span>
-    </a>
+    <article class="stage6-tile mint">
+      <div class="tile-icon">🏝️📡</div>
+      <h3>The Island Signal</h3>
+      <p>
+        Trigonometry, bearings, sine and cosine
+        rules, area and navigation.
+      </p>
+      <a class="button"
+         href="the_island_signal.html">
+        Play Island Signal →
+      </a>
+    </article>
 
   </div>
 </section>
 
 <!-- TEACHER HQ -->
+
 <div class="teacher-area">
-  <a class="button"
-     href="teacher_dashboard.html">
+  <a class="button" href="teacher_dashboard.html">
     🍎 Enter Teacher HQ →
   </a>
 </div>
