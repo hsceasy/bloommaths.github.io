@@ -322,7 +322,7 @@ footer {
 </section>
 
 <!-- PROBLEM OF THE DAY -->
-<section aria-label="Problem of the Day"
+<section id="home-daily-challenge" aria-label="Problem of the Day"
          style="margin:30px 0 42px">
   <div style="
     background:linear-gradient(120deg,#e8dcff,#ffe8f0,#d9f7f1);
@@ -674,6 +674,7 @@ footer {
 
 <script>
 function showStage(stage) {
+  document.getElementById('home-daily-challenge').hidden = true;
   document.getElementById('stage-selection').hidden=true;
 
   document.querySelectorAll('.stage-section').forEach(section=>{
@@ -685,6 +686,7 @@ function showStage(stage) {
 }
 
 function showHome() {
+  document.getElementById('home-daily-challenge').hidden = false;
   document.querySelectorAll('.stage-section').forEach(section=>{
     section.hidden=true;
   });
