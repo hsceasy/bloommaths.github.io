@@ -1,7 +1,11 @@
+
 <!doctype html>
 <html lang="en-AU">
 <head>
-  
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HSC Easy | Interactive Maths Resources</title>
+
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-180BGJQCSL"></script>
 <script>
@@ -11,10 +15,6 @@
   gtag('config', 'G-180BGJQCSL');
 </script>
 
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>HSC Easy | Interactive Maths Resources</title>
-
 <style>
 :root {
   color-scheme: light;
@@ -23,13 +23,10 @@
   --teal: #087d83;
   --purple: #7655b3;
 }
-
 * { box-sizing: border-box; }
-
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: var(--ink);
   background:
     radial-gradient(circle at 15% 10%, #fce7ed 0, transparent 35%),
@@ -37,18 +34,8 @@ body {
     linear-gradient(145deg, #fbf8ff, #e9f2ff);
   min-height: 100vh;
 }
-
-main {
-  max-width: 1020px;
-  margin: auto;
-  padding: 52px 22px 65px;
-}
-
-header {
-  text-align: center;
-  margin-bottom: 34px;
-}
-
+main { max-width: 1020px; margin: auto; padding: 52px 22px 65px; }
+header { text-align: center; margin-bottom: 34px; }
 .eyebrow {
   text-transform: uppercase;
   letter-spacing: .16em;
@@ -56,13 +43,11 @@ header {
   color: #49667b;
   font-size: .78rem;
 }
-
 h1 {
   font-size: clamp(2.2rem, 6vw, 4.1rem);
   margin: 8px 0 12px;
   letter-spacing: -.045em;
 }
-
 header p {
   font-size: 1.13rem;
   line-height: 1.6;
@@ -70,19 +55,16 @@ header p {
   max-width: 630px;
   margin: 0 auto;
 }
-
 .grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0,1fr));
   gap: 22px;
 }
-
 .stage-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0,1fr));
   gap: 22px;
 }
-
 .card, .stage-card {
   background: #ffffffeb;
   border: 2px solid #fff;
@@ -93,12 +75,10 @@ header p {
   flex-direction: column;
   transition: transform .2s, box-shadow .2s;
 }
-
 .card:hover, .stage-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 20px 40px #334a6b2c;
 }
-
 .stage-card {
   cursor: pointer;
   text-align: center;
@@ -106,41 +86,18 @@ header p {
   color: var(--ink);
   font: inherit;
 }
-
 .stage-card:focus-visible,
 .button:focus-visible,
 .back-button:focus-visible {
   outline: 4px solid #f5b14c;
   outline-offset: 3px;
 }
-
-.stage-card.stage4 {
-  background: linear-gradient(145deg,#d9f7f1,#c6e8ff);
-}
-
-.stage-card.stage5 {
-  background: linear-gradient(145deg,#fff0d9,#ffe1e9);
-}
-
-.stage-card.stage6 {
-  background: linear-gradient(145deg,#e9dcff,#ffdce9);
-}
-
-.stage-icon {
-  font-size: 4.5rem;
-  margin-bottom: 12px;
-}
-
-.stage-card h2 {
-  font-size: 2rem;
-  margin: 5px 0;
-}
-
-.stage-card p {
-  color: #526078;
-  margin: 7px 0 17px;
-}
-
+.stage-card.stage4 { background: linear-gradient(145deg,#d9f7f1,#c6e8ff); }
+.stage-card.stage5 { background: linear-gradient(145deg,#fff0d9,#ffe1e9); }
+.stage-card.stage6 { background: linear-gradient(145deg,#e9dcff,#ffdce9); }
+.stage-icon { font-size: 4.5rem; margin-bottom: 12px; }
+.stage-card h2 { font-size: 2rem; margin: 5px 0; }
+.stage-card p { color: #526078; margin: 7px 0 17px; }
 .stage-link {
   display: inline-block;
   background: #fff;
@@ -148,7 +105,6 @@ header p {
   border-radius: 12px;
   font-weight: 800;
 }
-
 .art {
   min-height: 210px;
   display: grid;
@@ -156,15 +112,8 @@ header p {
   position: relative;
   overflow: hidden;
 }
-
-.art.standard {
-  background: linear-gradient(135deg,#c3f0e7,#b6dcf7);
-}
-
-.art.gifted {
-  background: linear-gradient(135deg,#e4d0ff,#ffdce9);
-}
-
+.art.standard { background: linear-gradient(135deg,#c3f0e7,#b6dcf7); }
+.art.gifted { background: linear-gradient(135deg,#e4d0ff,#ffdce9); }
 .art::before, .art::after {
   content: "";
   position: absolute;
@@ -173,23 +122,13 @@ header p {
   border: 3px solid #ffffff8a;
   border-radius: 50%;
 }
-
-.art::before {
-  left: -85px;
-  top: -90px;
-}
-
-.art::after {
-  right: -95px;
-  bottom: -130px;
-}
-
+.art::before { left: -85px; top: -90px; }
+.art::after { right: -95px; bottom: -130px; }
 .emoji {
   font-size: 6.2rem;
   filter: drop-shadow(0 8px 10px #44516a30);
   z-index: 1;
 }
-
 .image-label {
   position: absolute;
   bottom: 16px;
@@ -206,14 +145,12 @@ header p {
   white-space: nowrap;
   box-shadow: 0 4px 12px #28354a1f;
 }
-
 .content {
   padding: 25px 27px 29px;
   display: flex;
   flex-direction: column;
   flex: 1;
 }
-
 .tag {
   align-self: flex-start;
   border-radius: 999px;
@@ -223,25 +160,18 @@ header p {
   background: #e8f6f3;
   color: #086a6c;
 }
-
-.gifted-tag {
-  background: #f0e9ff;
-  color: #6843a4;
-}
-
+.gifted-tag { background: #f0e9ff; color: #6843a4; }
 h2 {
   font-size: 1.65rem;
   letter-spacing: -.025em;
   margin: 15px 0 7px;
 }
-
 .desc {
   color: var(--muted);
   line-height: 1.6;
   flex: 1;
   margin: 0 0 22px;
 }
-
 .button {
   display: block;
   text-align: center;
@@ -254,23 +184,10 @@ h2 {
   font-weight: 800;
   transition: filter .15s;
 }
-
-.button:hover {
-  filter: brightness(.9);
-}
-
-.button.purple {
-  background: var(--purple);
-}
-
-.button.pink {
-  background: #ad4f82;
-}
-
-[hidden] {
-  display: none !important;
-}
-
+.button:hover { filter: brightness(.9); }
+.button.purple { background: var(--purple); }
+.button.pink { background: #ad4f82; }
+[hidden] { display: none !important; }
 .back-button {
   background: white;
   color: var(--purple);
@@ -282,47 +199,31 @@ h2 {
   cursor: pointer;
   margin-bottom: 24px;
 }
-
 .section-title {
   text-align: center;
   font-size: 2rem;
   margin: 0 0 8px;
 }
-
 .section-subtitle {
   text-align: center;
   color: var(--muted);
   margin: 0 0 28px;
 }
-
 .coming-soon {
   text-align: center;
   padding: 65px 25px;
   border-radius: 27px;
   background: #ffffffd9;
 }
-
-.coming-soon .big {
-  font-size: 4rem;
-}
-
-.coming-soon h3 {
-  font-size: 1.8rem;
-}
-
-.coming-soon p {
-  color: var(--muted);
-}
-
-/* Compact Stage 6 dashboard */
-
+.coming-soon .big { font-size: 4rem; }
+.coming-soon h3 { font-size: 1.8rem; }
+.coming-soon p { color: var(--muted); }
 .stage6-dashboard {
   display: grid;
   grid-template-columns: repeat(2, minmax(0,1fr));
   gap: 16px;
   margin: 25px 0;
 }
-
 .stage6-tile {
   background: #fff;
   border: 1px solid #e8e4f2;
@@ -333,16 +234,8 @@ h2 {
   flex-direction: column;
   gap: 10px;
 }
-
-.stage6-tile .tile-icon {
-  font-size: 2.3rem;
-}
-
-.stage6-tile h3 {
-  font-size: 1.23rem;
-  margin: 0;
-}
-
+.stage6-tile .tile-icon { font-size: 2.3rem; }
+.stage6-tile h3 { font-size: 1.23rem; margin: 0; }
 .stage6-tile p {
   font-size: .94rem;
   line-height: 1.5;
@@ -350,43 +243,18 @@ h2 {
   margin: 0;
   flex: 1;
 }
-
-.stage6-tile .button {
-  padding: 12px;
-  font-size: .94rem;
-}
-
-.stage6-tile.lilac {
-  background: #f3edff;
-}
-
-.stage6-tile.blush {
-  background: #fff0f5;
-}
-
-.stage6-tile.mint {
-  background: #e9f8f4;
-}
-
-.stage6-tile.blue {
-  background: #eaf2ff;
-}
-
-.stage6-tile.peach {
-  background: #fff3e7;
-}
-
-.teacher-area {
-  text-align: center;
-  margin-top: 35px;
-}
-
+.stage6-tile .button { padding: 12px; font-size: .94rem; }
+.stage6-tile.lilac { background: #f3edff; }
+.stage6-tile.blush { background: #fff0f5; }
+.stage6-tile.mint { background: #e9f8f4; }
+.stage6-tile.blue { background: #eaf2ff; }
+.stage6-tile.peach { background: #fff3e7; }
+.teacher-area { text-align: center; margin-top: 35px; }
 .teacher-area .button {
   display: inline-block;
   background: var(--purple);
   padding: 18px 35px;
 }
-
 footer {
   text-align: center;
   color: #5e6a7a;
@@ -394,43 +262,53 @@ footer {
   font-size: .94rem;
   line-height: 1.6;
 }
+.tiny { font-size: .84rem; }
 
-.tiny {
-  font-size: .84rem;
+/* New diagnostics feature */
+.diagnostics-launch {
+  margin: 24px 0 36px;
+  background: linear-gradient(115deg,#e7ddff,#ffeaf3,#def8ef);
+  border: 2px solid white;
+  border-radius: 26px;
+  padding: clamp(22px,5vw,36px);
+  box-shadow: 0 12px 32px #34475a18;
+  text-align: center;
 }
+.diagnostics-inner { max-width: 750px; margin: auto; }
+.diagnostics-launch h2 {
+  font-size: clamp(1.5rem,3.5vw,2rem);
+  margin: 8px 0;
+}
+.diagnostics-launch p {
+  line-height: 1.65;
+  color: #4d5c73;
+}
+.diagnostics-label {
+  font-weight: 800;
+  letter-spacing: .07em;
+  color: #6953a0;
+  font-size: .8rem;
+}
+.diagnostic-shortcut {
+  background: #f3edff;
+  border-radius: 20px;
+  padding: 22px;
+  margin: 20px 0 28px;
+}
+.diagnostic-shortcut p { line-height: 1.6; }
 
 @media(max-width:750px) {
-  .stage-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .stage-card {
-    padding: 22px;
-  }
+  .stage-grid { grid-template-columns: 1fr; }
+  .stage-card { padding: 22px; }
 }
-
 @media(max-width:650px) {
-  main {
-    padding: 32px 16px 42px;
-  }
-
-  .grid, .stage6-dashboard {
-    grid-template-columns: 1fr;
-  }
-
-  .art {
-    min-height: 165px;
-  }
-
-  .emoji {
-    font-size: 5rem;
-  }
-
-  .content {
-    padding: 21px;
-  }
+  main { padding: 32px 16px 42px; }
+  .grid, .stage6-dashboard { grid-template-columns: 1fr; }
+  .art { min-height: 165px; }
+  .emoji { font-size: 5rem; }
+  .content { padding: 21px; }
 }
-.diagnostics-launch{margin:24px 0 36px;background:linear-gradient(115deg,#e7ddff,#ffeaf3,#def8ef);border:2px solid white;border-radius:26px;padding:clamp(22px,5vw,36px);box-shadow:0 12px 32px #34475a18;text-align:center}.diagnostics-inner{max-width:750px;margin:auto}.diagnostics-launch h2{font-size:clamp(1.5rem,3.5vw,2rem);margin:8px 0}.diagnostics-launch p{line-height:1.65;color:#4d5c73}.diagnostics-label{font-weight:800;letter-spacing:.07em;color:#6953a0;font-size:.8rem}.diagnostic-shortcut{background:#f3edff;border-radius:20px;padding:22px;margin:20px 0 28px}.diagnostic-shortcut p{line-height:1.6}</style>
+</style>
 </head>
 
 <body>
@@ -449,7 +327,6 @@ footer {
 </header>
 
 <!-- MAIN STAGE SELECTION -->
-
 <section id="stage-selection" aria-label="Choose your stage">
   <div class="stage-grid">
 
@@ -480,12 +357,31 @@ footer {
   </div>
 </section>
 
-<!-- HOMEPAGE PROBLEM OF THE DAY -->
+<!-- FEATURED DIAGNOSTICS ON HOMEPAGE -->
+<section id="home-diagnostics"
+         class="diagnostics-launch"
+         aria-label="Maths diagnostic tests">
+  <div class="diagnostics-inner">
+    <span class="diagnostics-label">NEW · YEARS 7–10</span>
+    <h2>🧩 Maths Diagnostic Tests</h2>
+    <p>
+      Explore eight interactive diagnostics: Algebra Readiness
+      for Years 7–10, Year 7 Integers, and Linear Relationships
+      for Years 8–10. Each includes automatic marking,
+      a skills breakdown and worked solutions.
+    </p>
+    <a class="button purple"
+       style="display:inline-block"
+       href="maths_diagnostics.html">
+      Explore all 8 diagnostics →
+    </a>
+  </div>
+</section>
 
+<!-- HOMEPAGE PROBLEM OF THE DAY -->
 <section id="home-problem-of-the-day"
          aria-label="Problem of the Day"
          style="margin:30px 0 42px">
-
   <div style="
     background:linear-gradient(120deg,#e8dcff,#ffe8f0,#d9f7f1);
     border:2px solid white;
@@ -495,11 +391,9 @@ footer {
     text-align:center">
 
     <div style="font-size:2.8rem" aria-hidden="true">🧠</div>
-
     <h2 style="font-size:clamp(1.6rem,4vw,2.3rem);margin:8px 0">
       Problem of the Day
     </h2>
-
     <p style="
       max-width:640px;
       margin:0 auto 18px;
@@ -510,7 +404,6 @@ footer {
       Optional hints, yesterday's worked solutions
       and a teacher preview of all 90 days.
     </p>
-
     <a class="button purple"
        href="problem_of_the_day.html"
        style="display:inline-block">
@@ -520,9 +413,8 @@ footer {
 </section>
 
 <!-- STAGE 4 -->
-
 <section id="stage-4" class="stage-section" hidden>
-  <button class="back-button" onclick="showHome()">
+  <button class="back-button" type="button" onclick="showHome()">
     ← Back to Stages
   </button>
 
@@ -531,15 +423,24 @@ footer {
     Years 7–8 · Choose your topic and difficulty
   </p>
 
-  <div class="diagnostic-shortcut"><strong>🧩 New: Years 7 and 8 diagnostics</strong><p>Algebra Readiness and topic-specific skills checks, with worked solutions and results.</p><a class="button purple" href="maths_diagnostics.html">Choose a diagnostic →</a></div>
-<div class="grid">
+  <div class="diagnostic-shortcut">
+    <strong>🧩 New: Years 7 and 8 diagnostics</strong>
+    <p>
+      Algebra Readiness, Year 7 Integers and Year 8 Linear
+      Relationships, with worked solutions and results.
+    </p>
+    <a class="button purple" href="maths_diagnostics.html">
+      Choose a diagnostic →
+    </a>
+  </div>
+
+  <div class="grid">
 
     <article class="card">
       <div class="art standard" aria-hidden="true">
         <span class="emoji">🧪🔓</span>
         <span class="image-label">YEARS 7–8 · INTEGERS</span>
       </div>
-
       <div class="content">
         <span class="tag">STANDARD EDITION</span>
         <h2>The Locked Laboratory</h2>
@@ -561,7 +462,6 @@ footer {
         <span class="emoji">🧠🔐</span>
         <span class="image-label">YEARS 7–8 · INTEGERS</span>
       </div>
-
       <div class="content">
         <span class="tag gifted-tag">
           GIFTED &amp; TALENTED EDITION
@@ -584,7 +484,6 @@ footer {
         <span class="emoji">🏫🔐</span>
         <span class="image-label">YEARS 7–8 · FDP</span>
       </div>
-
       <div class="content">
         <span class="tag">STANDARD EDITION</span>
         <h2>The School Lockdown</h2>
@@ -605,7 +504,6 @@ footer {
         <span class="emoji">🏫🧠</span>
         <span class="image-label">YEARS 7–8 · FDP</span>
       </div>
-
       <div class="content">
         <span class="tag gifted-tag">
           GIFTED &amp; TALENTED EDITION
@@ -627,17 +525,26 @@ footer {
 </section>
 
 <!-- STAGE 5 -->
-
 <section id="stage-5" class="stage-section" hidden>
-  <button class="back-button" onclick="showHome()">
+  <button class="back-button" type="button" onclick="showHome()">
     ← Back to Stages
   </button>
 
-  <h2 class="section-title">📐 Stage 5 Escape Rooms</h2>
+  <h2 class="section-title">📐 Stage 5 Mathematics</h2>
   <p class="section-subtitle">Years 9–10 Mathematics</p>
 
-  <div class="diagnostic-shortcut"><strong>🧩 New: Years 9 and 10 diagnostics</strong><p>Algebra Readiness and topic-specific skills checks, with worked solutions and results.</p><a class="button purple" href="maths_diagnostics.html">Choose a diagnostic →</a></div>
-<div class="coming-soon">
+  <div class="diagnostic-shortcut">
+    <strong>🧩 New: Years 9 and 10 diagnostics</strong>
+    <p>
+      Algebra Readiness and Linear Relationships diagnostics,
+      including graph interpretation and tables of values.
+    </p>
+    <a class="button purple" href="maths_diagnostics.html">
+      Choose a diagnostic →
+    </a>
+  </div>
+
+  <div class="coming-soon">
     <div class="big">🔐✨</div>
     <h3>New Adventures Coming Soon!</h3>
     <p>
@@ -648,9 +555,7 @@ footer {
 </section>
 
 <!-- STAGE 6 MAIN DASHBOARD -->
-
 <section id="stage-6" class="stage-section" hidden>
-
   <button class="back-button"
           type="button" onclick="showHome()">
     ← Back to Stages
@@ -663,8 +568,6 @@ footer {
 
   <div class="stage6-dashboard">
 
-    <!-- REVISION PLANNER -->
-
     <article class="stage6-tile lilac">
       <div class="tile-icon">📚</div>
       <h3>Revision Planner</h3>
@@ -672,13 +575,10 @@ footer {
         Identify strengths, revise key topics and
         create a personalised study plan.
       </p>
-      <a class="button purple"
-         href="hsc_revision_planner.html">
+      <a class="button purple" href="hsc_revision_planner.html">
         Open Revision Planner →
       </a>
     </article>
-
-    <!-- HSC PAPERS -->
 
     <article class="stage6-tile blue">
       <div class="tile-icon">📄</div>
@@ -687,13 +587,10 @@ footer {
         Find HSC exam papers and practise
         exam-style questions.
       </p>
-      <a class="button purple"
-         href="hsc_exam_practice_hub.html">
+      <a class="button purple" href="hsc_exam_practice_hub.html">
         Explore HSC Papers →
       </a>
     </article>
-
-    <!-- SPOT THE MISTAKE -->
 
     <article class="stage6-tile blush">
       <div class="tile-icon">🔎</div>
@@ -702,13 +599,10 @@ footer {
         Find errors in mathematical working
         with daily HSC-style challenges.
       </p>
-      <a class="button pink"
-         href="spot_the_mistake.html">
+      <a class="button pink" href="spot_the_mistake.html">
         Spot Today's Mistake →
       </a>
     </article>
-
-    <!-- ESCAPE ROOMS -->
 
     <article class="stage6-tile mint">
       <div class="tile-icon">🔐</div>
@@ -725,8 +619,6 @@ footer {
       </button>
     </article>
 
-    <!-- NEW HSC EXAM PRACTICE -->
-
     <article class="stage6-tile peach">
       <div class="tile-icon">📝</div>
       <h3>HSC Exam Practice</h3>
@@ -735,8 +627,7 @@ footer {
         questions in Guided Practice or Exam Mode,
         with marking and worked solutions.
       </p>
-      <a class="button purple"
-         href="hsc_exam_practice.html">
+      <a class="button purple" href="hsc_exam_practice.html">
         Start Exam Practice →
       </a>
     </article>
@@ -745,13 +636,10 @@ footer {
 </section>
 
 <!-- SEPARATE STAGE 6 ESCAPE ROOMS SCREEN -->
-
 <section id="stage-6-escape-rooms"
          class="stage-section" hidden>
-
   <button class="back-button"
-          type="button"
-          onclick="showStage(6)">
+          type="button" onclick="showStage(6)">
     ← Back to Stage 6
   </button>
 
@@ -770,8 +658,7 @@ footer {
         applications, simultaneous equations
         and direct variation.
       </p>
-      <a class="button purple"
-         href="the_business_breakout.html">
+      <a class="button purple" href="the_business_breakout.html">
         Play Business Breakout →
       </a>
     </article>
@@ -783,8 +670,7 @@ footer {
         Probability with dice, cards, trees,
         complements, Venn diagrams and two-way tables.
       </p>
-      <a class="button pink"
-         href="the_casino_lockdown.html">
+      <a class="button pink" href="the_casino_lockdown.html">
         Play Casino Lockdown →
       </a>
     </article>
@@ -796,8 +682,7 @@ footer {
         Trigonometry, bearings, sine and cosine
         rules, area and navigation.
       </p>
-      <a class="button"
-         href="the_island_signal.html">
+      <a class="button" href="the_island_signal.html">
         Play Island Signal →
       </a>
     </article>
@@ -806,7 +691,6 @@ footer {
 </section>
 
 <!-- TEACHER HQ -->
-
 <div class="teacher-area">
   <a class="button" href="teacher_dashboard.html">
     🍎 Enter Teacher HQ →
@@ -817,7 +701,6 @@ footer {
   <strong>For students:</strong>
   Choose your stage, select a game or daily challenge
   and begin your adventure.
-
   <div class="tiny">
     All activities open in your browser.
     No account required.
@@ -830,6 +713,7 @@ footer {
 function hideAllScreens() {
   document.getElementById('stage-selection').hidden = true;
   document.getElementById('home-problem-of-the-day').hidden = true;
+  document.getElementById('home-diagnostics').hidden = true;
 
   document.querySelectorAll('.stage-section').forEach(section => {
     section.hidden = true;
@@ -838,26 +722,21 @@ function hideAllScreens() {
 
 function showStage(stage) {
   hideAllScreens();
-
   document.getElementById('stage-' + stage).hidden = false;
-
   window.scrollTo(0, 0);
 }
 
 function showEscapeRooms() {
   hideAllScreens();
-
   document.getElementById('stage-6-escape-rooms').hidden = false;
-
   window.scrollTo(0, 0);
 }
 
 function showHome() {
   hideAllScreens();
-
   document.getElementById('stage-selection').hidden = false;
   document.getElementById('home-problem-of-the-day').hidden = false;
-
+  document.getElementById('home-diagnostics').hidden = false;
   window.scrollTo(0, 0);
 }
 </script>
