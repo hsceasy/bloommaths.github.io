@@ -308,6 +308,9 @@ footer {
   .emoji { font-size: 5rem; }
   .content { padding: 21px; }
 }
+  .card[hidden] {
+  display: none !important;
+}
 </style>
 </head>
 
@@ -429,8 +432,8 @@ footer {
       Algebra Readiness, Year 7 Integers and Year 8 Linear
       Relationships, with worked solutions and results.
     </p>
-    <a class="button purple" href="maths_diagnostics.html">
-      Choose a diagnostic →
+    <a class="button purple" href="maths_diagnostics.html?stage=4">
+      Explore Year 7-8 Diagnostics →
     </a>
   </div>
 
@@ -539,8 +542,8 @@ footer {
       Algebra Readiness and Linear Relationships diagnostics,
       including graph interpretation and tables of values.
     </p>
-    <a class="button purple" href="maths_diagnostics.html">
-      Choose a diagnostic →
+    <a class="button purple" href="maths_diagnostics.html?stage=5">
+      Explore Year 9-10 Diagnostics →
     </a>
   </div>
 
@@ -740,6 +743,34 @@ function showHome() {
   window.scrollTo(0, 0);
 }
 </script>
+<script>
+(function () {
+  const params = new URLSearchParams(window.location.search);
+  const stage = params.get("stage");
 
+  if (stage !== "4" && stage !== "5") return;
+
+  const allowedYears = stage === "4"
+    ? ["Year 7", "Year 8"]
+    : ["Year 9", "Year 10"];
+
+  document.querySelectorAll(".card").forEach(card => {
+    const label = card.querySelector(".eyebrow");
+    const year = label ? label.textContent.trim() : "";
+
+    card.hidden = !allowedYears.some(
+      allowed => year.startsWith(allowed)
+    );
+  });
+
+  const heading = document.querySelector("h1");
+
+  if (heading) {
+    heading.textContent = stage === "4"
+      ? "Years 7–8 Maths Diagnostics"
+      : "Years 9–10 Maths Diagnostics";
+  }
+})();
+</script>
 </body>
 </html>
