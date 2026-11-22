@@ -1,676 +1,1115 @@
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en-AU">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>HSC Easy | Interactive Maths Resources</title>
-<style>
-:root {
-  color-scheme: light;
-  --ink: #28354a;
-  --muted: #59667a;
-  --teal: #087d83;
-  --purple: #7655b3;
-}
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", sans-serif;
-  color: var(--ink);
-  background:
-    radial-gradient(circle at 15% 10%, #fce7ed 0, transparent 35%),
-    radial-gradient(circle at 85% 15%, #d9f7f1 0, transparent 35%),
-    linear-gradient(145deg, #fbf8ff, #e9f2ff);
-  min-height: 100vh;
-}
-main {
-  max-width: 1020px;
-  margin: auto;
-  padding: 52px 22px 65px;
-}
-header { text-align: center; margin-bottom: 34px; }
-.eyebrow {
-  text-transform: uppercase;
-  letter-spacing: .16em;
-  font-weight: 800;
-  color: #49667b;
-  font-size: .78rem;
-}
-h1 {
-  font-size: clamp(2.2rem, 6vw, 4.1rem);
-  margin: 8px 0 12px;
-  letter-spacing: -.045em;
-}
-header p {
-  font-size: 1.13rem;
-  line-height: 1.6;
-  color: var(--muted);
-  max-width: 630px;
-  margin: 0 auto;
-}
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0,1fr));
-  gap: 22px;
-}
-.stage-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0,1fr));
-  gap: 22px;
-}
-.card, .stage-card {
-  background: #ffffffeb;
-  border: 2px solid #fff;
-  border-radius: 27px;
-  overflow: hidden;
-  box-shadow: 0 14px 35px #334a6b1c;
-  display: flex;
-  flex-direction: column;
-  transition: transform .2s, box-shadow .2s;
-}
-.card:hover, .stage-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px #334a6b2c;
-}
-.stage-card {
-  cursor: pointer;
-  text-align: center;
-  padding: 35px 20px;
-  color: var(--ink);
-  font: inherit;
-}
-.stage-card:focus-visible, .button:focus-visible {
-  outline: 4px solid #f5b14c;
-  outline-offset: 3px;
-}
-.stage-card.stage4 {
-  background: linear-gradient(145deg,#d9f7f1,#c6e8ff);
-}
-.stage-card.stage5 {
-  background: linear-gradient(145deg,#fff0d9,#ffe1e9);
-}
-.stage-card.stage6 {
-  background: linear-gradient(145deg,#e9dcff,#ffdce9);
-}
-.stage-icon { font-size: 4.5rem; margin-bottom: 12px; }
-.stage-card h2 { font-size: 2rem; margin: 5px 0; }
-.stage-card p {
-  color: #526078;
-  margin: 7px 0 17px;
-}
-.stage-link {
-  display: inline-block;
-  background: #fff;
-  padding: 11px 15px;
-  border-radius: 12px;
-  font-weight: 800;
-}
-.art {
-  min-height: 210px;
-  display: grid;
-  place-items: center;
-  position: relative;
-  overflow: hidden;
-}
-.art.standard {
-  background: linear-gradient(135deg,#c3f0e7,#b6dcf7);
-}
-.art.gifted {
-  background: linear-gradient(135deg,#e4d0ff,#ffdce9);
-}
-.art.senior {
-  background: linear-gradient(135deg,#e8d6ff,#c9e6ff);
-}
-.art.mistake {
-  background: linear-gradient(135deg,#ffe0eb,#e8d9ff,#d8f4f2);
-}
-.art::before, .art::after {
-  content: "";
-  position: absolute;
-  width: 220px;
-  height: 220px;
-  border: 3px solid #ffffff8a;
-  border-radius: 50%;
-}
-.art::before { left: -85px; top: -90px; }
-.art::after { right: -95px; bottom: -130px; }
-.emoji {
-  font-size: 6.2rem;
-  filter: drop-shadow(0 8px 10px #44516a30);
-  z-index: 1;
-}
-.image-label {
-  position: absolute;
-  bottom: 16px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-  background: rgba(255,255,255,.92);
-  color: #34445e;
-  padding: 10px 18px;
-  border-radius: 30px;
-  font-size: .85rem;
-  font-weight: 800;
-  letter-spacing: .06em;
-  white-space: nowrap;
-  box-shadow: 0 4px 12px #28354a1f;
-}
-.content {
-  padding: 25px 27px 29px;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-.tag {
-  align-self: flex-start;
-  border-radius: 999px;
-  padding: 7px 12px;
-  font-size: .78rem;
-  font-weight: 800;
-  background: #e8f6f3;
-  color: #086a6c;
-}
-.gifted-tag {
-  background: #f0e9ff;
-  color: #6843a4;
-}
-.mistake-tag {
-  background: #ffe6ef;
-  color: #a23c6b;
-}
-h2 {
-  font-size: 1.65rem;
-  letter-spacing: -.025em;
-  margin: 15px 0 7px;
-}
-.desc {
-  color: var(--muted);
-  line-height: 1.6;
-  flex: 1;
-  margin: 0 0 22px;
-}
-.button {
-  display: block;
-  text-align: center;
-  text-decoration: none;
-  background: var(--teal);
-  color: white;
-  padding: 16px;
-  border-radius: 14px;
-  font-size: 1.06rem;
-  font-weight: 800;
-  transition: filter .15s;
-}
-.button:hover { filter: brightness(.9); }
-.button.purple { background: var(--purple); }
-.button.pink { background: #ad4f82; }
-.stage-section[hidden], #stage-selection[hidden] {
-  display: none;
-}
-.back-button {
-  background: white;
-  color: var(--purple);
-  border: 2px solid #ded1f2;
-  border-radius: 13px;
-  padding: 12px 20px;
-  font: inherit;
-  font-weight: 800;
-  cursor: pointer;
-  margin-bottom: 24px;
-}
-.section-title {
-  text-align: center;
-  font-size: 2rem;
-  margin: 0 0 8px;
-}
-.section-subtitle {
-  text-align: center;
-  color: var(--muted);
-  margin: 0 0 28px;
-}
-.group-title {
-  font-size: 1.45rem;
-  margin: 35px 0 7px;
-}
-.group-description {
-  color: var(--muted);
-  margin: 0 0 18px;
-  line-height: 1.6;
-}
-.coming-soon {
-  text-align: center;
-  padding: 65px 25px;
-  border-radius: 27px;
-  background: #ffffffd9;
-}
-.coming-soon .big { font-size: 4rem; }
-.coming-soon h3 { font-size: 1.8rem; }
-.coming-soon p { color: var(--muted); }
-.teacher-area {
-  text-align: center;
-  margin-top: 35px;
-}
-.teacher-area .button {
-  display: inline-block;
-  background: var(--purple);
-  padding: 18px 35px;
-}
-footer {
-  text-align: center;
-  color: #5e6a7a;
-  margin-top: 32px;
-  font-size: .94rem;
-  line-height: 1.6;
-}
-.tiny { font-size: .84rem; }
-@media(max-width:750px) {
-  .stage-grid { grid-template-columns: 1fr; }
-  .stage-card { padding: 22px; }
-}
-@media(max-width:650px) {
-  main { padding: 32px 16px 42px; }
-  .grid { grid-template-columns: 1fr; }
-  .art { min-height: 165px; }
-  .emoji { font-size: 5rem; }
-  .content { padding: 21px; }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Free interactive NSW mathematics resources for Years 7–12. Diagnostic tests, topic hubs, escape rooms and HSC exam practice.">
+  <title>HSC Easy | NSW Mathematics Resources</title>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-180BGJQCSL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", "G-180BGJQCSL");
+  </script>
+
+  <style>
+    :root {
+      --ink: #293449;
+      --muted: #617086;
+      --purple: #7655b3;
+      --teal: #087d83;
+      --pink: #ad4f82;
+      --border: #e5e5f0;
+      --shadow: 0 12px 32px rgba(45,55,90,.09);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont,
+                   "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% 5%, #fce6ef, transparent 35%),
+        radial-gradient(circle at 90% 12%, #dcf6ef, transparent 35%),
+        linear-gradient(140deg, #fcfaff, #eaf2ff);
+      min-height: 100vh;
+    }
+
+    button, a { -webkit-tap-highlight-color: transparent; }
+
+    button { font: inherit; }
+
+    button:focus-visible, a:focus-visible {
+      outline: 3px solid #d28d30;
+      outline-offset: 3px;
+    }
+
+    main {
+      width: min(1100px, 100%);
+      margin: auto;
+      padding: 42px 22px 65px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 34px;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      font-size: .77rem;
+      font-weight: 800;
+      color: #58708b;
+    }
+
+    h1 {
+      font-size: clamp(2.6rem, 7vw, 4.3rem);
+      letter-spacing: -.05em;
+      margin: 8px 0 12px;
+    }
+
+    header p {
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 680px;
+      margin: auto;
+    }
+
+    .stage-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .stage-card {
+      border: 2px solid white;
+      border-radius: 24px;
+      padding: 34px 20px;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      color: var(--ink);
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .stage-card:hover, .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 36px rgba(45,55,90,.14);
+    }
+
+    .stage4 {
+      background: linear-gradient(135deg, #d6f5ed, #cfe5ff);
+    }
+
+    .stage5 {
+      background: linear-gradient(135deg, #fff0d9, #ffe0e9);
+    }
+
+    .stage6 {
+      background: linear-gradient(135deg, #e9dcff, #ffdce9);
+    }
+
+    .stage-card h2 {
+      margin: 0 0 9px;
+      font-size: 1.85rem;
+    }
+
+    .stage-card p {
+      margin: 0 0 20px;
+      color: #526078;
+    }
+
+    .stage-link {
+      display: inline-block;
+      background: white;
+      border-radius: 12px;
+      padding: 10px 15px;
+      font-weight: 800;
+      font-size: .9rem;
+    }
+
+    .feature {
+      margin: 30px 0 38px;
+      padding: 30px;
+      text-align: center;
+      border-radius: 24px;
+      background: linear-gradient(115deg, #e9dcff, #ffe7f0, #dcf6ed);
+      border: 2px solid white;
+      box-shadow: var(--shadow);
+    }
+
+    .feature h2 { margin: 0 0 10px; }
+
+    .feature p {
+      color: #526078;
+      line-height: 1.65;
+      max-width: 680px;
+      margin: 0 auto 20px;
+    }
+
+    .stage-section[hidden],
+    #stage-selection[hidden],
+    .tab-panel[hidden],
+    .sub-panel[hidden] {
+      display: none !important;
+    }
+
+    .back-button {
+      background: white;
+      border: 2px solid #ded1f2;
+      border-radius: 12px;
+      padding: 12px 19px;
+      font-weight: 800;
+      color: var(--purple);
+      cursor: pointer;
+      margin-bottom: 25px;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.3rem);
+      text-align: center;
+      margin: 0 0 8px;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      text-align: center;
+      margin: 0 0 28px;
+      line-height: 1.6;
+    }
+
+    .tabs, .sub-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin: 22px 0;
+    }
+
+    .tab, .sub-tab {
+      border: 2px solid #e5def3;
+      background: white;
+      border-radius: 13px;
+      padding: 12px 19px;
+      cursor: pointer;
+      color: #5b5275;
+      font-weight: 800;
+    }
+
+    .tab.active, .sub-tab.active {
+      background: var(--purple);
+      color: white;
+      border-color: var(--purple);
+    }
+
+    .group-title {
+      margin: 30px 0 8px;
+      font-size: 1.4rem;
+    }
+
+    .group-description {
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 0 0 19px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      background: rgba(255,255,255,.96);
+      border: 2px solid white;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .art {
+      min-height: 105px;
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: .83rem;
+      letter-spacing: .1em;
+      font-weight: 850;
+      color: #43516d;
+    }
+
+    .mint { background: linear-gradient(135deg, #d1f3e9, #d6eaff); }
+    .lilac { background: linear-gradient(135deg, #e6d8ff, #f6e3ff); }
+    .peach { background: linear-gradient(135deg, #ffe6d3, #ffe0e9); }
+    .rose { background: linear-gradient(135deg, #ffe0eb, #f0dfff); }
+    .blue { background: linear-gradient(135deg, #d9eaff, #e2f5f3); }
+
+    .content {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .tag {
+      align-self: flex-start;
+      background: #e9f6f2;
+      color: #08706e;
+      padding: 6px 11px;
+      border-radius: 999px;
+      font-size: .72rem;
+      font-weight: 800;
+    }
+
+    .tag.purple {
+      background: #f0e8ff;
+      color: #6843a4;
+    }
+
+    .tag.pink {
+      background: #ffe6ef;
+      color: #9c406b;
+    }
+
+    .content h3 {
+      font-size: 1.35rem;
+      margin: 14px 0 10px;
+    }
+
+    .desc {
+      color: var(--muted);
+      line-height: 1.65;
+      margin: 0 0 22px;
+      flex: 1;
+    }
+
+    .button {
+      display: block;
+      padding: 14px 17px;
+      border-radius: 12px;
+      background: var(--teal);
+      color: white;
+      text-decoration: none;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .button:hover { filter: brightness(.93); }
+    .button.purple { background: var(--purple); }
+    .button.pink { background: var(--pink); }
+
+    .notice {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 25px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .teacher-area {
+      text-align: center;
+      margin-top: 36px;
+    }
+
+    .teacher-area .button {
+      display: inline-block;
+      background: var(--purple);
+      padding: 17px 35px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 35px;
+      color: var(--muted);
+      font-size: .88rem;
+      line-height: 1.7;
+    }
+
+    @media(max-width: 760px) {
+      .stage-grid { grid-template-columns: 1fr; }
+    }
+
+    @media(max-width: 650px) {
+      main { padding: 28px 15px 42px; }
+      .grid { grid-template-columns: 1fr; }
+      .feature { padding: 23px 18px; }
+      .content { padding: 21px; }
+      .tab, .sub-tab { flex: 1; }
+    }
+  </style>
 </head>
+
 <body>
 <main>
 
-<header>
-  <div class="eyebrow">🔐 NSW Years 7–12 Mathematics</div>
-  <h1>HSC Easy</h1>
-  <p>
-    Welcome to Years 7–12 Mathematics Resources!
-    Explore interactive maths escape rooms and daily
-    challenges designed to make learning engaging,
-    challenging and fun.
-    Choose your stage to begin your adventure.
-  </p>
-</header>
-
-<!-- MAIN STAGE SELECTION -->
-<section id="stage-selection" aria-label="Choose your stage">
-  <div class="stage-grid">
-
-    <button class="stage-card stage4"
-            type="button" onclick="showStage(4)">
-      <span class="stage-icon">🔢</span>
-      <h2>Stage 4</h2>
-      <p>Years 7–8 Mathematics</p>
-      <span class="stage-link">Explore 4 Games →</span>
-    </button>
-
-    <button class="stage-card stage5"
-            type="button" onclick="showStage(5)">
-      <span class="stage-icon">📐</span>
-      <h2>Stage 5</h2>
-      <p>Years 9–10 Mathematics</p>
-      <span class="stage-link">Explore Stage 5 →</span>
-    </button>
-
-    <button class="stage-card stage6"
-            type="button" onclick="showStage(6)">
-      <span class="stage-icon">📈</span>
-      <h2>Stage 6</h2>
-      <p>Years 11–12 Mathematics</p>
-      <span class="stage-link">Explore Revision &amp; Activities →</span>
-    </button>
-
-  </div>
-</section>
-
-<!-- PROBLEM OF THE DAY -->
-<section aria-label="Problem of the Day"
-         style="margin:30px 0 42px">
-  <div style="background:linear-gradient(120deg,#e8dcff,#ffe8f0,#d9f7f1);border:2px solid white;border-radius:27px;padding:clamp(22px,5vw,38px);box-shadow:0 14px 35px #334a6b1c;text-align:center">
-    <div style="font-size:2.8rem" aria-hidden="true">🧠</div>
-    <h2 style="font-size:clamp(1.6rem,4vw,2.3rem);margin:8px 0">
-      Problem of the Day
-    </h2>
-    <p style="max-width:640px;margin:0 auto 18px;line-height:1.65;color:#45556b">
-      A fresh 5–7 minute maths problem-solving challenge
-      every day for Stages 4, 5 and 6.
-      Optional hints, yesterday's worked solutions
-      and a teacher preview of all 90 days.
+  <header>
+    <div class="eyebrow">NSW Years 7–12 Mathematics</div>
+    <h1>HSC Easy</h1>
+    <p>
+      Free interactive mathematics resources, diagnostic tests,
+      topic revision, exam-style questions and challenges.
+      Choose your stage to get started.
     </p>
-    <a class="button purple"
-       href="problem_of_the_day.html"
-       style="display:inline-block">
-      Try Today's Challenge →
+  </header>
+
+  <!-- HOME -->
+  <section id="stage-selection" aria-label="Choose your stage">
+
+    <div class="stage-grid">
+      <button class="stage-card stage4"
+              type="button" onclick="showStage(4)">
+        <h2>Stage 4</h2>
+        <p>Years 7–8 Mathematics</p>
+        <span class="stage-link">Explore Stage 4</span>
+      </button>
+
+      <button class="stage-card stage5"
+              type="button" onclick="showStage(5)">
+        <h2>Stage 5</h2>
+        <p>Years 9–10 Mathematics</p>
+        <span class="stage-link">Explore Stage 5</span>
+      </button>
+
+      <button class="stage-card stage6"
+              type="button" onclick="showStage(6)">
+        <h2>Stage 6</h2>
+        <p>Years 11–12 Mathematics</p>
+        <span class="stage-link">Explore Stage 6</span>
+      </button>
+    </div>
+
+    <div class="feature">
+      <h2>Problem of the Day</h2>
+      <p>
+        A new mathematical reasoning challenge each day,
+        with optional hints and worked solutions.
+        Suitable for Stages 4, 5 and 6.
+      </p>
+      <a class="button purple"
+         href="problem_of_the_day.html"
+         style="display:inline-block">
+        Try Today's Challenge
+      </a>
+    </div>
+
+  </section>
+
+  <!-- STAGE 4 -->
+  <section id="stage-4" class="stage-section" hidden>
+
+    <button class="back-button" onclick="showHome()">
+      Back to Stages
+    </button>
+
+    <h2 class="section-title">Stage 4 Mathematics</h2>
+    <p class="section-subtitle">
+      Years 7–8 · Escape rooms and diagnostic tests
+    </p>
+
+    <div class="tabs" role="tablist" aria-label="Stage 4 resources">
+      <button id="s4-escape-tab" class="tab active"
+              role="tab" aria-selected="true"
+              onclick="showTab('s4','escape')">
+        Escape Rooms
+      </button>
+      <button id="s4-diagnostic-tab" class="tab"
+              role="tab" aria-selected="false"
+              onclick="showTab('s4','diagnostic')">
+        Diagnostic Tests
+      </button>
+    </div>
+
+    <div id="s4-escape" class="tab-panel">
+      <div class="grid">
+
+        <article class="card">
+          <div class="art mint">INTEGERS · STANDARD</div>
+          <div class="content">
+            <span class="tag">STAGE 4</span>
+            <h3>The Locked Laboratory</h3>
+            <p class="desc">
+              Seven rooms of integer challenges,
+              including negative numbers, operations and BEDMAS.
+            </p>
+            <a class="button"
+               href="locked_laboratory_seven_rooms%20EASY.html">
+              Play Standard Edition
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="art lilac">INTEGERS · EXTENSION</div>
+          <div class="content">
+            <span class="tag purple">EXTENSION</span>
+            <h3>The Locked Laboratory — Extension</h3>
+            <p class="desc">
+              More challenging integer problems involving
+              multi-step calculations and reasoning.
+            </p>
+            <a class="button purple"
+               href="locked_laboratory_gifted_extension.html">
+              Play Extension Edition
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="art mint">FRACTIONS · DECIMALS · PERCENTAGES</div>
+          <div class="content">
+            <span class="tag">STAGE 4</span>
+            <h3>The School Lockdown</h3>
+            <p class="desc">
+              Explore 12 rooms and solve 48 puzzles
+              covering fractions, decimals and percentages.
+            </p>
+            <a class="button"
+               href="the_school_lockdown_complete_12_rooms.html">
+              Play Standard Edition
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="art lilac">FDP · EXTENSION</div>
+          <div class="content">
+            <span class="tag purple">EXTENSION</span>
+            <h3>The School Lockdown — Extension</h3>
+            <p class="desc">
+              Challenging multi-step problems involving
+              fractions, decimals and percentages.
+            </p>
+            <a class="button purple"
+               href="the_school_lockdown_FDP_EXTENSION%20(2).html">
+              Play Extension Edition
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <div id="s4-diagnostic" class="tab-panel" hidden>
+
+      <div class="sub-tabs" role="tablist" aria-label="Stage 4 year">
+        <button id="s4-y7-tab" class="sub-tab active"
+                role="tab" aria-selected="true"
+                onclick="showTab('s4','y7')">
+          Year 7
+        </button>
+        <button id="s4-y8-tab" class="sub-tab"
+                role="tab" aria-selected="false"
+                onclick="showTab('s4','y8')">
+          Year 8
+        </button>
+      </div>
+
+      <div id="s4-y7" class="sub-panel">
+        <h3 class="group-title">Year 7 Diagnostic Tests</h3>
+        <div class="grid">
+
+          <article class="card">
+            <div class="art blue">ALGEBRA</div>
+            <div class="content">
+              <h3>Algebra</h3>
+              <p class="desc">Check your algebraic skills.</p>
+              <a class="button" href="year7_algebra_diagnostic.html">
+                Start Diagnostic
+              </a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="art mint">INTEGERS</div>
+            <div class="content">
+              <h3>Integers</h3>
+              <p class="desc">Review positive and negative integers.</p>
+              <a class="button" href="year7_integers_diagnostic.html">
+                Start Diagnostic
+              </a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="art peach">FDP</div>
+            <div class="content">
+              <h3>Fractions, Decimals and Percentages</h3>
+              <p class="desc">Assess your number skills.</p>
+              <a class="button" href="year7_fdp_diagnostic.html">
+                Start Diagnostic
+              </a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="art lilac">MEASUREMENT</div>
+            <div class="content">
+              <h3>Length, Area and Volume</h3>
+              <p class="desc">Review measurement skills.</p>
+              <a class="button"
+                 href="year7_length_area_volume_diagnostic.html">
+                Start Diagnostic
+              </a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="art rose">GEOMETRY</div>
+            <div class="content">
+              <h3>Geometrical Properties</h3>
+              <p class="desc">Review shapes, angles and geometry.</p>
+              <a class="button"
+                 href="year7_geometry_properties_diagnostic.html">
+                Start Diagnostic
+              </a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <div id="s4-y8" class="sub-panel" hidden>
+        <h3 class="group-title">Year 8 Diagnostic Tests</h3>
+        <div class="grid">
+
+          <article class="card">
+            <div class="art blue">ALGEBRA</div>
+            <div class="content">
+              <h3>Algebra</h3>
+              <p class="desc">Check your algebraic skills.</p>
+              <a class="button" href="year8_algebra_diagnostic.html">
+                Start Diagnostic
+              </a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="art mint">LINEAR RELATIONSHIPS</div>
+            <div class="content">
+              <h3>Linear Relationships</h3>
+              <p class="desc">Review linear equations and graphs.</p>
+              <a class="button" href="year8_linear_diagnostic.html">
+                Start Diagnostic
+              </a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="art peach">FDP</div>
+            <div class="content">
+              <h3>Fractions, Decimals and Percentages</h3>
+              <p class="desc">Assess your number skills.</p>
+              <a class="button" href="year8_fdp_diagnostic.html">
+                Start Diagnostic
+              </a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="art lilac">GEOMETRY</div>
+            <div class="content">
+              <h3>Quadrilaterals</h3>
+              <p class="desc">Review properties of quadrilaterals.</p>
+              <a class="button"
+                 href="year8_quadrilaterals_diagnostic.html">
+                Start Diagnostic
+              </a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="art rose">RATES AND RATIOS</div>
+            <div class="content">
+              <h3>Rates and Ratios</h3>
+              <p class="desc">Review proportional reasoning.</p>
+              <a class="button"
+                 href="year8_rates_ratios_diagnostic.html">
+                Start Diagnostic
+              </a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STAGE 5 -->
+  <section id="stage-5" class="stage-section" hidden>
+
+    <button class="back-button" onclick="showHome()">
+      Back to Stages
+    </button>
+
+    <h2 class="section-title">Stage 5 Mathematics</h2>
+    <p class="section-subtitle">
+      Years 9–10 · Escape rooms and diagnostic tests
+    </p>
+
+    <div class="tabs" role="tablist" aria-label="Stage 5 resources">
+      <button id="s5-escape-tab" class="tab active"
+              role="tab" aria-selected="true"
+              onclick="showTab('s5','escape')">
+        Escape Rooms
+      </button>
+      <button id="s5-diagnostic-tab" class="tab"
+              role="tab" aria-selected="false"
+              onclick="showTab('s5','diagnostic')">
+        Diagnostic Tests
+      </button>
+    </div>
+
+    <div id="s5-escape" class="tab-panel">
+      <div class="notice">
+        New Stage 5 escape rooms are coming soon.
+      </div>
+    </div>
+
+    <div id="s5-diagnostic" class="tab-panel" hidden>
+
+      <div class="sub-tabs" role="tablist" aria-label="Stage 5 year">
+        <button id="s5-y9-tab" class="sub-tab active"
+                role="tab" aria-selected="true"
+                onclick="showTab('s5','y9')">
+          Year 9
+        </button>
+        <button id="s5-y10-tab" class="sub-tab"
+                role="tab" aria-selected="false"
+                onclick="showTab('s5','y10')">
+          Year 10
+        </button>
+      </div>
+
+      <div id="s5-y9" class="sub-panel">
+        <h3 class="group-title">Year 9 Diagnostic Tests</h3>
+        <div class="grid">
+
+          <article class="card">
+            <div class="art lilac">ALGEBRA</div>
+            <div class="content">
+              <h3>Algebra</h3>
+              <p class="desc">Check your algebraic skills.</p>
+              <a class="button purple"
+                 href="year9_algebra_diagnostic.html">
+                Start Diagnostic
+              </a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="art blue">LINEAR RELATIONSHIPS</div>
+            <div class="content">
+              <h3>Linear Relationships</h3>
+              <p class="desc">Review equations and linear graphs.</p>
+              <a class="button purple"
+                 href="year9_linear_diagnostic.html">
+                Start Diagnostic
+              </a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <div id="s5-y10" class="sub-panel" hidden>
+        <h3 class="group-title">Year 10 Diagnostic Tests</h3>
+        <div class="grid">
+
+          <article class="card">
+            <div class="art lilac">ALGEBRA</div>
+            <div class="content">
+              <h3>Algebra</h3>
+              <p class="desc">Check your algebraic skills.</p>
+              <a class="button purple"
+                 href="year10_algebra_diagnostic.html">
+                Start Diagnostic
+              </a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="art blue">LINEAR RELATIONSHIPS</div>
+            <div class="content">
+              <h3>Linear Relationships</h3>
+              <p class="desc">Review equations and linear graphs.</p>
+              <a class="button purple"
+                 href="year10_linear_diagnostic.html">
+                Start Diagnostic
+              </a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STAGE 6 -->
+  <section id="stage-6" class="stage-section" hidden>
+
+    <button class="back-button" onclick="showHome()">
+      Back to Stages
+    </button>
+
+    <h2 class="section-title">Stage 6 Mathematics</h2>
+    <p class="section-subtitle">
+      Years 11–12 · Mathematics Standard 2 ·
+      Topic revision and HSC exam preparation
+    </p>
+
+    <div class="tabs" role="tablist" aria-label="Stage 6 resources">
+
+      <button id="s6-topics-tab"
+              class="tab active"
+              role="tab"
+              aria-selected="true"
+              onclick="showTab('s6','topics')">
+        Topic Hubs
+      </button>
+
+      <button id="s6-resources-tab"
+              class="tab"
+              role="tab"
+              aria-selected="false"
+              onclick="showTab('s6','resources')">
+        Other Resources
+      </button>
+
+    </div>
+
+    <!-- STAGE 6 TOPIC HUBS -->
+    <div id="s6-topics" class="tab-panel">
+
+      <h3 class="group-title">Mathematics Standard 2 Topic Hubs</h3>
+      <p class="group-description">
+        Revise individual topics with diagnostic tests,
+        worked examples, targeted practice, exam-style
+        questions and interactive question generators.
+      </p>
+
+      <div class="grid">
+
+        <article class="card">
+          <div class="art lilac">
+            ALGEBRAIC RELATIONSHIPS
+          </div>
+          <div class="content">
+            <span class="tag purple">TOPIC HUB</span>
+            <h3>Algebraic Relationships Hub</h3>
+            <p class="desc">
+              Revise linear, quadratic, exponential and
+              reciprocal relationships, including
+              simultaneous equations and mathematical models.
+              Generate topic-specific HSC-style questions
+              and review worked solutions.
+            </p>
+            <a class="button purple"
+               href="year12_standard2_algebraic_relationships_hub.html">
+              Open Algebraic Relationships Hub
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="art mint">
+            PROBABILITY
+          </div>
+          <div class="content">
+            <span class="tag">TOPIC HUB</span>
+            <h3>Probability Hub</h3>
+            <p class="desc">
+              Practise sample spaces, probability trees,
+              dependent events, conditional probability,
+              Venn diagrams and two-way tables.
+              Generate targeted questions and check
+              detailed worked solutions.
+            </p>
+            <a class="button"
+               href="year12_standard2_probability_hub.html">
+              Open Probability Hub
+            </a>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="notice" style="margin-top:22px">
+        More Mathematics Standard 2 Topic Hubs will be
+        added as new resources become available.
+      </div>
+
+    </div>
+
+    <!-- STAGE 6 OTHER RESOURCES -->
+    <div id="s6-resources" class="tab-panel" hidden>
+
+      <h3 class="group-title">HSC Exam Preparation</h3>
+      <p class="group-description">
+        Practise questions from across Mathematics Standard 2
+        and prepare for the HSC with mixed-topic revision.
+      </p>
+
+      <div class="grid">
+
+        <article class="card">
+          <div class="art lilac">
+            MIXED-TOPIC HSC PRACTICE
+          </div>
+          <div class="content">
+            <span class="tag purple">QUESTION BANK</span>
+            <h3>HSC Question Bank</h3>
+            <p class="desc">
+              Generate random exam-style questions from
+              across the available Mathematics Standard 2
+              topics. Practise different levels of difficulty,
+              reveal worked solutions and self-mark
+              extended responses.
+            </p>
+            <a class="button purple"
+               href="hsc_exam_practice.html">
+              Open HSC Question Bank
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="art blue">
+            EXAM REVISION
+          </div>
+          <div class="content">
+            <span class="tag">EXAM PRACTICE</span>
+            <h3>HSC Papers</h3>
+            <p class="desc">
+              Explore HSC paper practice and examination
+              preparation resources.
+            </p>
+            <a class="button"
+               href="hsc_exam_practice_hub.html">
+              Explore HSC Papers
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="art peach">
+            PERSONALISED REVISION
+          </div>
+          <div class="content">
+            <span class="tag">STUDY PLANNER</span>
+            <h3>My HSC Revision Planner</h3>
+            <p class="desc">
+              Identify strengths and areas for improvement
+              using diagnostic questions, then build a
+              personalised revision plan.
+            </p>
+            <a class="button"
+               href="hsc_revision_planner.html">
+              Open Revision Planner
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="art rose">
+            DAILY MATHEMATICAL REASONING
+          </div>
+          <div class="content">
+            <span class="tag pink">DAILY CHALLENGE</span>
+            <h3>Spot the Mistake</h3>
+            <p class="desc">
+              Find errors in mathematical working,
+              explain the mistake and compare your
+              reasoning with a worked solution.
+            </p>
+            <a class="button pink"
+               href="spot_the_mistake.html">
+              Start Spot the Mistake
+            </a>
+          </div>
+        </article>
+
+      </div>
+
+      <h3 class="group-title">Interactive Escape Rooms</h3>
+      <p class="group-description">
+        Apply your mathematical skills to challenging
+        problem-solving adventures.
+      </p>
+
+      <div class="grid">
+
+        <article class="card">
+          <div class="art lilac">
+            LINEAR RELATIONSHIPS
+          </div>
+          <div class="content">
+            <h3>The Business Breakout</h3>
+            <p class="desc">
+              Solve challenges involving gradients,
+              linear models, simultaneous equations
+              and business applications.
+            </p>
+            <a class="button purple"
+               href="the_business_breakout.html">
+              Play The Business Breakout
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="art mint">
+            PROBABILITY
+          </div>
+          <div class="content">
+            <h3>The Casino Lockdown</h3>
+            <p class="desc">
+              Solve probability challenges involving
+              dice, cards, trees, Venn diagrams and tables.
+            </p>
+            <a class="button"
+               href="the_casino_lockdown.html">
+              Play The Casino Lockdown
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="art blue">
+            TRIGONOMETRY
+          </div>
+          <div class="content">
+            <h3>The Island Signal</h3>
+            <p class="desc">
+              Solve trigonometry, bearings and navigation
+              problems to restore the island's signal.
+            </p>
+            <a class="button"
+               href="the_island_signal.html">
+              Play The Island Signal
+            </a>
+          </div>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TEACHER HQ -->
+  <div class="teacher-area">
+    <a class="button" href="teacher_dashboard.html">
+      Enter Teacher HQ
     </a>
   </div>
-</section>
 
-<!-- STAGE 4 -->
-<section id="stage-4" class="stage-section" hidden>
-  <button class="back-button" onclick="showHome()">
-    ← Back to Stages
-  </button>
-
-  <h2 class="section-title">🔢 Stage 4 Escape Rooms</h2>
-  <p class="section-subtitle">
-    Years 7–8 · Choose your topic and difficulty
-  </p>
-
-  <div class="grid">
-
-    <article class="card">
-      <div class="art standard" aria-hidden="true">
-        <span class="emoji">🧪🔓</span>
-        <span class="image-label">YEARS 7–8 · INTEGERS</span>
-      </div>
-      <div class="content">
-        <span class="tag">STANDARD EDITION</span>
-        <h2>The Locked Laboratory</h2>
-        <p class="desc">
-          Explore seven rooms of integer puzzles,
-          from negative numbers to BEDMAS and bracket
-          challenges. Optional hints, worked examples
-          and mini-lessons are available.
-        </p>
-        <a class="button"
-           href="locked_laboratory_seven_rooms%20EASY.html">
-          Play Standard Game →
-        </a>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="art gifted" aria-hidden="true">
-        <span class="emoji">🧠🔐</span>
-        <span class="image-label">YEARS 7–8 · INTEGERS</span>
-      </div>
-      <div class="content">
-        <span class="tag gifted-tag">
-          GIFTED &amp; TALENTED EDITION
-        </span>
-        <h2>The Extension Challenge</h2>
-        <p class="desc">
-          Take on seven more demanding rooms featuring
-          multi-step calculations, mathematical reasoning
-          and trickier integer problems.
-        </p>
-        <a class="button purple"
-           href="locked_laboratory_gifted_extension.html">
-          Play Extension Game →
-        </a>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="art standard" aria-hidden="true">
-        <span class="emoji">🏫🔐</span>
-        <span class="image-label">YEARS 7–8 · FDP</span>
-      </div>
-      <div class="content">
-        <span class="tag">STANDARD EDITION</span>
-        <h2>The School Lockdown</h2>
-        <p class="desc">
-          Explore 12 school rooms and solve 48 maths
-          puzzles covering fractions, decimals and
-          percentages. Can you escape?
-        </p>
-        <a class="button"
-           href="the_school_lockdown_complete_12_rooms.html">
-          Play Standard Game →
-        </a>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="art gifted" aria-hidden="true">
-        <span class="emoji">🏫🧠</span>
-        <span class="image-label">YEARS 7–8 · FDP</span>
-      </div>
-      <div class="content">
-        <span class="tag gifted-tag">
-          GIFTED &amp; TALENTED EDITION
-        </span>
-        <h2>The School Lockdown — Extension</h2>
-        <p class="desc">
-          Take on 12 school rooms and 48 challenging,
-          multi-step fractions, decimals and percentages
-          problems. Solve every investigation to escape!
-        </p>
-        <a class="button purple"
-           href="the_school_lockdown_FDP_EXTENSION%20(2).html">
-          Play Extension Game →
-        </a>
-      </div>
-    </article>
-
-  </div>
-</section>
-
-<!-- STAGE 5 -->
-<section id="stage-5" class="stage-section" hidden>
-  <button class="back-button" onclick="showHome()">
-    ← Back to Stages
-  </button>
-
-  <h2 class="section-title">📐 Stage 5 Escape Rooms</h2>
-  <p class="section-subtitle">Years 9–10 Mathematics</p>
-
-  <div class="coming-soon">
-    <div class="big">🔐✨</div>
-    <h3>New Adventures Coming Soon!</h3>
-    <p>
-      Stage 5 maths escape rooms are currently
-      being developed. Check back soon!
-    </p>
-  </div>
-</section>
-
-<!-- STAGE 6 -->
-<section id="stage-6" class="stage-section" hidden>
-  <button class="back-button" onclick="showHome()">
-    ← Back to Stages
-  </button>
-
-  <h2 class="section-title">📈 Stage 6 Mathematics</h2>
-  <p class="section-subtitle">
-    Years 11–12 · HSC revision and interactive challenges
-  </p>
-
-  <!-- PERSONALISED REVISION PLANNER -->
-  <h3 class="group-title">📚 Personalised Revision</h3>
-  <p class="group-description">
-    Find your strengths, identify areas to improve and build a study plan.
-  </p>
-
-  <div class="grid">
-    <article class="card">
-      <div class="art senior" aria-hidden="true">
-        <span class="emoji">📚📊</span>
-        <span class="image-label">YEARS 11–12 · MATHEMATICS STANDARD 2</span>
-      </div>
-      <div class="content">
-        <span class="tag gifted-tag">PERSONALISED HSC REVISION</span>
-        <h2>My HSC Revision Planner</h2>
-        <p class="desc">
-          Complete a four-question topic diagnostic, assess all of Year 11,
-          all of Year 12 or the whole course. Explore 72 multiple-choice
-          questions across 18 focus areas, with diagrams, worked answers,
-          saved progress and a personalised revision plan.
-        </p>
-        <a class="button purple" href="hsc_revision_planner.html">
-          Start My Revision Planner →
-        </a>
-      </div>
-    </article>
-  </div>
-
-  <!-- DAILY CHALLENGES -->
-  <h3 class="group-title">🔎 Daily Maths Challenges</h3>
-  <p class="group-description">
-    Build your HSC exam skills with a new mathematical
-    reasoning challenge each day.
-  </p>
-
-  <div class="grid">
-    <article class="card">
-      <div class="art mistake" aria-hidden="true">
-        <span class="emoji">🔎📝</span>
-        <span class="image-label">
-          STAGE 6 · MATHS STANDARD
-        </span>
-      </div>
-      <div class="content">
-        <span class="tag mistake-tag">
-          NEW DAILY CHALLENGE
-        </span>
-        <h2>Spot the Mistake</h2>
-        <p class="desc">
-          Can you find the error in a student's
-          mathematical working? Each day brings a new
-          HSC-style Maths Standard question.
-          Identify the mistake, explain why it is
-          incorrect and show the correct solution.
-          Includes optional hints, next-day worked
-          solutions and a 90-day teacher preview.
-        </p>
-        <a class="button pink" href="spot_the_mistake.html">
-          Spot Today's Mistake →
-        </a>
-      </div>
-    </article>
-  </div>
-
-  <!-- ESCAPE ROOMS -->
-  <h3 class="group-title">🔐 Interactive Escape Rooms</h3>
-  <p class="group-description">
-    Solve mathematical challenges, unlock rooms
-    and apply your knowledge to real-world scenarios.
-  </p>
-
-  <div class="grid">
-
-    <article class="card">
-      <div class="art senior" aria-hidden="true">
-        <span class="emoji">💼🔐</span>
-        <span class="image-label">
-          YEAR 12 · LINEAR RELATIONSHIPS
-        </span>
-      </div>
-      <div class="content">
-        <span class="tag gifted-tag">
-          YEAR 12 MATHEMATICS
-        </span>
-        <h2>The Business Breakout</h2>
-        <p class="desc">
-          You've been locked inside the business
-          headquarters! Solve six rooms of mathematical
-          challenges involving linear relationships,
-          gradients, business applications,
-          simultaneous equations and direct variation.
-          Can you unlock the final exit?
-        </p>
-        <a class="button purple"
-           href="the_business_breakout.html">
-          Play The Business Breakout →
-        </a>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="art senior" aria-hidden="true">
-        <span class="emoji">🎰🔐</span>
-        <span class="image-label">
-          STAGE 6 · PROBABILITY
-        </span>
-      </div>
-      <div class="content">
-        <span class="tag gifted-tag">
-          MATHEMATICS STANDARD
-        </span>
-        <h2>The Casino Lockdown</h2>
-        <p class="desc">
-          The casino's security system has locked
-          every exit! Solve 16 probability challenges
-          involving dice, cards, probability trees,
-          complements, Venn diagrams and two-way tables.
-          Crack each code to escape.
-        </p>
-        <a class="button purple"
-           href="the_casino_lockdown.html">
-          Play The Casino Lockdown →
-        </a>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="art senior" aria-hidden="true">
-        <span class="emoji">🏝️📡</span>
-        <span class="image-label">
-          YEAR 12 · TRIGONOMETRY
-        </span>
-      </div>
-      <div class="content">
-        <span class="tag gifted-tag">
-          MATHEMATICS STANDARD
-        </span>
-        <h2>The Island Signal</h2>
-        <p class="desc">
-          A storm has cut off a remote island.
-          Solve 14 trigonometry challenges involving
-          right-angled triangles, bearings, sine and
-          cosine rules, area and navigation to restore
-          the signal and escape.
-        </p>
-        <a class="button purple"
-           href="the_island_signal.html">
-          Play The Island Signal →
-        </a>
-      </div>
-    </article>
-
-  </div>
-</section>
-
-<!-- TEACHER HQ -->
-<div class="teacher-area">
-  <a class="button" href="teacher_dashboard.html">
-    🍎 Enter Teacher HQ →
-  </a>
-</div>
-
-<footer>
-  <strong>For students:</strong>
-  Choose your stage, select a game or daily challenge
-  and begin your adventure.
-  <div class="tiny">
-    All activities open in your browser.
-    No account required.
-  </div>
-</footer>
+  <footer>
+    HSC Easy · Free NSW Mathematics Resources
+    <div>
+      Years 7–12 · Interactive revision and practice
+    </div>
+  </footer>
 
 </main>
 
 <script>
-function showStage(stage) {
-  document.getElementById('stage-selection').hidden = true;
+  function showStage(stage) {
+    const home = document.getElementById("stage-selection");
+    home.hidden = true;
 
-  document.querySelectorAll('.stage-section').forEach(section => {
-    section.hidden = true;
-  });
+    document.querySelectorAll(".stage-section").forEach(section => {
+      section.hidden = true;
+    });
 
-  document.getElementById('stage-' + stage).hidden = false;
-  window.scrollTo(0, 0);
-}
+    const target = document.getElementById("stage-" + stage);
+    if (target) target.hidden = false;
 
-function showHome() {
-  document.querySelectorAll('.stage-section').forEach(section => {
-    section.hidden = true;
-  });
+    if (stage === 6) {
+      showTab("s6", "topics");
+    }
 
-  document.getElementById('stage-selection').hidden = false;
-  window.scrollTo(0, 0);
-}
+    window.scrollTo(0, 0);
+  }
+
+  function showHome() {
+    document.querySelectorAll(".stage-section").forEach(section => {
+      section.hidden = true;
+    });
+
+    document.getElementById("stage-selection").hidden = false;
+    window.scrollTo(0, 0);
+  }
+
+  function showTab(group, selected) {
+    const groups = {
+      s4: ["escape", "diagnostic", "y7", "y8"],
+      s5: ["escape", "diagnostic", "y9", "y10"],
+      s6: ["topics", "resources"]
+    };
+
+    if (!groups[group]) return;
+
+    const mainTabs = {
+      s4: ["escape", "diagnostic"],
+      s5: ["escape", "diagnostic"],
+      s6: ["topics", "resources"]
+    };
+
+    const subTabs = {
+      s4: ["y7", "y8"],
+      s5: ["y9", "y10"]
+    };
+
+    if (mainTabs[group].includes(selected)) {
+      mainTabs[group].forEach(name => {
+        const panel = document.getElementById(group + "-" + name);
+        const tab = document.getElementById(group + "-" + name + "-tab");
+        const active = name === selected;
+
+        if (panel) panel.hidden = !active;
+
+        if (tab) {
+          tab.classList.toggle("active", active);
+          tab.setAttribute("aria-selected", String(active));
+        }
+      });
+
+      return;
+    }
+
+    if (subTabs[group] && subTabs[group].includes(selected)) {
+      subTabs[group].forEach(name => {
+        const panel = document.getElementById(group + "-" + name);
+        const tab = document.getElementById(group + "-" + name + "-tab");
+        const active = name === selected;
+
+        if (panel) panel.hidden = !active;
+
+        if (tab) {
+          tab.classList.toggle("active", active);
+          tab.setAttribute("aria-selected", String(active));
+        }
+      });
+    }
+  }
+
+  // Set the default tabs.
+  showTab("s4", "escape");
+  showTab("s4", "y7");
+  showTab("s5", "escape");
+  showTab("s5", "y9");
+  showTab("s6", "topics");
 </script>
 
 </body>
