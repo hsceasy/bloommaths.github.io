@@ -7,12 +7,11 @@
 
 <title>HSC Easy | Interactive Mathematics Resources</title>
 
-<meta name="description"
-content="Interactive mathematics resources, diagnostic assessments, escape rooms and HSC revision for NSW Years 7–12.">
+<meta name="description" content="Interactive mathematics resources, diagnostic assessments, escape rooms and HSC revision for NSW Years 7–12.">
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-180BGJQCSL"></script>
 <script>
-window.dataLayer = window.dataLayer || [];
+window.dataLayer=window.dataLayer||[];
 function gtag(){dataLayer.push(arguments);}
 gtag("js",new Date());
 gtag("config","G-180BGJQCSL");
@@ -31,13 +30,12 @@ gtag("config","G-180BGJQCSL");
 }
 
 *{box-sizing:border-box}
-
 html{scroll-behavior:smooth}
 
 body{
   margin:0;
   font-family:Inter,system-ui,-apple-system,
-  BlinkMacSystemFont,"Segoe UI",sans-serif;
+    BlinkMacSystemFont,"Segoe UI",sans-serif;
   color:var(--ink);
   background:
     radial-gradient(circle at 10% 8%,#fbe8f0,transparent 35%),
@@ -47,11 +45,9 @@ body{
 }
 
 button,a{font:inherit}
-
 button{cursor:pointer}
 
-button:focus-visible,
-a:focus-visible{
+button:focus-visible,a:focus-visible{
   outline:3px solid #d99b45;
   outline-offset:4px;
 }
@@ -161,7 +157,7 @@ header p{
   font-size:.9rem;
 }
 
-/* GENERAL SECTIONS */
+/* GENERAL */
 
 .section-title{
   font-size:clamp(1.8rem,4vw,2.5rem);
@@ -202,11 +198,10 @@ header p{
 }
 
 .button:hover{filter:brightness(.91)}
-
 .button.purple{background:var(--purple)}
 .button.pink{background:var(--pink)}
 
-/* PROBLEM OF THE DAY */
+/* DAILY CHALLENGE */
 
 .daily-feature{
   margin:30px 0 45px;
@@ -238,9 +233,7 @@ header p{
   line-height:1.7;
 }
 
-.daily-feature .button{
-  display:inline-block;
-}
+.daily-feature .button{display:inline-block}
 
 /* RESOURCE TABS */
 
@@ -312,7 +305,7 @@ header p{
              0 0 0 6px var(--purple);
 }
 
-/* YEAR PANELS */
+/* DIAGNOSTICS */
 
 .year-panel{
   border-radius:24px;
@@ -334,8 +327,6 @@ header p{
   line-height:1.65;
   margin:0 0 24px;
 }
-
-/* DIAGNOSTICS */
 
 .diagnostic-grid{
   display:grid;
@@ -451,7 +442,7 @@ header p{
   flex:1;
 }
 
-/* STAGE 6 */
+/* STAGE 6 RESOURCES */
 
 .stage6-grid{
   display:grid;
@@ -509,8 +500,6 @@ header p{
 
 .coming-soon p{color:var(--muted)}
 
-/* TEACHER HQ */
-
 .teacher-area{
   text-align:center;
   margin-top:45px;
@@ -565,6 +554,8 @@ footer{
 <body>
 <main>
 
+<!-- HEADER -->
+
 <header>
   <div class="brand-label">
     NSW Years 7–12 Mathematics
@@ -579,10 +570,9 @@ footer{
   </p>
 </header>
 
-<!-- STAGE SELECTION -->
+<!-- HOME -->
 
 <section id="stage-selection">
-
   <div class="stage-grid">
 
     <button class="stage-card stage4"
@@ -591,7 +581,9 @@ footer{
       <div class="stage-number">Years 7–8</div>
       <h2>Stage 4</h2>
       <p>Build strong mathematical foundations.</p>
-      <span class="stage-action">Explore Stage 4 &rarr;</span>
+      <span class="stage-action">
+        Explore Stage 4 &rarr;
+      </span>
     </button>
 
     <button class="stage-card stage5"
@@ -600,7 +592,9 @@ footer{
       <div class="stage-number">Years 9–10</div>
       <h2>Stage 5</h2>
       <p>Strengthen reasoning and extend your skills.</p>
-      <span class="stage-action">Explore Stage 5 &rarr;</span>
+      <span class="stage-action">
+        Explore Stage 5 &rarr;
+      </span>
     </button>
 
     <button class="stage-card stage6"
@@ -609,11 +603,12 @@ footer{
       <div class="stage-number">Years 11–12</div>
       <h2>Stage 6</h2>
       <p>Prepare confidently for senior mathematics.</p>
-      <span class="stage-action">Explore Stage 6 &rarr;</span>
+      <span class="stage-action">
+        Explore Stage 6 &rarr;
+      </span>
     </button>
 
   </div>
-
 </section>
 
 <!-- PROBLEM OF THE DAY -->
@@ -650,7 +645,10 @@ footer{
     &larr; Back to Stages
   </button>
 
-  <h2 class="section-title">Stage 4 Mathematics</h2>
+  <h2 class="section-title">
+    Stage 4 Mathematics
+  </h2>
+
   <p class="section-subtitle">
     Years 7–8 · Choose an activity
   </p>
@@ -671,27 +669,23 @@ footer{
 
   </div>
 
-  <!-- STAGE 4 ESCAPE ROOMS -->
+  <!-- ESCAPE ROOMS -->
 
   <div id="s4-escape">
-
     <div class="escape-grid">
 
       <article class="escape-card">
         <div class="escape-art">
           <span>Integer Challenge</span>
         </div>
-
         <div class="escape-content">
           <div class="escape-tag">Standard Edition</div>
           <h3>The Locked Laboratory</h3>
-
           <p>
             Seven rooms of integer puzzles involving
             negative numbers, BEDMAS and multi-step
             calculations.
           </p>
-
           <a class="button"
              href="locked_laboratory_seven_rooms%20EASY.html">
             Play Standard Game &rarr;
@@ -703,20 +697,16 @@ footer{
         <div class="escape-art extension">
           <span>Extension Challenge</span>
         </div>
-
         <div class="escape-content">
           <div class="escape-tag extension">
             Gifted &amp; Talented
           </div>
-
           <h3>The Extension Challenge</h3>
-
           <p>
             Seven more demanding rooms featuring
             multi-step calculations and advanced
             integer reasoning.
           </p>
-
           <a class="button purple"
              href="locked_laboratory_gifted_extension.html">
             Play Extension Game &rarr;
@@ -728,18 +718,14 @@ footer{
         <div class="escape-art">
           <span>Fractions · Decimals · Percentages</span>
         </div>
-
         <div class="escape-content">
           <div class="escape-tag">Standard Edition</div>
-
           <h3>The School Lockdown</h3>
-
           <p>
             Explore 12 school rooms and solve
             48 fractions, decimals and percentages
             challenges.
           </p>
-
           <a class="button"
              href="the_school_lockdown_complete_12_rooms.html">
             Play Standard Game &rarr;
@@ -751,19 +737,15 @@ footer{
         <div class="escape-art extension">
           <span>Advanced FDP Challenge</span>
         </div>
-
         <div class="escape-content">
           <div class="escape-tag extension">
             Gifted &amp; Talented
           </div>
-
           <h3>The School Lockdown — Extension</h3>
-
           <p>
             Solve 48 challenging, multi-step FDP
             problems across 12 school rooms.
           </p>
-
           <a class="button purple"
              href="the_school_lockdown_FDP_EXTENSION%20(2).html">
             Play Extension Game &rarr;
@@ -774,7 +756,7 @@ footer{
     </div>
   </div>
 
-  <!-- STAGE 4 DIAGNOSTICS -->
+  <!-- DIAGNOSTICS -->
 
   <div id="s4-diagnostics" hidden>
 
@@ -848,7 +830,9 @@ footer{
         </article>
 
         <article class="diagnostic-card">
-          <div class="diagnostic-category">Measurement</div>
+          <div class="diagnostic-category">
+            Measurement
+          </div>
           <h4>Length, Area &amp; Volume</h4>
           <p>
             Perimeter, composite shapes, metric
@@ -885,7 +869,8 @@ footer{
 
       <p>
         Five topic-based assessments covering
-        algebra, number, geometry and proportional reasoning.
+        algebra, number, geometry and
+        proportional reasoning.
       </p>
 
       <div class="diagnostic-grid">
@@ -975,7 +960,9 @@ footer{
     &larr; Back to Stages
   </button>
 
-  <h2 class="section-title">Stage 5 Mathematics</h2>
+  <h2 class="section-title">
+    Stage 5 Mathematics
+  </h2>
 
   <p class="section-subtitle">
     Years 9–10 · Choose an activity
@@ -1001,7 +988,8 @@ footer{
     <div class="coming-soon">
       <h3>More Activities Coming Soon</h3>
       <p>
-        Stage 5 escape rooms are currently in development.
+        Stage 5 escape rooms are currently
+        in development.
       </p>
     </div>
   </div>
@@ -1075,8 +1063,8 @@ footer{
       <h3>Year 10 Diagnostic Tests</h3>
 
       <p>
-        Assess advanced algebraic reasoning and
-        linear relationships.
+        Assess advanced algebraic reasoning
+        and linear relationships.
       </p>
 
       <div class="diagnostic-grid">
@@ -1098,8 +1086,9 @@ footer{
           <div class="diagnostic-category">Algebra</div>
           <h4>Advanced Linear Relationships</h4>
           <p>
-            Two-point methods, parallel and perpendicular
-            lines, graphs, tables and problem solving.
+            Two-point methods, parallel and
+            perpendicular lines, graphs,
+            tables and problem solving.
           </p>
           <a class="button"
              href="year10_linear_diagnostic.html">
@@ -1122,7 +1111,9 @@ footer{
     &larr; Back to Stages
   </button>
 
-  <h2 class="section-title">Stage 6 Mathematics</h2>
+  <h2 class="section-title">
+    Stage 6 Mathematics
+  </h2>
 
   <p class="section-subtitle">
     Years 11–12 · HSC revision and interactive challenges
@@ -1130,7 +1121,7 @@ footer{
 
   <div class="stage6-grid">
 
-    <!-- NEW PROBABILITY HUB -->
+    <!-- PROBABILITY HUB -->
 
     <article class="stage6-card lilac">
 
@@ -1141,9 +1132,9 @@ footer{
       <h3>Probability Hub</h3>
 
       <p>
-        A complete interactive revision hub
-        covering relative frequency, probability
-        rules, Venn diagrams, two-way tables,
+        A complete interactive revision hub covering
+        relative frequency, probability rules,
+        Venn diagrams, two-way tables,
         probability trees and conditional probability.
         Includes a diagnostic test, skill practice,
         worked examples, Spot the Mistake,
@@ -1157,66 +1148,122 @@ footer{
 
     </article>
 
-    <!-- EXISTING STAGE 6 RESOURCES -->
+    <!-- NEW ALGEBRAIC RELATIONSHIPS HUB -->
+
+    <article class="stage6-card mint">
+
+      <div class="stage6-label">
+        Year 12 · Mathematics Standard 2
+      </div>
+
+      <h3>Algebraic Relationships Hub</h3>
+
+      <p>
+        A complete interactive revision hub covering
+        simultaneous equations, exponential growth
+        and decay, quadratic relationships,
+        parabolas, reciprocal relationships
+        and hyperbolas.
+        Includes a diagnostic test, skill practice,
+        worked examples, Spot the Mistake,
+        exam-style questions and a timed mini-test.
+      </p>
+
+      <a class="button"
+         href="year12_standard2_algebraic_relationships_hub.html">
+        Explore Algebraic Relationships &rarr;
+      </a>
+
+    </article>
+
+    <!-- REVISION PLANNER -->
 
     <article class="stage6-card blue">
+
       <h3>Revision Planner</h3>
+
       <p>
-        Identify strengths, revise key topics and
-        create a personalised study plan.
+        Identify strengths, revise key topics
+        and create a personalised study plan.
       </p>
+
       <a class="button purple"
          href="hsc_revision_planner.html">
         Open Revision Planner &rarr;
       </a>
+
     </article>
 
+    <!-- HSC PAPERS -->
+
     <article class="stage6-card pink">
+
       <h3>HSC Papers</h3>
+
       <p>
         Access HSC papers and practise
         exam-style questions.
       </p>
+
       <a class="button purple"
          href="hsc_exam_practice_hub.html">
         Explore HSC Papers &rarr;
       </a>
+
     </article>
 
+    <!-- SPOT THE MISTAKE -->
+
     <article class="stage6-card mint">
+
       <h3>Spot the Mistake</h3>
+
       <p>
         Find errors in mathematical working
         with HSC-style challenges.
       </p>
+
       <a class="button"
          href="spot_the_mistake.html">
         Start Challenge &rarr;
       </a>
+
     </article>
 
+    <!-- ESCAPE ROOMS -->
+
     <article class="stage6-card peach">
+
       <h3>Escape Rooms</h3>
+
       <p>
         Solve mathematical puzzles in
         interactive Stage 6 escape rooms.
       </p>
+
       <button class="button"
               onclick="showEscapeRooms()">
         Explore Escape Rooms &rarr;
       </button>
+
     </article>
 
+    <!-- HSC EXAM PRACTICE -->
+
     <article class="stage6-card lilac">
+
       <h3>HSC Exam Practice</h3>
+
       <p>
         Practise 44 original Mathematics Standard 2
         questions with marking and worked solutions.
       </p>
+
       <a class="button purple"
          href="hsc_exam_practice.html">
         Start Exam Practice &rarr;
       </a>
+
     </article>
 
   </div>
@@ -1284,12 +1331,10 @@ footer{
 <!-- TEACHER HQ -->
 
 <div class="teacher-area">
-
   <a class="button"
      href="teacher_dashboard.html">
     Enter Teacher HQ &rarr;
   </a>
-
 </div>
 
 <footer>
