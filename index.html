@@ -7,7 +7,8 @@
 
 <title>HSC Easy | Interactive Mathematics Resources</title>
 
-<meta name="description" content="Interactive mathematics resources, diagnostic assessments, escape rooms and HSC revision for NSW Years 7–12.">
+<meta name="description"
+content="Interactive mathematics resources, diagnostic assessments, escape rooms and HSC revision for NSW Years 7–12.">
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-180BGJQCSL"></script>
 <script>
@@ -47,7 +48,8 @@ body{
 button,a{font:inherit}
 button{cursor:pointer}
 
-button:focus-visible,a:focus-visible{
+button:focus-visible,
+a:focus-visible{
   outline:3px solid #d99b45;
   outline-offset:4px;
 }
@@ -201,7 +203,7 @@ header p{
 .button.purple{background:var(--purple)}
 .button.pink{background:var(--pink)}
 
-/* DAILY CHALLENGE */
+/* PROBLEM OF THE DAY */
 
 .daily-feature{
   margin:30px 0 45px;
@@ -251,6 +253,11 @@ header p{
   padding:17px 12px;
   font-weight:800;
   color:#536078;
+  transition:background .2s,color .2s;
+}
+
+.resource-tab:hover:not(.active){
+  background:#f2edff;
 }
 
 .resource-tab.active{
@@ -442,7 +449,7 @@ header p{
   flex:1;
 }
 
-/* STAGE 6 RESOURCES */
+/* STAGE 6 */
 
 .stage6-grid{
   display:grid;
@@ -486,6 +493,47 @@ header p{
   margin-bottom:12px;
 }
 
+/* TOPIC HUBS */
+
+.topic-intro{
+  text-align:center;
+  max-width:700px;
+  margin:0 auto 25px;
+  color:var(--muted);
+  line-height:1.7;
+}
+
+.topic-hub-card{
+  border:2px solid #ffffff;
+  transition:transform .2s,box-shadow .2s;
+}
+
+.topic-hub-card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 14px 28px #334a6b20;
+}
+
+.topic-hub-card h3{
+  font-size:1.45rem;
+}
+
+.topic-features{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-bottom:22px;
+}
+
+.topic-features span{
+  background:#ffffffb8;
+  border:1px solid #ffffff;
+  color:#59647b;
+  border-radius:20px;
+  padding:6px 10px;
+  font-size:.74rem;
+  font-weight:700;
+}
+
 .coming-soon{
   text-align:center;
   background:white;
@@ -499,6 +547,8 @@ header p{
 }
 
 .coming-soon p{color:var(--muted)}
+
+/* TEACHER HQ */
 
 .teacher-area{
   text-align:center;
@@ -669,7 +719,7 @@ footer{
 
   </div>
 
-  <!-- ESCAPE ROOMS -->
+  <!-- STAGE 4 ESCAPE ROOMS -->
 
   <div id="s4-escape">
     <div class="escape-grid">
@@ -756,7 +806,7 @@ footer{
     </div>
   </div>
 
-  <!-- DIAGNOSTICS -->
+  <!-- STAGE 4 DIAGNOSTICS -->
 
   <div id="s4-diagnostics" hidden>
 
@@ -1119,154 +1169,227 @@ footer{
     Years 11–12 · HSC revision and interactive challenges
   </p>
 
-  <div class="stage6-grid">
+  <!-- NEW STAGE 6 TABS -->
 
-    <!-- PROBABILITY HUB -->
+  <div class="resource-tabs"
+       role="tablist"
+       aria-label="Stage 6 resource categories">
 
-    <article class="stage6-card lilac">
+    <button
+      class="resource-tab active"
+      id="s6-topics-tab"
+      type="button"
+      role="tab"
+      aria-selected="true"
+      aria-controls="s6-topics"
+      onclick="showStage6Tab('topics')">
+      Topic Hubs
+    </button>
 
-      <div class="stage6-label">
-        Year 12 · Mathematics Standard 2
-      </div>
-
-      <h3>Probability Hub</h3>
-
-      <p>
-        A complete interactive revision hub covering
-        relative frequency, probability rules,
-        Venn diagrams, two-way tables,
-        probability trees and conditional probability.
-        Includes a diagnostic test, skill practice,
-        worked examples, Spot the Mistake,
-        exam-style questions and a timed mini-test.
-      </p>
-
-      <a class="button purple"
-         href="year12_standard2_probability_hub.html">
-        Explore Probability Hub &rarr;
-      </a>
-
-    </article>
-
-    <!-- NEW ALGEBRAIC RELATIONSHIPS HUB -->
-
-    <article class="stage6-card mint">
-
-      <div class="stage6-label">
-        Year 12 · Mathematics Standard 2
-      </div>
-
-      <h3>Algebraic Relationships Hub</h3>
-
-      <p>
-        A complete interactive revision hub covering
-        simultaneous equations, exponential growth
-        and decay, quadratic relationships,
-        parabolas, reciprocal relationships
-        and hyperbolas.
-        Includes a diagnostic test, skill practice,
-        worked examples, Spot the Mistake,
-        exam-style questions and a timed mini-test.
-      </p>
-
-      <a class="button"
-         href="year12_standard2_algebraic_relationships_hub.html">
-        Explore Algebraic Relationships &rarr;
-      </a>
-
-    </article>
-
-    <!-- REVISION PLANNER -->
-
-    <article class="stage6-card blue">
-
-      <h3>Revision Planner</h3>
-
-      <p>
-        Identify strengths, revise key topics
-        and create a personalised study plan.
-      </p>
-
-      <a class="button purple"
-         href="hsc_revision_planner.html">
-        Open Revision Planner &rarr;
-      </a>
-
-    </article>
-
-    <!-- HSC PAPERS -->
-
-    <article class="stage6-card pink">
-
-      <h3>HSC Papers</h3>
-
-      <p>
-        Access HSC papers and practise
-        exam-style questions.
-      </p>
-
-      <a class="button purple"
-         href="hsc_exam_practice_hub.html">
-        Explore HSC Papers &rarr;
-      </a>
-
-    </article>
-
-    <!-- SPOT THE MISTAKE -->
-
-    <article class="stage6-card mint">
-
-      <h3>Spot the Mistake</h3>
-
-      <p>
-        Find errors in mathematical working
-        with HSC-style challenges.
-      </p>
-
-      <a class="button"
-         href="spot_the_mistake.html">
-        Start Challenge &rarr;
-      </a>
-
-    </article>
-
-    <!-- ESCAPE ROOMS -->
-
-    <article class="stage6-card peach">
-
-      <h3>Escape Rooms</h3>
-
-      <p>
-        Solve mathematical puzzles in
-        interactive Stage 6 escape rooms.
-      </p>
-
-      <button class="button"
-              onclick="showEscapeRooms()">
-        Explore Escape Rooms &rarr;
-      </button>
-
-    </article>
-
-    <!-- HSC EXAM PRACTICE -->
-
-    <article class="stage6-card lilac">
-
-      <h3>HSC Exam Practice</h3>
-
-      <p>
-        Practise 44 original Mathematics Standard 2
-        questions with marking and worked solutions.
-      </p>
-
-      <a class="button purple"
-         href="hsc_exam_practice.html">
-        Start Exam Practice &rarr;
-      </a>
-
-    </article>
+    <button
+      class="resource-tab"
+      id="s6-resources-tab"
+      type="button"
+      role="tab"
+      aria-selected="false"
+      aria-controls="s6-resources"
+      onclick="showStage6Tab('resources')">
+      Other Resources
+    </button>
 
   </div>
+
+  <!-- TOPIC HUBS TAB -->
+
+  <div id="s6-topics"
+       role="tabpanel"
+       aria-labelledby="s6-topics-tab">
+
+    <p class="topic-intro">
+      Choose a topic to revise using interactive
+      diagnostic assessments, targeted practice,
+      worked examples and exam-style questions.
+    </p>
+
+    <div class="stage6-grid">
+
+      <!-- PROBABILITY HUB -->
+
+      <article class="stage6-card lilac topic-hub-card">
+
+        <div class="stage6-label">
+          Year 12 · Mathematics Standard 2
+        </div>
+
+        <h3>Probability Hub</h3>
+
+        <p>
+          Revise relative frequency, probability rules,
+          Venn diagrams, two-way tables, probability
+          trees and conditional probability.
+        </p>
+
+        <div class="topic-features">
+          <span>Diagnostic Test</span>
+          <span>Skill Practice</span>
+          <span>Worked Examples</span>
+          <span>Spot the Mistake</span>
+          <span>Exam Questions</span>
+          <span>Timed Mini-Test</span>
+        </div>
+
+        <a class="button purple"
+           href="year12_standard2_probability_hub.html">
+          Explore Probability Hub &rarr;
+        </a>
+
+      </article>
+
+      <!-- ALGEBRAIC RELATIONSHIPS HUB -->
+
+      <article class="stage6-card mint topic-hub-card">
+
+        <div class="stage6-label">
+          Year 12 · Mathematics Standard 2
+        </div>
+
+        <h3>Algebraic Relationships Hub</h3>
+
+        <p>
+          Revise simultaneous equations, exponential
+          growth and decay, quadratic relationships,
+          parabolas, reciprocal relationships
+          and hyperbolas.
+        </p>
+
+        <div class="topic-features">
+          <span>Diagnostic Test</span>
+          <span>Skill Practice</span>
+          <span>Worked Examples</span>
+          <span>Spot the Mistake</span>
+          <span>Exam Questions</span>
+          <span>Timed Mini-Test</span>
+        </div>
+
+        <a class="button"
+           href="year12_standard2_algebraic_relationships_hub.html">
+          Explore Algebraic Relationships &rarr;
+        </a>
+
+      </article>
+
+    </div>
+  </div>
+
+  <!-- OTHER RESOURCES TAB -->
+
+  <div id="s6-resources"
+       role="tabpanel"
+       aria-labelledby="s6-resources-tab"
+       hidden>
+
+    <p class="topic-intro">
+      Explore additional HSC revision tools,
+      exam preparation activities and
+      interactive mathematical challenges.
+    </p>
+
+    <div class="stage6-grid">
+
+      <!-- REVISION PLANNER -->
+
+      <article class="stage6-card lilac">
+
+        <h3>Revision Planner</h3>
+
+        <p>
+          Identify strengths, revise key topics
+          and create a personalised study plan.
+        </p>
+
+        <a class="button purple"
+           href="hsc_revision_planner.html">
+          Open Revision Planner &rarr;
+        </a>
+
+      </article>
+
+      <!-- HSC PAPERS -->
+
+      <article class="stage6-card blue">
+
+        <h3>HSC Papers</h3>
+
+        <p>
+          Access HSC papers and practise
+          exam-style questions.
+        </p>
+
+        <a class="button purple"
+           href="hsc_exam_practice_hub.html">
+          Explore HSC Papers &rarr;
+        </a>
+
+      </article>
+
+      <!-- SPOT THE MISTAKE -->
+
+      <article class="stage6-card pink">
+
+        <h3>Spot the Mistake</h3>
+
+        <p>
+          Find errors in mathematical working
+          with HSC-style challenges.
+        </p>
+
+        <a class="button pink"
+           href="spot_the_mistake.html">
+          Start Challenge &rarr;
+        </a>
+
+      </article>
+
+      <!-- ESCAPE ROOMS -->
+
+      <article class="stage6-card mint">
+
+        <h3>Escape Rooms</h3>
+
+        <p>
+          Solve mathematical puzzles in
+          interactive Stage 6 escape rooms.
+        </p>
+
+        <button class="button"
+                type="button"
+                onclick="showEscapeRooms()">
+          Explore Escape Rooms &rarr;
+        </button>
+
+      </article>
+
+      <!-- HSC EXAM PRACTICE -->
+
+      <article class="stage6-card peach">
+
+        <h3>HSC Exam Practice</h3>
+
+        <p>
+          Practise 44 original Mathematics Standard 2
+          questions with marking and worked solutions.
+        </p>
+
+        <a class="button purple"
+           href="hsc_exam_practice.html">
+          Start Exam Practice &rarr;
+        </a>
+
+      </article>
+
+    </div>
+  </div>
+
 </section>
 
 <!-- STAGE 6 ESCAPE ROOMS -->
@@ -1331,10 +1454,12 @@ footer{
 <!-- TEACHER HQ -->
 
 <div class="teacher-area">
+
   <a class="button"
      href="teacher_dashboard.html">
     Enter Teacher HQ &rarr;
   </a>
+
 </div>
 
 <footer>
@@ -1347,6 +1472,8 @@ footer{
 </main>
 
 <script>
+
+/* SCREEN NAVIGATION */
 
 function hideAllScreens(){
 
@@ -1406,6 +1533,8 @@ function showHome(){
 
 }
 
+/* STAGE 4 AND 5 RESOURCE TABS */
+
 function showResource(stage,resource){
 
   ["escape","diagnostics"].forEach(name=>{
@@ -1434,6 +1563,8 @@ function showResource(stage,resource){
   });
 
 }
+
+/* YEAR SELECTION */
 
 function showYear(stage,year){
 
@@ -1467,6 +1598,43 @@ function showYear(stage,year){
   });
 
 }
+
+/* NEW STAGE 6 TAB FUNCTION */
+
+function showStage6Tab(selected){
+
+  ["topics","resources"].forEach(name=>{
+
+    const panel=document.getElementById(
+      "s6-"+name
+    );
+
+    const tab=document.getElementById(
+      "s6-"+name+"-tab"
+    );
+
+    const active=name===selected;
+
+    panel.hidden=!active;
+
+    tab.classList.toggle(
+      "active",active
+    );
+
+    tab.setAttribute(
+      "aria-selected",
+      String(active)
+    );
+
+    tab.tabIndex=active?0:-1;
+
+  });
+
+}
+
+/* INITIALISE STAGE 6 TABS */
+
+showStage6Tab("topics");
 
 </script>
 
