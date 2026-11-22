@@ -791,7 +791,11 @@
 
     <!-- STAGE 6 TOPIC HUBS -->
     <div id="s6-topics" class="tab-panel">
-
+      <div class="sub-tabs" role="tablist" aria-label="Choose a year for topic hubs">
+        <button id="s6-y11-tab" class="sub-tab active" role="tab" aria-selected="true" onclick="showTab('s6','y11')">Year 11</button>
+        <button id="s6-y12-tab" class="sub-tab" role="tab" aria-selected="false" onclick="showTab('s6','y12')">Year 12</button>
+      </div>
+      <div id="s6-y11" class="tab-panel">
       <h3 class="group-title">Year 11 Mathematics Standard Topic Hubs</h3>
       <p class="group-description">Build foundational skills with diagnostic tests, skill practice, worked examples, mistake analysis, exam questions and mini-tests.</p>
       <div class="grid">
@@ -841,7 +845,9 @@
           </div>
         </article>
       </div>
-      <h3 class="group-title" style="margin-top:36px">Year 12 Mathematics Standard 2 Topic Hubs</h3>
+      </div>
+      <div id="s6-y12" class="tab-panel" hidden>
+      <h3 class="group-title">Year 12 Mathematics Standard 2 Topic Hubs</h3>
       <p class="group-description">
         Revise individual topics with diagnostic tests,
         worked examples, targeted practice, exam-style
@@ -920,7 +926,7 @@
         More Mathematics Standard 2 Topic Hubs will be
         added as new resources become available.
       </div>
-
+      </div>
     </div>
 
     <!-- STAGE 6 OTHER RESOURCES -->
@@ -1126,7 +1132,7 @@
     const groups = {
       s4: ["escape", "diagnostic", "y7", "y8"],
       s5: ["escape", "diagnostic", "y9", "y10"],
-      s6: ["topics", "resources"]
+      s6: ["topics", "resources", "y11", "y12"]
     };
 
     if (!groups[group]) return;
@@ -1139,7 +1145,8 @@
 
     const subTabs = {
       s4: ["y7", "y8"],
-      s5: ["y9", "y10"]
+      s5: ["y9", "y10"],
+      s6: ["y11", "y12"]
     };
 
     if (mainTabs[group].includes(selected)) {
@@ -1181,6 +1188,7 @@
   showTab("s5", "escape");
   showTab("s5", "y9");
   showTab("s6", "topics");
+  showTab("s6", "y11");
 </script>
 
 </body>
