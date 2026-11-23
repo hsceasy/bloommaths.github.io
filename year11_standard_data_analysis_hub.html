@@ -9,6 +9,13 @@
 .question th {background:#f3f5f8;}
 .question details summary {color:#42617c;}
 @media(max-width:600px){.nav{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* Unit-specific pastel theme; preserve the shared purple navigation tabs. */
+:root{--unit-accent:#367d9d;--unit-light:#e2f2fb}
+body{background:linear-gradient(140deg,#eef8ff,#f8faff)}
+header{background:linear-gradient(110deg,#e4f1ff,#fff,#e7f7f2);border:1px solid var(--unit-light)}
+header h1{color:var(--unit-accent)}
+.answer{background:var(--unit-light)}
+.panel{border-color:var(--unit-light)}
 </style></head><body><div class="wrap"><header><div>HSC Easy · Year 11 Mathematics Standard</div><h1>Data Analysis</h1><p>Frequency distributions · graphical displays · summary statistics · quartiles · box plots · outliers · comparing distributions</p><p class="meta">Original exam-style questions with labelled diagrams and worked answers. A separate Sampling and Classification hub covers data collection.</p></header><nav class="nav" id="tabs"><button class="active" data-panel="diagnostic">Diagnostic Test</button><button data-panel="skills">Skill Practice</button><button data-panel="worked">Worked Examples</button><button data-panel="mistakes">Spot the Mistake</button><button data-panel="exam">Exam Questions</button><button data-panel="mini">Bank Mini-Test</button></nav><main>
 <section class="panel active" id="diagnostic"><h2>Diagnostic Test</h2><p>20 multiple-choice questions to identify strengths and gaps. Each question is marked immediately.</p><div id="diag"></div><div id="diagresult"></div></section>
 <section class="panel" id="skills"><h2>Skill Practice</h2><p>Choose a topic to practise foundational calculations and interpretation.</p><select id="skillcategory" class="selector"></select><div id="skillcontent"></div></section>
