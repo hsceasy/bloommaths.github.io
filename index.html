@@ -779,6 +779,14 @@
         Topic Hubs
       </button>
 
+      <button id="s6-hsc-tab"
+              class="tab"
+              role="tab"
+              aria-selected="false"
+              onclick="showTab('s6','hsc')">
+        HSC Resources
+      </button>
+
       <button id="s6-resources-tab"
               class="tab"
               role="tab"
@@ -938,17 +946,11 @@
       </div>
     </div>
 
-    <!-- STAGE 6 OTHER RESOURCES -->
-    <div id="s6-resources" class="tab-panel" hidden>
-
+    <!-- STAGE 6 HSC RESOURCES -->
+    <div id="s6-hsc" class="tab-panel" hidden>
       <h3 class="group-title">HSC Exam Preparation</h3>
-      <p class="group-description">
-        Practise questions from across Mathematics Standard 2
-        and prepare for the HSC with mixed-topic revision.
-      </p>
-
+      <p class="group-description">Practise Mathematics Standard 2 exam questions, explore papers and plan your HSC revision.</p>
       <div class="grid">
-
         <article class="card">
           <div class="art lilac">
             MIXED-TOPIC HSC PRACTICE
@@ -1006,7 +1008,14 @@
             </a>
           </div>
         </article>
+      </div>
+    </div>
 
+    <!-- STAGE 6 OTHER RESOURCES -->
+    <div id="s6-resources" class="tab-panel" hidden>
+      <h3 class="group-title">Spot the Mistake</h3>
+      <p class="group-description">Challenge your reasoning by finding and explaining errors in mathematical working.</p>
+      <div class="grid">
         <article class="card">
           <div class="art rose">
             DAILY MATHEMATICAL REASONING
@@ -1025,17 +1034,10 @@
             </a>
           </div>
         </article>
-
       </div>
-
       <h3 class="group-title">Interactive Escape Rooms</h3>
-      <p class="group-description">
-        Apply your mathematical skills to challenging
-        problem-solving adventures.
-      </p>
-
+      <p class="group-description">Apply your mathematical skills to challenging problem-solving adventures.</p>
       <div class="grid">
-
         <article class="card">
           <div class="art lilac">
             LINEAR RELATIONSHIPS
@@ -1087,9 +1089,7 @@
             </a>
           </div>
         </article>
-
       </div>
-
     </div>
   </section>
 
@@ -1141,7 +1141,7 @@
     const groups = {
       s4: ["escape", "diagnostic", "y7", "y8"],
       s5: ["escape", "diagnostic", "y9", "y10"],
-      s6: ["topics", "resources", "y11", "y12"]
+      s6: ["topics", "hsc", "resources", "y11", "y12"]
     };
 
     if (!groups[group]) return;
@@ -1149,7 +1149,7 @@
     const mainTabs = {
       s4: ["escape", "diagnostic"],
       s5: ["escape", "diagnostic"],
-      s6: ["topics", "resources"]
+      s6: ["topics", "hsc", "resources"]
     };
 
     const subTabs = {
