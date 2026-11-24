@@ -402,79 +402,12 @@ body{background:#fffcf7} main{padding-top:22px} .brand-nav{display:flex;align-it
     </button>
 <h2 class="section-title">Stage 4 Mathematics</h2>
 <p class="section-subtitle">
-      Years 7–8 · Topic hubs, escape rooms and diagnostic tests
+      Years 7–8 · Topic hubs and diagnostic tests
     </p>
 <section aria-label="Stage 4 topic hubs" style="margin: 20px 0">
 <h3 class="group-title">Topic Hubs</h3><div class="grid"><article class="card"><div class="art mint">INTEGERS</div><div class="content"><span class="tag">YEAR 7 · STAGE 4</span><h3>Integers Hub</h3><p class="desc">Diagnostic test, skill practice, worked examples, challenges, mini-tests and escape rooms.</p><a class="button" href="year7_integers_hub.html">Explore Integers</a></div></article><article class="card"><div class="art peach">FRACTIONS · DECIMALS · PERCENTAGES</div><div class="content"><span class="tag">YEAR 7 · STAGE 4</span><h3>Fractions, Decimals and Percentages Hub</h3><p class="desc">180 practice questions, worked examples, visual fraction models, mini-tests, a diagnostic test and escape rooms.</p><a class="button" href="year7_fdp_hub.html">Explore FDP</a></div></article><article class="card"><div class="art rose">RATIOS · RATES</div><div class="content"><span class="tag">YEAR 7 · STAGE 4</span><h3>Ratios and Rates Hub</h3><p class="desc">180 practice questions, distance–time graphs, interactive ratio explorer, mini-tests, a diagnostic test and two escape rooms.</p><a class="button" href="year7_ratios_rates_hub.html">Explore Ratios and Rates</a></div></article><article class="card"><div class="art lilac">ALGEBRAIC TECHNIQUES</div><div class="content"><span class="tag">YEAR 7 · STAGE 4</span><h3>Algebraic Techniques Hub</h3><p class="desc">180 practice questions, visual algebra models, interactive substitution, mini-tests, a diagnostic test and two escape rooms.</p><a class="button" href="year7_algebraic_techniques_hub.html">Explore Algebraic Techniques</a></div></article><article class="card"><div class="art mint">EQUATIONS</div><div class="content"><span class="tag">YEAR 7 · STAGE 4</span><h3>Equations Hub</h3><p class="desc">180 practice questions, interactive balance and equation solvers, mini-tests, a diagnostic test and two escape rooms.</p><a class="button" href="year7_equations_hub.html">Explore Equations</a></div></article><article class="card"><div class="art peach">LINEAR RELATIONSHIPS</div><div class="content"><span class="tag">YEAR 7 · STAGE 4</span><h3>Linear Relationships Hub</h3><p class="desc">180 practice questions, interactive coordinate plotting, graph explorers, mini-tests, a diagnostic test and two escape rooms.</p><a class="button" href="year7_linear_relationships_hub.html">Explore Linear Relationships</a></div></article><article class="card"><div class="art peach">LENGTH, AREA AND VOLUME</div><div class="content"><span class="tag">YEAR 7 · STAGE 4</span><h3>Length, Area and Volume Hub</h3><p class="desc">180 practice questions, interactive measurement labs, mini-tests, a diagnostic test and two escape rooms.</p><a class="button" href="year7_measurement_hub.html">Explore Length, Area and Volume</a></div></article></div></section>
-<div aria-label="Stage 4 resources" class="tabs" role="tablist">
-<button aria-selected="true" class="tab active" id="s4-escape-tab" onclick="showTab('s4','escape')" role="tab">
-        Escape Rooms
-      </button>
-<button aria-selected="false" class="tab" id="s4-diagnostic-tab" onclick="showTab('s4','diagnostic')" role="tab">
-        Diagnostic Tests
-      </button>
-</div>
-<div class="tab-panel" id="s4-escape">
-<div class="grid">
-<article class="card">
-<div class="art mint">INTEGERS · STANDARD</div>
-<div class="content">
-<span class="tag">STAGE 4</span>
-<h3>The Locked Laboratory</h3>
-<p class="desc">
-              Seven rooms of integer challenges,
-              including negative numbers, operations and BEDMAS.
-            </p>
-<a class="button" href="locked_laboratory_seven_rooms%20EASY.html">
-              Play Standard Edition
-            </a>
-</div>
-</article>
-<article class="card">
-<div class="art lilac">INTEGERS · EXTENSION</div>
-<div class="content">
-<span class="tag purple">EXTENSION</span>
-<h3>The Locked Laboratory — Extension</h3>
-<p class="desc">
-              More challenging integer problems involving
-              multi-step calculations and reasoning.
-            </p>
-<a class="button purple" href="locked_laboratory_gifted_extension.html">
-              Play Extension Edition
-            </a>
-</div>
-</article>
-<article class="card">
-<div class="art mint">FRACTIONS · DECIMALS · PERCENTAGES</div>
-<div class="content">
-<span class="tag">STAGE 4</span>
-<h3>The School Lockdown</h3>
-<p class="desc">
-              Explore 12 rooms and solve 48 puzzles
-              covering fractions, decimals and percentages.
-            </p>
-<a class="button" href="the_school_lockdown_complete_12_rooms.html">
-              Play Standard Edition
-            </a>
-</div>
-</article>
-<article class="card">
-<div class="art lilac">FDP · EXTENSION</div>
-<div class="content">
-<span class="tag purple">EXTENSION</span>
-<h3>The School Lockdown — Extension</h3>
-<p class="desc">
-              Challenging multi-step problems involving
-              fractions, decimals and percentages.
-            </p>
-<a class="button purple" href="the_school_lockdown_FDP_EXTENSION%20(2).html">
-              Play Extension Edition
-            </a>
-</div>
-</article>
-</div>
-</div>
-<div class="tab-panel" hidden="" id="s4-diagnostic">
+<h3 class="group-title">Diagnostic Tests</h3>
+<div class="tab-panel" id="s4-diagnostic">
 <div aria-label="Stage 4 year" class="sub-tabs" role="tablist">
 <button aria-selected="true" class="sub-tab active" id="s4-y7-tab" onclick="showTab('s4','y7')" role="tab">
           Year 7
@@ -720,7 +653,7 @@ body{background:#fffcf7} main{padding-top:22px} .brand-nav{display:flex;align-it
 
   function showTab(group, selected) {
     const groups = {
-      s4: ["escape", "diagnostic", "y7", "y8"],
+      s4: ["diagnostic", "y7", "y8"],
       s5: ["escape", "diagnostic", "y9", "y10"],
       s6: ["topics", "hsc", "resources", "y11", "y12"]
     };
@@ -728,7 +661,7 @@ body{background:#fffcf7} main{padding-top:22px} .brand-nav{display:flex;align-it
     if (!groups[group]) return;
 
     const mainTabs = {
-      s4: ["escape", "diagnostic"],
+      s4: ["diagnostic"],
       s5: ["escape", "diagnostic"],
       s6: ["topics", "hsc", "resources"]
     };
@@ -773,7 +706,7 @@ body{background:#fffcf7} main{padding-top:22px} .brand-nav{display:flex;align-it
   }
 
   // Set the default tabs.
-  showTab("s4", "escape");
+  showTab("s4", "diagnostic");
   showTab("s4", "y7");
   showTab("s5", "escape");
   showTab("s5", "y9");
