@@ -27,4 +27,39 @@
 }
 </style><style>.teacher-back{display:inline-block;margin:0 0 20px;background:#fff;border:1px solid #ffe4d8;border-radius:12px;padding:12px 17px;text-decoration:none;font-weight:800;color:#a64e65}.teacher-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:26px 0 38px}.teacher-tile{display:flex;flex-direction:column;background:#fff;border:1px solid #ffe4d8;border-radius:22px;padding:26px;box-shadow:0 12px 28px #303c5912}.teacher-tile .tile-emoji{font-size:3.5rem}.teacher-tile h2{margin:12px 0 8px;font-size:1.4rem}.teacher-tile p{line-height:1.55;color:#776b72;flex:1}.teacher-tile a{display:block;background:#50404b;border-radius:12px;padding:13px;text-align:center;color:white;text-decoration:none;font-weight:800}.teacher-tile:nth-child(2) a{background:#a64e65}.teacher-tile:nth-child(3) a{background:#a64e65}@media(max-width:850px){.teacher-grid{grid-template-columns:1fr}}@media print{.teacher-back,.teacher-grid{display:none!important}}</style><style>.teacher-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.teacher-tile:nth-child(4) a{background:#a64e65}@media(max-width:650px){.teacher-grid{grid-template-columns:1fr}}</style><style>body{background:#fffcf7;} </style>
 <link rel="stylesheet" href="viorosa-theme.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.viorosamaths.com/#organization",
+      "name": "Viorosa Maths",
+      "url": "https://www.viorosamaths.com/"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.viorosamaths.com/#website",
+      "url": "https://www.viorosamaths.com/",
+      "name": "Viorosa Maths",
+      "publisher": {
+        "@id": "https://www.viorosamaths.com/#organization"
+      },
+      "inLanguage": "en-AU"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.viorosamaths.com/teacher_dashboard.html#webpage",
+      "url": "https://www.viorosamaths.com/teacher_dashboard.html",
+      "name": "Teacher Dashboard \u2013 Maths Escape Rooms",
+      "isPartOf": {
+        "@id": "https://www.viorosamaths.com/#website"
+      },
+      "inLanguage": "en-AU",
+      "description": "Challenge your maths skills in Teacher Dashboard with an interactive maths escape rooms from Viorosa Maths."
+    }
+  ]
+}
+</script>
 </head><body><nav class="viorosa-nav" aria-label="Viorosa Maths navigation"><a class="viorosa-wordmark" href="index.html">viorosa<small>M A T H S</small></a><div class="viorosa-nav-links"><a href="nsw.html">NSW curriculum</a><a href="stage-6.html">Stage 6</a></div></nav><header><strong>🔐 Maths Escape Rooms · Teacher HQ</strong><a href="index.html">← Back to games</a></header><main><section class="hero"><div class="kicker">🍎 YOUR TEACHER RESOURCE LIBRARY</div><h1>Welcome to Teacher HQ</h1><p>Choose a game to see its room-by-room questions, answers, teaching guidance and printable resources. Each game has its own page — no endless scrolling!</p></section><div class="teacher-grid"><article class="teacher-tile"><div class="tile-emoji">🏫</div><h2>The School Lockdown</h2><p><strong>Fractions, Decimals &amp; Percentages</strong><br/>12 rooms · 48 questions<br/>Room guides, solutions and teaching notes.</p><a href="teacher_fdp.html">Open teacher resources →</a></article><article class="teacher-tile"><div class="tile-emoji">🧪</div><h2>The Locked Laboratory</h2><p><strong>Integers — Standard Edition</strong><br/>7 rooms · 28 puzzles<br/>Room guides, solutions and teaching notes.</p><a href="teacher_integers_standard.html">Open teacher resources →</a></article><article class="teacher-tile"><div class="tile-emoji">🧠</div><h2>The Extension Challenge</h2><p><strong>Integers — Gifted &amp; Talented</strong><br/>7 rooms · 28 puzzles<br/>Room guides, solutions and teaching notes.</p><a href="teacher_integers_extension.html">Open teacher resources →</a></article><article class="teacher-tile"><div class="tile-emoji">🏫🧠</div><h2>The School Lockdown — Extension</h2><p><strong>Fractions, Decimals &amp; Percentages — Gifted &amp; Talented</strong><br/>12 rooms · 48 multi-step problems<br/>Full answers, hints and printable teacher resources.</p><a href="teacher_fdp_extension.html">Open teacher resources →</a></article></div><p style="text-align:center;color:#637087">Student games remain unchanged. Teacher answer keys on this public website can also be viewed by students who find these links.</p></main><footer>Made for curious mathematicians ✨ · Teacher HQ</footer><script>function printAll(){document.body.classList.remove('print-single');document.querySelectorAll('.print-target').forEach(x=>x.classList.remove('print-target'));window.print()}function printRoom(n){document.body.classList.add('print-single');document.querySelectorAll('.print-target').forEach(x=>x.classList.remove('print-target'));document.getElementById('room-'+n).classList.add('print-target');window.print()}window.addEventListener('afterprint',()=>{document.body.classList.remove('print-single');document.querySelectorAll('.print-target').forEach(x=>x.classList.remove('print-target'))})function printEdition(id){document.body.classList.add('print-edition');document.querySelectorAll('.edition-print-target').forEach(x=>x.classList.remove('edition-print-target'));document.getElementById(id).classList.add('edition-print-target');window.print()}window.addEventListener('afterprint',()=>{document.body.classList.remove('print-edition');document.querySelectorAll('.edition-print-target').forEach(x=>x.classList.remove('edition-print-target'))});</script></body></html>
